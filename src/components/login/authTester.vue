@@ -14,13 +14,11 @@
 <script setup>
 import { useAccessTokenStore } from '@/stores/accessToken'
 
-const props = defineProps(['backendPath'])
-
 const accessTokenStore = useAccessTokenStore()
 
 const testLogin = async () => {
   try {
-    const response = await fetch('http://' + props.backendPath, {
+    const response = await fetch('http://localhost:3000/api/auth/login/admin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: 'nikian778@gmail.com', password: '1234' }),
