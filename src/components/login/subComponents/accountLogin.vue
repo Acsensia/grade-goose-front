@@ -39,6 +39,24 @@ const handleLogin = async () => {
     if (response.ok) {
       alert('Successfully authenticated!')
       accessTokenStore.accessToken = (await response.json()).accessToken
+
+      //   ////
+      //   const secondResponse = await fetch('http://localhost:3000/test/test1', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       Authorization: `Bearer ${accessTokenStore.accessToken}`,
+      //     },
+      //     body: JSON.stringify({ email: email.value, password: password.value }),
+      //     credentials: 'include',
+      //   })
+
+      //   if (secondResponse.ok) {
+      //     alert('Successfully accessed protected resource!')
+      //   } else {
+      //     alert('Failed to access a protected resource.')
+      //   }
+      //   ////
     } else {
       alert('Authentication failed.')
     }
