@@ -1,9 +1,12 @@
 <template>
-  <AccountLogin backendPath="something something backend path">Administrator</AccountLogin>
+  <AccountLogin :backendPath="calculatedBackendPath">Administrator</AccountLogin>
 </template>
 
 <script setup>
-import AccountLogin from './subComponents/accountLogin.vue'
+import AccountLogin from '@/components/login/subComponents/accountLogin.vue'
+import * as env from '@/config/env.js'
+
+const calculatedBackendPath = env.BACKEND_URL + '/api/auth/login/admin'
 </script>
 
 <style></style>
