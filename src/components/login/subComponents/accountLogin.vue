@@ -18,8 +18,11 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useAccessTokenStore } from '@/stores/accessToken'
 
 const props = defineProps(['backendPath'])
+
+const accessTokenStore = useAccessTokenStore()
 
 const email = ref('')
 const password = ref('')
@@ -34,7 +37,8 @@ const handleLogin = async () => {
     })
 
     if (response.ok) {
-      alert('Administrator successfully authenticated!')
+      alert('Successfully authenticated!')
+      accessTokenStore.accessToken = (await response.json()).accessToken
     } else {
       alert('Authentication failed.')
     }
