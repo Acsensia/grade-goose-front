@@ -1,3 +1,6 @@
+# Windows-specific
+desktop.ini
+
 # Logs
 logs
 *.log
