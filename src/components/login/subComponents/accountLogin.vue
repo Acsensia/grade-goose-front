@@ -30,7 +30,7 @@ const password = ref('')
 
 const handleLogin = async () => {
   try {
-    const response = await fetch('http://' + props.backendPath, {
+    const response = await fetch(props.backendPath, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email.value, password: password.value }),
@@ -50,7 +50,7 @@ const handleLogin = async () => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .container {
   border: 1px solid var(--border-color);
   padding: 20px;

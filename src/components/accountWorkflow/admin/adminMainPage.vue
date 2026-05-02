@@ -1,33 +1,50 @@
 <template>
-  <div class="topMenuContainer header">
-    <h2>Hello, {{ accountName }}</h2>
-  </div>
-  <div class="container">
-    <div class="header">
-      <h2>Select Account Type</h2>
-      <button @click="toggleTheme" class="theme-switch">
-        Toggle {{ isDark ? 'White' : 'Black' }} Theme
-      </button>
+  <Suspense>
+    <div class="topMenuContainer header">
+      <!-- <h2>Hello, {{ firstName }} {{ lastName }} {{ patronymicName }} !</h2> -->
+      <h2>Hello, sucker!</h2>
     </div>
-    <div class="button-group">
-      <button @click="$router.push('/login/student')">Student</button>
-      <button @click="$router.push('/login/teacher')">Teacher</button>
-      <button @click="$router.push('/login/admin')">Administrator</button>
-    </div>
-  </div>
+  </Suspense>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import router from '@/router'
+import { useAccessTokenStore } from '@/stores/accessToken'
+import * as env from '@/config/env.js'
 
-const accountName = ref('loading...')
-// import AccountLogin from '@/components/login/subComponents/accountLogin.vue'
-// import * as env from '@/config/env.js'
+const accessTokenStore = useAccessTokenStore()
+if (accessTokenStore.accessToken === '') await router.push('/login')
 
-// const calculatedBackendPath = env.BACKEND_URL + '/api/auth/login/admin'
+//const accountName = ref('loading...')
+const _getUserInfo = async () => {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/info/admin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessTokenStore.accessToken}`,
+      },
+      body: JSON.stringify({}),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      await router.push('/login')
+    }
+  } catch (error) {
+    console.error('Secure data access error:', error)
+  }
+}
+// const userInfo = await _getUserInfo()
+// const firstName = ref(userInfo.first_name)
+// const lastName = ref(userInfo.last_name)
+// const patronymicName = ref(userInfo.patronymic_name)
 </script>
 
-<style>
+<style lang="scss" scoped>
 .topMenuContainer {
   border: 1px solid var(--border-color);
   padding: 5px;
