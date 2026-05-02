@@ -1,22 +1,32 @@
 <template>
-  <Suspense>
-    <div class="topMenuContainer header">
-      <!-- <h2>Hello, {{ firstName }} {{ lastName }} {{ patronymicName }} !</h2> -->
-      <h2>Hello, sucker!</h2>
-    </div>
-  </Suspense>
+  <div class="topMenuContainer header">
+    <h2>{{ firstName }} {{ lastName[0] }}. {{ patronymicName[0] }}.</h2>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import router from '@/router'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import * as env from '@/config/env.js'
 
 const accessTokenStore = useAccessTokenStore()
-if (accessTokenStore.accessToken === '') await router.push('/login')
 
-//const accountName = ref('loading...')
+const userInfo = ref(undefined)
+
+const firstName = ref('loading first name...')
+const lastName = ref('loading last name...')
+const patronymicName = ref('loading patronymic name...')
+
+onMounted(async () => {
+  if (accessTokenStore.accessToken === '') await router.push('/login')
+
+  userInfo.value = await _getUserInfo()
+  firstName.value = userInfo.value.first_name
+  lastName.value = userInfo.value.last_name
+  patronymicName.value = userInfo.value.patronymic_name
+})
+
 const _getUserInfo = async () => {
   try {
     const response = await fetch(env.BACKEND_URL + '/api/account/info/admin', {
@@ -38,10 +48,6 @@ const _getUserInfo = async () => {
     console.error('Secure data access error:', error)
   }
 }
-// const userInfo = await _getUserInfo()
-// const firstName = ref(userInfo.first_name)
-// const lastName = ref(userInfo.last_name)
-// const patronymicName = ref(userInfo.patronymic_name)
 </script>
 
 <style lang="scss" scoped>
