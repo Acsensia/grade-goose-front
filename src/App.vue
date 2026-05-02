@@ -47,8 +47,7 @@ body {
   margin-bottom: 2rem;
 }
 
-button,
-routerLink {
+button {
   background-color: var(--bg-color);
   color: var(--text-color);
   border: 1px solid var(--border-color);
@@ -57,8 +56,7 @@ routerLink {
   transition: all 0.2s;
 }
 
-button:hover,
-routerLink:hover {
+button:hover {
   background-color: var(--text-color);
   color: var(--bg-color);
 }
