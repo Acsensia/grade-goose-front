@@ -12,5 +12,9 @@ export const useAccessTokenStore = defineStore('accessToken', {
     setNewUserType(newUserType) {
       this.userType = newUserType
     },
+    reset() {
+      this.accessToken = ''
+      this.userType = ''
+    },
   },
 })

@@ -1,4 +1,3 @@
-import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useAccountStore = defineStore('account', {
@@ -8,6 +7,9 @@ export const useAccountStore = defineStore('account', {
   actions: {
     setNewAccount(newAccount) {
       this.account = newAccount
+    },
+    reset() {
+      this.account = undefined
     },
   },
 })
