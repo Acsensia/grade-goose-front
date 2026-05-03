@@ -1,15 +1,17 @@
 <template>
-  <div class="container">
-    <div class="header">
-      <h2>Select Account Type</h2>
-      <button @click="toggleTheme" class="theme-switch">
-        Toggle {{ isDark ? 'White' : 'Black' }} Theme
-      </button>
-    </div>
-    <div class="button-group">
-      <button @click="$router.push('/login/student')">Student</button>
-      <button @click="$router.push('/login/teacher')">Teacher</button>
-      <button @click="$router.push('/login/admin')">Administrator</button>
+  <div class="overContainer">
+    <div class="container">
+      <div class="header">
+        <h2>Select Account Type</h2>
+        <button @click="toggleTheme" class="theme-switch">
+          Toggle {{ isDark ? 'White' : 'Black' }} Theme
+        </button>
+      </div>
+      <div class="button-group">
+        <button @click="$router.push('/login/student')">Student</button>
+        <button @click="$router.push('/login/teacher')">Teacher</button>
+        <button @click="$router.push('/login/admin')">Administrator</button>
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +36,16 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.overContainer {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
   border: 1px solid var(--border-color);
   padding: 20px;

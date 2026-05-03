@@ -1,6 +1,8 @@
 <template>
-  <div class="topMenuContainer header">
-    <h2>{{ firstName }} {{ lastName[0] }}. {{ patronymicName[0] }}.</h2>
+  <div class="overContainer">
+    <div class="header">
+      <h2>{{ firstName }} {{ lastName[0] }}. {{ patronymicName[0] }}.</h2>
+    </div>
   </div>
 </template>
 
@@ -51,14 +53,14 @@ const _getUserInfo = async () => {
 </script>
 
 <style lang="scss" scoped>
-.topMenuContainer {
-  border: 1px solid var(--border-color);
-  padding: 5px;
-  max-height: 50px;
+.overContainer {
+  width: 100%;
+  height: 100%;
 
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .container {

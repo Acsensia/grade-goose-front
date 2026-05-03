@@ -1,18 +1,20 @@
 <template>
-  <div class="container">
-    <h2><slot></slot> Login</h2>
-    <form @submit.prevent="handleLogin">
-      <label for="email">Email</label>
-      <input id="email" type="email" v-model="email" required />
+  <div class="overContainer">
+    <div class="container">
+      <h2><slot></slot> Login</h2>
+      <form @submit.prevent="handleLogin">
+        <label for="email">Email</label>
+        <input id="email" type="email" v-model="email" required />
 
-      <label for="password">Password</label>
-      <input id="password" type="password" v-model="password" required />
+        <label for="password">Password</label>
+        <input id="password" type="password" v-model="password" required />
 
-      <div class="actions">
-        <button type="button" @click="$router.push('/login')">Back</button>
-        <button type="submit">Log In</button>
-      </div>
-    </form>
+        <div class="actions">
+          <button type="button" @click="$router.push('/login')">Back</button>
+          <button type="submit">Log In</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -52,6 +54,16 @@ const handleLogin = async () => {
 </script>
 
 <style lang="scss" scoped>
+.overContainer {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
   border: 1px solid var(--border-color);
   padding: 20px;

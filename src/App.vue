@@ -76,9 +76,9 @@ body {
   font-family: sans-serif;
   margin: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
+  //justify-content: center;
+  //align-items: center;
+  min-height: 100vh;
   min-width: 100%;
   transition:
     background-color 0.3s,
@@ -91,6 +91,7 @@ body {
 
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 3px;
 
   .topMenu {
@@ -103,6 +104,8 @@ body {
     padding: 1px 3px;
 
     border: 1px solid var(--border-color);
+
+    width: 100%;
 
     .websiteName {
       font-size: large;
