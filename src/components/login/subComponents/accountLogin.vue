@@ -40,7 +40,6 @@ const handleLogin = async () => {
     })
 
     if (response.ok) {
-      alert('Successfully authenticated!')
       accessTokenStore.accessToken = (await response.json()).accessToken
       accessTokenStore.userType = props.userType
       await router.push(props.redirectPath)

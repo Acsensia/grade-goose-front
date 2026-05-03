@@ -1,12 +1,14 @@
 <template>
-  <div class="container">
-    <h2>Login Tester</h2>
-    <div class="actions">
-      <button type="button" @click="$router.push('/login')">Back</button>
+  <div class="overContainer">
+    <div class="container">
+      <h2>Login Tester</h2>
+      <div class="actions">
+        <button type="button" @click="$router.push('/login')">Back</button>
+      </div>
+      <button type="button" @click="testLogin">Log In</button>
+      <button type="button" @click="testAcessSecureData">Access secure data</button>
+      <button type="button" @click="testLogout">Log out</button>
     </div>
-    <button type="button" @click="testLogin">Log In</button>
-    <button type="button" @click="testAcessSecureData">Access secure data</button>
-    <button type="button" @click="testLogout">Log out</button>
   </div>
 </template>
 
@@ -24,7 +26,6 @@ const testLogin = async () => {
       credentials: 'include',
     })
     if (response.ok) {
-      alert('Successfully authenticated!')
       accessTokenStore.accessToken = (await response.json()).accessToken
     } else {
       alert('Authentication failed.')
@@ -63,6 +64,16 @@ const testLogout = async () => {
 </script>
 
 <style scoped>
+.overContainer {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
   border: 1px solid var(--border-color);
   padding: 20px;
