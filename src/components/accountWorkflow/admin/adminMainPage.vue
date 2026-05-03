@@ -54,7 +54,6 @@ const _getUserInfo = async () => {
 .topMenuContainer {
   border: 1px solid var(--border-color);
   padding: 5px;
-  width: 100%;
   max-height: 50px;
 
   display: flex;

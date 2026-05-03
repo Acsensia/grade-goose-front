@@ -1,8 +1,59 @@
 <template>
+  <div class="topMenu">
+    <span class="websiteName">Grade Goose</span>
+    <div class="topMenuRight">
+      <div v-if="accountStore.account">
+        {{ accountStore.account.last_name }} {{ accountStore.account.first_name[0] }}.
+        {{ accountStore.account.patronymic_name[0] }}.
+      </div>
+      <div v-else>
+        <button type="button" @click="$router.push('/login')"><span>Log in...</span></button>
+      </div>
+    </div>
+  </div>
   <router-view></router-view>
 </template>
 
-<script setup></script>
+<script setup>
+import { onMounted } from 'vue'
+import { useAccountStore } from './stores/account'
+import * as accountInfo from '@/utilities/account/accountInfo.js'
+import { useAccessTokenStore } from './stores/accessToken'
+
+const accessTokenStore = useAccessTokenStore()
+const accountStore = useAccountStore()
+
+accessTokenStore.$subscribe((/*mutation, state*/) => {
+  __refreshAccountStore()
+})
+
+onMounted(async () => {
+  if (
+    !accountStore.account &&
+    accessTokenStore.accessToken !== '' &&
+    accessTokenStore.userType !== ''
+  ) {
+    __refreshAccountStore()
+  }
+})
+
+async function __refreshAccountStore() {
+  let foundAccountInfo
+  if (accessTokenStore.userType === 'student') {
+    foundAccountInfo = await accountInfo.getStudentInfo(accessTokenStore.accessToken)
+  } else if (accessTokenStore.userType === 'teacher') {
+    foundAccountInfo = await accountInfo.getTeacherInfo(accessTokenStore.accessToken)
+  } else if (accessTokenStore.userType === 'administrator') {
+    foundAccountInfo = await accountInfo.getAdminInfo(accessTokenStore.accessToken)
+  } else
+    throw new Error(
+      '(App.vue/onMounted)Failed to find a matching function for the userType provided!',
+    )
+  if (!foundAccountInfo)
+    throw new Error('(App.vue/onMounted)Failed to find the account specified in the database!')
+  accountStore.setNewAccount(foundAccountInfo)
+}
+</script>
 
 <style lang="scss">
 /* global styles applied to the document root */
@@ -27,9 +78,75 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100%;
+  min-width: 100%;
   transition:
     background-color 0.3s,
     color 0.3s;
+}
+
+#app {
+  min-height: 100%;
+  min-width: 98%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  .topMenu {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    height: 30px;
+
+    padding: 1px 3px;
+
+    border: 1px solid var(--border-color);
+
+    .websiteName {
+      font-size: large;
+
+      width: 20%;
+    }
+    .topMenuRight {
+      display: flex;
+      justify-content: right;
+      align-items: center;
+
+      width: 80%;
+      height: 100%;
+
+      div {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+
+        button {
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          border: 1px solid var(--border-color);
+          padding: 5px 10px;
+          cursor: pointer;
+          transition: all 0.2s;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          width: 100px;
+          height: 20px;
+
+          span {
+            font-size: small;
+          }
+        }
+        button:hover {
+          background-color: var(--text-color);
+          color: var(--bg-color);
+        }
+      }
+    }
+  }
 }
 </style>

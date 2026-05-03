@@ -18,10 +18,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useAccessTokenStore } from '@/stores/accessToken'
 import router from '@/router'
+import { useAccessTokenStore } from '@/stores/accessToken'
 
-const props = defineProps(['backendPath', 'redirectPath'])
+const props = defineProps(['backendPath', 'redirectPath', 'userType'])
 
 const accessTokenStore = useAccessTokenStore()
 
@@ -40,6 +40,7 @@ const handleLogin = async () => {
     if (response.ok) {
       alert('Successfully authenticated!')
       accessTokenStore.accessToken = (await response.json()).accessToken
+      accessTokenStore.userType = props.userType
       await router.push(props.redirectPath)
     } else {
       alert('Authentication failed.')
