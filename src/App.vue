@@ -4,7 +4,9 @@
     <div class="topMenuRight">
       <div v-if="accountStore.account">
         {{ accountStore.account.last_name }} {{ accountStore.account.first_name[0] }}.
-        {{ accountStore.account.patronymic_name[0] }}.
+        {{ accountStore.account.patronymic_name[0] }}. (User type:
+        {{ capitalizeFirstLetter(accessTokenStore.userType) }})
+        <button type="button" @click="__logout"><span>Log out...</span></button>
       </div>
       <div v-else>
         <button type="button" @click="$router.push('/login')"><span>Log in...</span></button>
@@ -19,6 +21,8 @@ import { onMounted } from 'vue'
 import { useAccountStore } from './stores/account'
 import * as accountInfo from '@/utilities/account/accountInfo.js'
 import { useAccessTokenStore } from './stores/accessToken'
+import { capitalizeFirstLetter } from './utilities/strings/stringsUtilities'
+import router from './router'
 
 const accessTokenStore = useAccessTokenStore()
 const accountStore = useAccountStore()
@@ -52,6 +56,12 @@ async function __refreshAccountStore() {
   if (!foundAccountInfo)
     throw new Error('(App.vue/onMounted)Failed to find the account specified in the database!')
   accountStore.setNewAccount(foundAccountInfo)
+}
+
+async function __logout() {
+  accessTokenStore.reset()
+  accountStore.reset()
+  await router.push('/login')
 }
 </script>
 
@@ -124,6 +134,8 @@ body {
         display: flex;
         align-items: center;
         flex-direction: row-reverse;
+
+        gap: 5px;
 
         button {
           background-color: var(--bg-color);
