@@ -1,55 +1,25 @@
 <template>
   <div class="overContainer">
-    <div class="header">
-      <h2>{{ firstName }} {{ lastName[0] }}. {{ patronymicName[0] }}.</h2>
+    <div class="container">
+      <div class="button-group">
+        <!-- <button @click="$router.push('/login/student')">Account management</button> -->
+        <!-- <button @click="$router.push('/login/teacher')">Teacher</button>
+        <button @click="$router.push('/login/admin')">Administrator</button> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import router from '@/router'
 import { useAccessTokenStore } from '@/stores/accessToken'
-import * as env from '@/config/env.js'
 
 const accessTokenStore = useAccessTokenStore()
 
-const userInfo = ref(undefined)
-
-const firstName = ref('loading first name...')
-const lastName = ref('loading last name...')
-const patronymicName = ref('loading patronymic name...')
-
 onMounted(async () => {
   if (accessTokenStore.accessToken === '') await router.push('/login')
-
-  userInfo.value = await _getUserInfo()
-  firstName.value = userInfo.value.first_name
-  lastName.value = userInfo.value.last_name
-  patronymicName.value = userInfo.value.patronymic_name
 })
-
-const _getUserInfo = async () => {
-  try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/info/admin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${accessTokenStore.accessToken}`,
-      },
-      body: JSON.stringify({}),
-      credentials: 'include',
-    })
-
-    if (response.ok) {
-      return await response.json()
-    } else {
-      await router.push('/login')
-    }
-  } catch (error) {
-    console.error('Secure data access error:', error)
-  }
-}
 </script>
 
 <style lang="scss" scoped>
