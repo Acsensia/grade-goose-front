@@ -1,5 +1,9 @@
 <template>
-  <AccountLogin :backendPath="calculatedBackendPath" redirectPath="/teacher" userType="teacher"
+  <AccountLogin
+    :backendPath="calculatedBackendPath"
+    redirectPath="/teacher"
+    userType="teacher"
+    shortUserType="teacher"
     >Teacher</AccountLogin
   >
 </template>

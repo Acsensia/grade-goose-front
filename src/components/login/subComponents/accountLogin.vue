@@ -23,7 +23,7 @@ import { ref } from 'vue'
 import router from '@/router'
 import { useAccessTokenStore } from '@/stores/accessToken'
 
-const props = defineProps(['backendPath', 'redirectPath', 'userType'])
+const props = defineProps(['backendPath', 'redirectPath', 'userType', 'shortUserType'])
 
 const accessTokenStore = useAccessTokenStore()
 
@@ -42,6 +42,7 @@ const handleLogin = async () => {
     if (response.ok) {
       accessTokenStore.accessToken = (await response.json()).accessToken
       accessTokenStore.userType = props.userType
+      accessTokenStore.shortUserType = props.shortUserType
       await router.push(props.redirectPath)
     } else {
       alert('Authentication failed.')

@@ -6,6 +6,7 @@ import loginSelector from '@/components/login/loginSelector.vue'
 import authTester from '@/components/login/authTester.vue'
 import adminMainPage from '@/components/accountWorkflow/admin/adminMainPage.vue'
 import ManagementMainPage from '@/components/accountWorkflow/shared/accountManagement/managementMainPage.vue'
+import ManagementChangePass from '@/components/accountWorkflow/shared/accountManagement/managementChangePass.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +18,7 @@ const router = createRouter({
     { path: '/login/test', component: authTester },
     { path: '/admin', component: adminMainPage },
     { path: '/account', component: ManagementMainPage },
+    { path: '/account/changePass', component: ManagementChangePass },
   ],
 })
 

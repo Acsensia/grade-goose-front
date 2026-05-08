@@ -44,17 +44,10 @@ onMounted(async () => {
 })
 
 async function __refreshAccountStore() {
-  let foundAccountInfo
-  if (accessTokenStore.userType === 'student') {
-    foundAccountInfo = await accountInfo.getStudentInfo(accessTokenStore.accessToken)
-  } else if (accessTokenStore.userType === 'teacher') {
-    foundAccountInfo = await accountInfo.getTeacherInfo(accessTokenStore.accessToken)
-  } else if (accessTokenStore.userType === 'administrator') {
-    foundAccountInfo = await accountInfo.getAdminInfo(accessTokenStore.accessToken)
-  } else
-    throw new Error(
-      '(App.vue/onMounted)Failed to find a matching function for the userType provided!',
-    )
+  let foundAccountInfo = await accountInfo.getAccountInfo(
+    accessTokenStore.shortUserType,
+    accessTokenStore.accessToken,
+  )
   if (!foundAccountInfo)
     throw new Error('(App.vue/onMounted)Failed to find the account specified in the database!')
   accountStore.setNewAccount(foundAccountInfo)
