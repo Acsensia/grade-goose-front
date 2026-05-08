@@ -3,9 +3,11 @@
     <span class="websiteName">Grade Goose</span>
     <div class="topMenuRight">
       <div v-if="accountStore.account">
-        {{ accountStore.account.last_name }} {{ accountStore.account.first_name[0] }}.
-        {{ accountStore.account.patronymic_name[0] }}. (User type:
-        {{ capitalizeFirstLetter(accessTokenStore.userType) }})
+        <router-link class="accountManagementLink" :to="accessTokenStore.userType + '/account'">
+          {{ accountStore.account.last_name }} {{ accountStore.account.first_name[0] }}.
+          {{ accountStore.account.patronymic_name[0] }}. (User type:
+          {{ capitalizeFirstLetter(accessTokenStore.userType) }})
+        </router-link>
         <button type="button" @click="__logout"><span>Log out...</span></button>
       </div>
       <div v-else>
@@ -136,6 +138,12 @@ body {
         flex-direction: row-reverse;
 
         gap: 5px;
+
+        .accountManagementLink {
+          font-size: small;
+          color: var(--text-color);
+          background-color: var(--bg-color);
+        }
 
         button {
           background-color: var(--bg-color);
