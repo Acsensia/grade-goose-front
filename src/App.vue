@@ -3,7 +3,7 @@
     <span class="websiteName">Grade Goose</span>
     <div class="topMenuRight">
       <div v-if="accountStore.account">
-        <router-link class="accountManagementLink" :to="accessTokenStore.userType + '/account'">
+        <router-link class="accountManagementLink" to="/account">
           {{ accountStore.account.last_name }} {{ accountStore.account.first_name[0] }}.
           {{ accountStore.account.patronymic_name[0] }}. (User type:
           {{ capitalizeFirstLetter(accessTokenStore.userType) }})
