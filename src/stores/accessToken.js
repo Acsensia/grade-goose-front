@@ -21,5 +21,13 @@ export const useAccessTokenStore = defineStore('accessToken', {
       this.userType = ''
       this.shortUserType = ''
     },
+    hasAnything() {
+      const hasAnything = !(
+        this.accessToken === '' ||
+        this.userType === '' ||
+        this.shortUserType === ''
+      )
+      return hasAnything
+    },
   },
 })

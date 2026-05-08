@@ -10,17 +10,7 @@
   </div>
 </template>
 
-<script setup>
-import { onMounted } from 'vue'
-import router from '@/router'
-import { useAccessTokenStore } from '@/stores/accessToken'
-
-const accessTokenStore = useAccessTokenStore()
-
-onMounted(async () => {
-  if (accessTokenStore.accessToken === '') await router.push('/login')
-})
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 .overContainer {

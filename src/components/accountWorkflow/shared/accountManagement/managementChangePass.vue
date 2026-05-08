@@ -8,12 +8,12 @@
         <label for="prevPass">Previous password</label>
         <input id="password" type="password" v-model="prevPass" required />
 
-        <label for="password">New password</label>
+        <label for="newPass">New password</label>
         <input id="password" type="password" v-model="newPass" required />
 
         <div class="actions">
           <button type="button" @click="$router.push('/account')">Back</button>
-          <button type="submit">Log In</button>
+          <button type="submit">Change password</button>
         </div>
       </form>
     </div>
@@ -42,12 +42,12 @@ const handleChangePass = async () => {
     if (response.ok) {
       alert('Password changed successfully.')
     } else {
-      alert('Authentication failed.')
+      alert('Password change failed.')
     }
     prevPass.value = ''
     newPass.value = ''
   } catch (error) {
-    console.error('Login error:', error)
+    console.error('Password change error:', error)
   }
 }
 </script>

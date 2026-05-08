@@ -40,6 +40,8 @@ onMounted(async () => {
     accessTokenStore.userType !== ''
   ) {
     __refreshAccountStore()
+  } else if (!accessTokenStore.hasAnything()) {
+    await router.push('/login')
   }
 })
 

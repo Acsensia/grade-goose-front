@@ -2,7 +2,7 @@ import * as env from '@/config/env.js'
 
 // exported functions
 
-async function _changeAccountPassword(_shortUserType, _accessToken, oldPassword, newPassword) {
+async function _changeAccountPassword(_shortUserType, _accessToken, _oldPassword, _newPassword) {
   try {
     const response = await fetch(env.BACKEND_URL + '/api/account/change/pass/' + _shortUserType, {
       method: 'POST',
@@ -10,7 +10,7 @@ async function _changeAccountPassword(_shortUserType, _accessToken, oldPassword,
         'Content-Type': 'application/json',
         Authorization: `Bearer ${_accessToken}`,
       },
-      body: JSON.stringify({ oldPassword: oldPassword, newPassword: newPassword }),
+      body: JSON.stringify({ oldPassword: _oldPassword, newPassword: _newPassword }),
       credentials: 'include',
     })
 
@@ -24,4 +24,111 @@ async function _changeAccountPassword(_shortUserType, _accessToken, oldPassword,
     return false
   }
 }
+
+async function _changeAccountEmail(_shortUserType, _accessToken, _oldEmail, _newEmail) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/change/email/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ oldEmail: _oldEmail, newEmail: _newEmail }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_changeAccountEmail) general error:', error)
+    return false
+  }
+}
+
+async function _changeAccountFName(_shortUserType, _accessToken, _newFName) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/change/firstname/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ newFirstName: _newFName }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_changeAccountFName) general error:', error)
+    return false
+  }
+}
+
+async function _changeAccountLName(_shortUserType, _accessToken, _newLName) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/change/lastName/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ newLastName: _newLName }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_changeAccountLName) general error:', error)
+    return false
+  }
+}
+
+async function _changeAccountPName(_shortUserType, _accessToken, _newPName) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/change/patronymicName/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ newPatronymicName: _newPName }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_changeAccountPName) general error:', error)
+    return false
+  }
+}
+
+//exports
 export const changeAccountPassword = _changeAccountPassword
+export const changeAccountEmail = _changeAccountEmail
+export const changeAccountFName = _changeAccountFName
+export const changeAccountLName = _changeAccountLName
+export const changeAccountPName = _changeAccountPName
