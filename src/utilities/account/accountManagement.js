@@ -77,7 +77,7 @@ async function _changeAccountFName(_shortUserType, _accessToken, _newFName) {
 async function _changeAccountLName(_shortUserType, _accessToken, _newLName) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/change/lastName/' + _shortUserType,
+      env.BACKEND_URL + '/api/account/change/lastname/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -103,7 +103,7 @@ async function _changeAccountLName(_shortUserType, _accessToken, _newLName) {
 async function _changeAccountPName(_shortUserType, _accessToken, _newPName) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/change/patronymicName/' + _shortUserType,
+      env.BACKEND_URL + '/api/account/change/patronymicname/' + _shortUserType,
       {
         method: 'POST',
         headers: {
