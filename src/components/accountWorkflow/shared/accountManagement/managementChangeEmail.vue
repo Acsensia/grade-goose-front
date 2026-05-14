@@ -35,17 +35,15 @@ const handleChangeEmail = async () => {
     const response = await changeAccountEmail(
       accessTokenStore.shortUserType,
       accessTokenStore.accessToken,
-      prevEmail,
-      newEmail,
+      prevEmail.value,
+      newEmail.value,
     )
 
-    if (response.ok) {
+    if (typeof response.message !== 'undefined') {
       alert('Email changed successfully.')
     } else {
       alert('Email change failed.')
     }
-    prevEmail.value = ''
-    newEmail.value = ''
   } catch (error) {
     console.error('Email change error:', error)
   }

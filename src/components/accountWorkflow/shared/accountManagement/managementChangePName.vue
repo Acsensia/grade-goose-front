@@ -31,15 +31,14 @@ const handleChangePName = async () => {
     const response = await changeAccountPName(
       accessTokenStore.shortUserType,
       accessTokenStore.accessToken,
-      newPName,
+      newPName.value,
     )
 
-    if (response.ok) {
+    if (typeof response.message !== 'undefined') {
       alert('Patronymic name changed successfully.')
     } else {
       alert('Patronymic name change failed.')
     }
-    newPName.value = ''
   } catch (error) {
     console.error('Patronymic name change error:', error)
   }

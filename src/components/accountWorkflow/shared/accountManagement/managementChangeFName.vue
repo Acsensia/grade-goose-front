@@ -31,15 +31,14 @@ const handleChangeFName = async () => {
     const response = await changeAccountFName(
       accessTokenStore.shortUserType,
       accessTokenStore.accessToken,
-      newFName,
+      newFName.value,
     )
 
-    if (response.ok) {
+    if (typeof response.message !== 'undefined') {
       alert('First name changed successfully.')
     } else {
       alert('last name change failed.')
     }
-    newFName.value = ''
   } catch (error) {
     console.error('Last name change error:', error)
   }

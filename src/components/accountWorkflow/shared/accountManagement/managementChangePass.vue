@@ -35,17 +35,15 @@ const handleChangePass = async () => {
     const response = await changeAccountPassword(
       accessTokenStore.shortUserType,
       accessTokenStore.accessToken,
-      prevPass,
-      newPass,
+      prevPass.value,
+      newPass.value,
     )
 
-    if (response.ok) {
+    if (typeof response.message !== 'undefined') {
       alert('Password changed successfully.')
     } else {
       alert('Password change failed.')
     }
-    prevPass.value = ''
-    newPass.value = ''
   } catch (error) {
     console.error('Password change error:', error)
   }
