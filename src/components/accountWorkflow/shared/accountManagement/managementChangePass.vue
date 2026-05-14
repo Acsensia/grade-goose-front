@@ -24,8 +24,10 @@
 import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { changeAccountPassword } from '@/utilities/account/accountManagement'
+import { useAccountStore } from '@/stores/account'
 
 const accessTokenStore = useAccessTokenStore()
+const accountStore = useAccountStore()
 
 const prevPass = ref('')
 const newPass = ref('')
@@ -41,6 +43,7 @@ const handleChangePass = async () => {
 
     if (typeof response.message !== 'undefined') {
       alert('Password changed successfully.')
+      await accountStore.refresh(accessTokenStore.shortUserType, accessTokenStore.accessToken)
     } else {
       alert('Password change failed.')
     }

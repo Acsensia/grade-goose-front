@@ -21,8 +21,10 @@
 import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { changeAccountFName } from '@/utilities/account/accountManagement'
+import { useAccountStore } from '@/stores/account'
 
 const accessTokenStore = useAccessTokenStore()
+const accountStore = useAccountStore()
 
 const newFName = ref('')
 
@@ -36,6 +38,7 @@ const handleChangeFName = async () => {
 
     if (typeof response.message !== 'undefined') {
       alert('First name changed successfully.')
+      await accountStore.refresh(accessTokenStore.shortUserType, accessTokenStore.accessToken)
     } else {
       alert('last name change failed.')
     }

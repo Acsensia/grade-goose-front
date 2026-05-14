@@ -21,8 +21,10 @@
 import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { changeAccountPName } from '@/utilities/account/accountManagement'
+import { useAccountStore } from '@/stores/account'
 
 const accessTokenStore = useAccessTokenStore()
+const accountStore = useAccountStore()
 
 const newPName = ref('')
 
@@ -36,6 +38,7 @@ const handleChangePName = async () => {
 
     if (typeof response.message !== 'undefined') {
       alert('Patronymic name changed successfully.')
+      await accountStore.refresh(accessTokenStore.shortUserType, accessTokenStore.accessToken)
     } else {
       alert('Patronymic name change failed.')
     }

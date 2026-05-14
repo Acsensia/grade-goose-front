@@ -24,8 +24,10 @@
 import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { changeAccountEmail } from '@/utilities/account/accountManagement'
+import { useAccountStore } from '@/stores/account'
 
 const accessTokenStore = useAccessTokenStore()
+const accountStore = useAccountStore()
 
 const prevEmail = ref('')
 const newEmail = ref('')
@@ -41,6 +43,7 @@ const handleChangeEmail = async () => {
 
     if (typeof response.message !== 'undefined') {
       alert('Email changed successfully.')
+      await accountStore.refresh(accessTokenStore.shortUserType, accessTokenStore.accessToken)
     } else {
       alert('Email change failed.')
     }
