@@ -11,6 +11,10 @@ import ManagementChangeEmail from '@/components/accountWorkflow/shared/accountMa
 import ManagementChangeFName from '@/components/accountWorkflow/shared/accountManagement/managementChangeFName.vue'
 import ManagementChangeLName from '@/components/accountWorkflow/shared/accountManagement/managementChangeLName.vue'
 import ManagementChangePName from '@/components/accountWorkflow/shared/accountManagement/managementChangePName.vue'
+import AdminTeachersManagement from '@/components/accountWorkflow/admin/managementPages/adminTeachersManagement.vue'
+import AdminManagementPage from '@/components/accountWorkflow/admin/adminManagementPage.vue'
+import AdminAdditionPage from '@/components/accountWorkflow/admin/adminAdditionPage.vue'
+import AdminTeacherAddition from '@/components/accountWorkflow/admin/additionPages/adminTeacherAddition.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +25,10 @@ const router = createRouter({
     { path: '/login/admin', component: adminLogin },
     { path: '/login/test', component: authTester },
     { path: '/admin', component: adminMainPage },
+    { path: '/admin/add', component: AdminAdditionPage },
+    { path: '/admin/add/teacher', component: AdminTeacherAddition },
+    { path: '/admin/manage', component: AdminManagementPage },
+    { path: '/admin/manage/teachers', component: AdminTeachersManagement },
     { path: '/account', component: ManagementMainPage },
     { path: '/account/changePass', component: ManagementChangePass },
     { path: '/account/changeEmail', component: ManagementChangeEmail },

@@ -3,9 +3,17 @@
     <span class="websiteName">Grade Goose</span>
     <div class="topMenuRight">
       <div v-if="accountStore.account">
-        <router-link class="accountManagementLink" to="/account">
+        <router-link
+          v-if="accountStore.account.patronymic_name"
+          class="accountManagementLink"
+          to="/account"
+        >
           {{ accountStore.account.last_name }} {{ accountStore.account.first_name[0] }}.
           {{ accountStore.account.patronymic_name[0] }}. (User type:
+          {{ capitalizeFirstLetter(accessTokenStore.userType) }})
+        </router-link>
+        <router-link v-else class="accountManagementLink" to="/account">
+          {{ accountStore.account.last_name }} {{ accountStore.account.first_name[0] }}. (User type:
           {{ capitalizeFirstLetter(accessTokenStore.userType) }})
         </router-link>
         <button type="button" @click="__logout"><span>Log out...</span></button>
@@ -19,6 +27,7 @@
 </template>
 
 <script setup>
+//TODO check if absence of patronymic name is handled properly
 import { onMounted } from 'vue'
 import { useAccountStore } from './stores/account'
 import * as accountInfo from '@/utilities/account/accountInfo.js'
