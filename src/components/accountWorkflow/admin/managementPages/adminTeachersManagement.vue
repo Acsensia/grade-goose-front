@@ -6,6 +6,7 @@
         :filters-config="filtersConfig"
         :group-actions="groupActions"
         @view-details="handleViewDetailsEvent"
+        @execute-action="handleExecuteActionEvent"
       ></DataTableView>
     </div>
   </div>
@@ -29,17 +30,38 @@ const filtersConfig = [
 ]
 const groupActions = [{ id: 'delete', name: 'Delete selected...' }]
 
-onMounted(async () => {
+async function reloadRows() {
+  rows.value = []
   const allTeachers = await otherAccountManagement.getAllAccounts(
     accessTokenStore.accessToken,
     'teacher',
     'teacher_id',
   )
   rows.value = allTeachers.result
+}
+
+onMounted(async () => {
+  await reloadRows()
 })
 
 async function handleViewDetailsEvent(rowId) {
   await router.push({ path: '/admin/view/teacher', query: { id: rowId } })
+}
+
+async function handleExecuteActionEvent(payload) {
+  if (payload.action.id === 'delete') {
+    const deletionResult = await otherAccountManagement.deleteAccountSelection(
+      accessTokenStore.accessToken,
+      'teacher',
+      payload.selectedIds,
+    )
+    if (deletionResult) {
+      alert('Successfully deleted selected teacher accounts!')
+      reloadRows()
+    } else {
+      alert('Failed to delete selected teacher accounts!')
+    }
+  }
 }
 </script>
 

@@ -27,7 +27,7 @@ async function _getAllAccounts(_accessToken, _shortUserType, _idColumnName) {
   }
 }
 
-async function _getAccountInfo(_accessToken, _shortUserType, _idColumnName, _idColumnValue) {
+async function _getAccountInfo(_accessToken, _shortUserType, _idColumnValue) {
   try {
     const response = await fetch(
       env.BACKEND_URL + '/api/account/admin/getinfo/account/' + _shortUserType,
@@ -93,7 +93,34 @@ async function _addNewAccount(
   }
 }
 
+async function _deleteAccountSelection(_accessToken, _shortUserType, _idColumnValues) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/delete/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id_selection: _idColumnValues }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_deleteAccountSelection) general error:', error)
+    return false
+  }
+}
+
 //exports
 export const getAllAccounts = _getAllAccounts
 export const getAccountInfo = _getAccountInfo
 export const addNewAccount = _addNewAccount
+export const deleteAccountSelection = _deleteAccountSelection

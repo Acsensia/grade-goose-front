@@ -1,15 +1,13 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <DataRecordView
-        entity-name="Teacher"
-        :record="record"
-        :fields="fields"
-        :action-groups="actionGroups"
-        @back="handleBackEmit"
-        @execute-action="handleExecuteActionEmit"
-      ></DataRecordView>
-    </div>
+    <DataRecordView
+      entity-name="Teacher"
+      :record="record"
+      :fields="fields"
+      :action-groups="actionGroups"
+      @back="handleBackEmit"
+      @execute-action="handleExecuteActionEmit"
+    ></DataRecordView>
   </div>
 </template>
 
@@ -67,13 +65,62 @@ const actionGroups = [
       },
     ],
   },
+  {
+    name: 'User Assigned Entities',
+    actions: [
+      {
+        id: 'seeAssignedStudentGroups',
+        label: 'Set Assigned Student Groups...',
+        payload: { route: '/admin/manage/teacher/seeassigned/studentgroups' },
+      },
+      {
+        id: 'seeAssignedSpecialties',
+        label: 'Set Assigned Specialties...',
+        payload: { route: '/admin/manage/teacher/seeassigned/specialties' },
+      },
+      {
+        id: 'seeAssignedSubjects',
+        label: 'Set Assigned Subjects...',
+        payload: { route: '/admin/manage/teacher/seeassigned/subjects' },
+      },
+      {
+        id: 'seeAssignedTasks',
+        label: 'Set Assigned Tasks...',
+        payload: { route: '/admin/manage/teacher/seeassigned/tasks' },
+      },
+    ],
+  },
+  {
+    name: 'User Unassigned Entities',
+    actions: [
+      {
+        id: 'seeUnassignedStudentGroups',
+        label: 'See Unassigned Student Groups...',
+        payload: { route: '/admin/manage/teacher/seeunassigned/studentgroups' },
+      },
+      {
+        id: 'seeUnassignedSpecialties',
+        label: 'See Unassigned Specialties...',
+        payload: { route: '/admin/manage/teacher/seeunassigned/specialties' },
+      },
+      {
+        id: 'seeUnassignedSubjects',
+        label: 'See Unassigned Subjects...',
+        payload: { route: '/admin/manage/teacher/seeunassigned/subjects' },
+      },
+      {
+        id: 'seeUnassignedTasks',
+        label: 'See Unassigned Tasks...',
+        payload: { route: '/admin/manage/teacher/seeunassigned/tasks' },
+      },
+    ],
+  },
 ]
 
 onMounted(async () => {
   const accountInfo = await otherAccountManagement.getAccountInfo(
     accessTokenStore.accessToken,
     'teacher',
-    'teacher_id',
     id,
   )
   record.value = accountInfo
