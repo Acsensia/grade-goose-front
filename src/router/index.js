@@ -15,6 +15,7 @@ import AdminTeachersManagement from '@/components/accountWorkflow/admin/manageme
 import AdminManagementPage from '@/components/accountWorkflow/admin/adminManagementPage.vue'
 import AdminAdditionPage from '@/components/accountWorkflow/admin/adminAdditionPage.vue'
 import AdminTeacherAddition from '@/components/accountWorkflow/admin/additionPages/adminTeacherAddition.vue'
+import AdminTeacherView from '@/components/accountWorkflow/admin/viewPages/adminTeacherView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +30,7 @@ const router = createRouter({
     { path: '/admin/add/teacher', component: AdminTeacherAddition },
     { path: '/admin/manage', component: AdminManagementPage },
     { path: '/admin/manage/teachers', component: AdminTeachersManagement },
+    { path: '/admin/view/teacher', component: AdminTeacherView },
     { path: '/account', component: ManagementMainPage },
     { path: '/account/changePass', component: ManagementChangePass },
     { path: '/account/changeEmail', component: ManagementChangeEmail },

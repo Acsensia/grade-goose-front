@@ -5,6 +5,7 @@
         :rows="rows"
         :filters-config="filtersConfig"
         :group-actions="groupActions"
+        @view-details="handleViewDetailsEvent"
       ></DataTableView>
     </div>
   </div>
@@ -15,6 +16,7 @@ import { onMounted, ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import DataTableView from '@/components/accountWorkflow/admin/subComponents/dataTableView.vue'
 import * as otherAccountManagement from '@/utilities/account/otherAccountManagement.js'
+import router from '@/router'
 
 const accessTokenStore = useAccessTokenStore()
 
@@ -30,13 +32,15 @@ const groupActions = [{ id: 'delete', name: 'Delete selected...' }]
 onMounted(async () => {
   const allTeachers = await otherAccountManagement.getAllAccounts(
     accessTokenStore.accessToken,
-    filtersConfig,
     'teacher',
     'teacher_id',
   )
   rows.value = allTeachers.result
-  console.log(rows)
 })
+
+async function handleViewDetailsEvent(rowId) {
+  await router.push({ path: '/admin/view/teacher', query: { id: rowId } })
+}
 </script>
 
 <style lang="scss" scoped>

@@ -4,7 +4,7 @@ import * as env from '@/config/env.js'
 
 // exported functions
 
-async function _getAllAccounts(_accessToken, _filterArray, _shortUserType, _idColumnName) {
+async function _getAllAccounts(_accessToken, _shortUserType, _idColumnName) {
   try {
     const response = await fetch(env.BACKEND_URL + '/api/account/admin/getall/' + _shortUserType, {
       method: 'POST',
@@ -12,7 +12,7 @@ async function _getAllAccounts(_accessToken, _filterArray, _shortUserType, _idCo
         'Content-Type': 'application/json',
         Authorization: `Bearer ${_accessToken}`,
       },
-      body: JSON.stringify({ filterArray: _filterArray }),
+      body: JSON.stringify({}),
       credentials: 'include',
     })
 
@@ -22,7 +22,33 @@ async function _getAllAccounts(_accessToken, _filterArray, _shortUserType, _idCo
       return false
     }
   } catch (error) {
-    console.error('(_getAllTeacherAccounts) general error:', error)
+    console.error('(_getAllAccounts) general error:', error)
+    return false
+  }
+}
+
+async function _getAccountInfo(_accessToken, _shortUserType, _idColumnName, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/getinfo/account/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_getAccountInfo) general error:', error)
     return false
   }
 }
@@ -69,4 +95,5 @@ async function _addNewAccount(
 
 //exports
 export const getAllAccounts = _getAllAccounts
+export const getAccountInfo = _getAccountInfo
 export const addNewAccount = _addNewAccount
