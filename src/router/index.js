@@ -16,11 +16,11 @@ import AdminManagementPage from '@/components/accountWorkflow/admin/adminManagem
 import AdminAdditionPage from '@/components/accountWorkflow/admin/adminAdditionPage.vue'
 import AdminTeacherAddition from '@/components/accountWorkflow/admin/additionPages/adminTeacherAddition.vue'
 import AdminTeacherView from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherView.vue'
-import AdminTeacherSetNewEmail from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherSetNewEmail.vue'
-import AdminTeacherSetNewPass from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherSetNewPass.vue'
-import AdminTeacherSetNewFName from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherSetNewFName.vue'
-import AdminTeacherSetNewLName from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherSetNewLName.vue'
-import AdminTeacherSetNewPName from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherSetNewPName.vue'
+import AdminTeacherSetNewEmail from '@/components/accountWorkflow/admin/viewPages/teacher/changePages/adminTeacherSetNewEmail.vue'
+import AdminTeacherSetNewPass from '@/components/accountWorkflow/admin/viewPages/teacher/changePages/adminTeacherSetNewPass.vue'
+import AdminTeacherSetNewFName from '@/components/accountWorkflow/admin/viewPages/teacher/changePages/adminTeacherSetNewFName.vue'
+import AdminTeacherSetNewLName from '@/components/accountWorkflow/admin/viewPages/teacher/changePages/adminTeacherSetNewLName.vue'
+import AdminTeacherSetNewPName from '@/components/accountWorkflow/admin/viewPages/teacher/changePages/adminTeacherSetNewPName.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
