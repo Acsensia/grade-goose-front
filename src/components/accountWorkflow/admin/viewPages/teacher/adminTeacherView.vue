@@ -70,22 +70,22 @@ const actionGroups = [
     actions: [
       {
         id: 'seeAssignedStudentGroups',
-        label: 'Set Assigned Student Groups...',
+        label: 'See Assigned Student Groups...',
         payload: { route: '/admin/manage/teacher/seeassigned/studentgroups' },
       },
       {
         id: 'seeAssignedSpecialties',
-        label: 'Set Assigned Specialties...',
+        label: 'See Assigned Specialties...',
         payload: { route: '/admin/manage/teacher/seeassigned/specialties' },
       },
       {
         id: 'seeAssignedSubjects',
-        label: 'Set Assigned Subjects...',
+        label: 'See Assigned Subjects...',
         payload: { route: '/admin/manage/teacher/seeassigned/subjects' },
       },
       {
         id: 'seeAssignedTasks',
-        label: 'Set Assigned Tasks...',
+        label: 'See Assigned Tasks...',
         payload: { route: '/admin/manage/teacher/seeassigned/tasks' },
       },
     ],

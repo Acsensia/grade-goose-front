@@ -59,19 +59,19 @@ async function handleViewDetailsEvent(rowId) {
 }
 
 async function handleExecuteActionEvent(payload) {
-  // if (payload.action.id === 'delete') {
-  //   const deletionResult = await otherAccountManagement.deleteAccountSelection(
-  //     accessTokenStore.accessToken,
-  //     'teacher',
-  //     payload.selectedIds,
-  //   )
-  //   if (deletionResult) {
-  //     alert('Successfully deleted selected teacher accounts!')
-  //     reloadRows()
-  //   } else {
-  //     alert('Failed to delete selected teacher accounts!')
-  //   }
-  // }
+  if (payload.action.id === 'unassign') {
+    const deletionResult = await otherAccountManagement.unassignAccountStudentGroupSelection(
+      accessTokenStore.accessToken,
+      'teacher',
+      payload.selectedIds,
+    )
+    if (deletionResult) {
+      alert('Successfully deleted selected teacher accounts!')
+      reloadRows()
+    } else {
+      alert('Failed to delete selected teacher accounts!')
+    }
+  }
 }
 </script>
 
