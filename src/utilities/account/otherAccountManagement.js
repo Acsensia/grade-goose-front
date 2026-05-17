@@ -119,8 +119,143 @@ async function _deleteAccountSelection(_accessToken, _shortUserType, _idColumnVa
   }
 }
 
+async function _setNewAccountPassword(_accessToken, _shortUserType, _idColumnValue, _newPassword) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/update/pass/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue, newPassword: _newPassword }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_setNewAccountPassword) general error:', error)
+    return false
+  }
+}
+
+async function _setNewAccountEmail(_accessToken, _shortUserType, _idColumnValue, _newEmail) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/update/email/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue, newEmail: _newEmail }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_setNewAccountEmail) general error:', error)
+    return false
+  }
+}
+
+async function _setNewAccountFName(_accessToken, _shortUserType, _idColumnValue, _newFName) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/update/firstname/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue, newFirstName: _newFName }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_setNewAccountFName) general error:', error)
+    return false
+  }
+}
+
+async function _setNewAccountLName(_accessToken, _shortUserType, _idColumnValue, _newLName) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/update/lastname/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue, newLastName: _newLName }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_setNewAccountLName) general error:', error)
+    return false
+  }
+}
+
+async function _setNewAccountPName(_accessToken, _shortUserType, _idColumnValue, _newPName) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/update/patronymicname/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue, newPatronymicName: _newPName }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_setNewAccountPName) general error:', error)
+    return false
+  }
+}
+
 //exports
 export const getAllAccounts = _getAllAccounts
 export const getAccountInfo = _getAccountInfo
 export const addNewAccount = _addNewAccount
 export const deleteAccountSelection = _deleteAccountSelection
+export const setNewAccountPassword = _setNewAccountPassword
+export const setNewAccountEmail = _setNewAccountEmail
+export const setNewAccountFName = _setNewAccountFName
+export const setNewAccountLName = _setNewAccountLName
+export const setNewAccountPName = _setNewAccountPName

@@ -5,7 +5,7 @@
         <h2>Patronymic Name Change</h2>
       </div>
       <form @submit.prevent="handleChangePName">
-        <label for="newFName">New patronymic name</label>
+        <label for="newPName">New patronymic name</label>
         <input id="text" type="text" v-model="newPName" required />
 
         <div class="actions">

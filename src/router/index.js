@@ -15,7 +15,12 @@ import AdminTeachersManagement from '@/components/accountWorkflow/admin/manageme
 import AdminManagementPage from '@/components/accountWorkflow/admin/adminManagementPage.vue'
 import AdminAdditionPage from '@/components/accountWorkflow/admin/adminAdditionPage.vue'
 import AdminTeacherAddition from '@/components/accountWorkflow/admin/additionPages/adminTeacherAddition.vue'
-import AdminTeacherView from '@/components/accountWorkflow/admin/viewPages/adminTeacherView.vue'
+import AdminTeacherView from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherView.vue'
+import AdminTeacherSetNewEmail from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherSetNewEmail.vue'
+import AdminTeacherSetNewPass from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherSetNewPass.vue'
+import AdminTeacherSetNewFName from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherSetNewFName.vue'
+import AdminTeacherSetNewLName from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherSetNewLName.vue'
+import AdminTeacherSetNewPName from '@/components/accountWorkflow/admin/viewPages/teacher/adminTeacherSetNewPName.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +35,11 @@ const router = createRouter({
     { path: '/admin/add/teacher', component: AdminTeacherAddition },
     { path: '/admin/manage', component: AdminManagementPage },
     { path: '/admin/manage/teachers', component: AdminTeachersManagement },
+    { path: '/admin/manage/teacher/changePass', component: AdminTeacherSetNewPass },
+    { path: '/admin/manage/teacher/changeEmail', component: AdminTeacherSetNewEmail },
+    { path: '/admin/manage/teacher/changeFName', component: AdminTeacherSetNewFName },
+    { path: '/admin/manage/teacher/changeLName', component: AdminTeacherSetNewLName },
+    { path: '/admin/manage/teacher/changePName', component: AdminTeacherSetNewPName },
     { path: '/admin/view/teacher', component: AdminTeacherView },
     { path: '/account', component: ManagementMainPage },
     { path: '/account/changePass', component: ManagementChangePass },

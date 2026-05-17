@@ -5,10 +5,10 @@
         <h2>Email Change</h2>
       </div>
       <form @submit.prevent="handleChangeEmail">
-        <label for="prevPass">Previous email</label>
+        <label for="prevEmail">Previous email</label>
         <input id="email" type="email" v-model="prevEmail" required />
 
-        <label for="password">New email</label>
+        <label for="newEmail">New email</label>
         <input id="email" type="email" v-model="newEmail" required />
 
         <div class="actions">
