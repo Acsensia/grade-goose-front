@@ -2,6 +2,10 @@
   <div class="data-view-wrapper">
     <!-- LEFT: Sidebar Menu for Filters -->
     <aside class="sidebar">
+      <div class="sidebar-header">
+        <button class="action-btn" @click="$emit('back')">&larr; Back</button>
+      </div>
+
       <h3>Filters</h3>
       <div class="filter-list">
         <!-- filters is an array of arrays: [attributeName, displayName, filterValue] -->
@@ -118,7 +122,8 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['view-details', 'execute-action'])
+// Added 'back' to the emitted events
+const emit = defineEmits(['view-details', 'execute-action', 'back'])
 
 // State
 const localFilters = ref([...props.filtersConfig])
@@ -248,6 +253,7 @@ input {
   justify-content: space-between;
   margin-top: 1rem;
 }
+
 label {
   display: block;
   margin-bottom: 0.25rem;
@@ -271,6 +277,16 @@ label {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+}
+
+.sidebar-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header button {
+  width: 100%;
 }
 
 .sidebar h3 {
@@ -416,6 +432,11 @@ button:disabled {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid var(--border-color);
+  }
+  .sidebar-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0;
+    border-bottom: none;
   }
 }
 </style>

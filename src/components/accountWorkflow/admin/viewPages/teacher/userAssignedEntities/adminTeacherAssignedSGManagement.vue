@@ -5,6 +5,7 @@
         :rows="rows"
         :filters-config="filtersConfig"
         :group-actions="groupActions"
+        @back="handleBackEmit"
         @view-details="handleViewDetailsEvent"
         @execute-action="handleExecuteActionEvent"
       ></DataTableView>
@@ -47,6 +48,10 @@ async function reloadRows() {
 onMounted(async () => {
   await reloadRows()
 })
+
+async function handleBackEmit() {
+  await router.push({ path: '/admin/view/teacher', query: { id: id } })
+}
 
 async function handleViewDetailsEvent(rowId) {
   //TODO change
