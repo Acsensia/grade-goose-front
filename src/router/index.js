@@ -21,6 +21,7 @@ import AdminTeacherSetNewPass from '@/components/accountWorkflow/admin/viewPages
 import AdminTeacherSetNewFName from '@/components/accountWorkflow/admin/viewPages/teacher/userManagement/adminTeacherSetNewFName.vue'
 import AdminTeacherSetNewLName from '@/components/accountWorkflow/admin/viewPages/teacher/userManagement/adminTeacherSetNewLName.vue'
 import AdminTeacherSetNewPName from '@/components/accountWorkflow/admin/viewPages/teacher/userManagement/adminTeacherSetNewPName.vue'
+import AdminTeacherAssignedSGManagement from '@/components/accountWorkflow/admin/viewPages/teacher/userAssignedEntities/adminTeacherAssignedSGManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,10 @@ const router = createRouter({
     { path: '/admin/manage/teacher/changeFName', component: AdminTeacherSetNewFName },
     { path: '/admin/manage/teacher/changeLName', component: AdminTeacherSetNewLName },
     { path: '/admin/manage/teacher/changePName', component: AdminTeacherSetNewPName },
+    {
+      path: '/admin/manage/teacher/seeassigned/studentgroups',
+      component: AdminTeacherAssignedSGManagement,
+    },
     { path: '/admin/view/teacher', component: AdminTeacherView },
     { path: '/account', component: ManagementMainPage },
     { path: '/account/changePass', component: ManagementChangePass },

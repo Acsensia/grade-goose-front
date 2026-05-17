@@ -32,12 +32,12 @@ const groupActions = [{ id: 'delete', name: 'Delete selected...' }]
 
 async function reloadRows() {
   rows.value = []
-  const allTeachers = await otherAccountManagement.getAllAccounts(
+  const reloadedRows = await otherAccountManagement.getAllAccounts(
     accessTokenStore.accessToken,
     'teacher',
     'teacher_id',
   )
-  rows.value = allTeachers.result
+  rows.value = reloadedRows.result
 }
 
 onMounted(async () => {

@@ -1,8 +1,8 @@
 import * as env from '@/config/env.js'
 
-// utility functions
+// utility functions //
 
-// exported functions
+// exported functions //
 
 async function _getAllAccounts(_accessToken, _shortUserType, _idColumnName) {
   try {
@@ -118,6 +118,8 @@ async function _deleteAccountSelection(_accessToken, _shortUserType, _idColumnVa
     return false
   }
 }
+
+// setters
 
 async function _setNewAccountPassword(_accessToken, _shortUserType, _idColumnValue, _newPassword) {
   try {
@@ -249,6 +251,36 @@ async function _setNewAccountPName(_accessToken, _shortUserType, _idColumnValue,
   }
 }
 
+// assignation stuff
+
+async function _getAccountAssignedStudentGroups(_accessToken, _shortUserType, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL +
+        '/api/account/admin/getinfo/account/assigned/studentgroups/' +
+        _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_getAccountAssignedStudentGroups) general error:', error)
+    return false
+  }
+}
+
 //exports
 export const getAllAccounts = _getAllAccounts
 export const getAccountInfo = _getAccountInfo
@@ -259,3 +291,4 @@ export const setNewAccountEmail = _setNewAccountEmail
 export const setNewAccountFName = _setNewAccountFName
 export const setNewAccountLName = _setNewAccountLName
 export const setNewAccountPName = _setNewAccountPName
+export const getAccountAssignedStudentGroups = _getAccountAssignedStudentGroups
