@@ -1,5 +1,53 @@
 import * as env from '@/config/env.js'
 
+// getinfo functions //
+
+export async function getStudentGroupInfo(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getinfo/studentgroup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).entity
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentGroupInfo) general error:', error)
+    return false
+  }
+}
+
+export async function getSpecialtyInfo(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getinfo/specialty', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).entity
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSpecialtyInfo) general error:', error)
+    return false
+  }
+}
+
 // getall functions //
 
 export async function getAllStudentGroups(_accessToken) {

@@ -39,6 +39,8 @@ import AdminStudentSetNewFName from '@/components/accountWorkflow/admin/viewPage
 import AdminStudentSetNewLName from '@/components/accountWorkflow/admin/viewPages/student/userManagement/adminStudentSetNewLName.vue'
 import AdminStudentSetNewPName from '@/components/accountWorkflow/admin/viewPages/student/userManagement/adminStudentSetNewPName.vue'
 import AdminStudentAssignedSGManagement from '@/components/accountWorkflow/admin/viewPages/student/userAssignedEntries/adminStudentAssignedSGManagement.vue'
+import AdminSGView from '@/components/accountWorkflow/admin/viewPages/studentGroup/adminSGView.vue'
+import AdminSpecialtyView from '@/components/accountWorkflow/admin/viewPages/specialty/adminSpecialtyView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -92,8 +94,9 @@ const router = createRouter({
     { path: '/admin/manage/tasks', component: AdminTasksManagement },
 
     { path: '/admin/view/teacher', component: AdminTeacherView },
-
     { path: '/admin/view/student', component: AdminStudentView },
+    { path: '/admin/view/studentgroup', component: AdminSGView },
+    { path: '/admin/view/specialty', component: AdminSpecialtyView },
 
     { path: '/account', component: ManagementMainPage },
     { path: '/account/changePass', component: ManagementChangePass },

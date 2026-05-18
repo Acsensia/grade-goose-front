@@ -53,8 +53,7 @@ async function handleBackEmit() {
 }
 
 async function handleViewDetailsEvent(rowId) {
-  //TODO change
-  // await router.push({ path: '/admin/view/teacher', query: { id: rowId } })
+  await router.push({ path: '/admin/view/specialty', query: { id: rowId } })
 }
 
 async function handleExecuteActionEvent(payload) {
