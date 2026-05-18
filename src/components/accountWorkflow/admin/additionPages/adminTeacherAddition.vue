@@ -24,7 +24,7 @@
 <script setup>
 //TODO maybe someday remove patronymic required and handle that
 import { useAccessTokenStore } from '@/stores/accessToken'
-import dataInsertForm from '../subComponents/dataInsertForm.vue'
+import dataInsertForm from '@/components/accountWorkflow/admin/subComponents/dataInsertForm.vue'
 import router from '@/router'
 import * as otherAccountManagement from '@/utilities/account/otherAccountManagement.js'
 

@@ -74,10 +74,9 @@
             :disabled="isSelectionMode"
             @click="!isSelectionMode && $emit('view-details', row.id)"
           >
-            <span class="row-data" v-for="[key, value] in Object.entries(row)" :key="key">
-              <template v-if="key !== 'id'">
-                <strong>{{ key }}:</strong> {{ value }}
-              </template>
+            <!-- Dynamically processed fields based on field requirements -->
+            <span class="row-data" v-for="field in getVisibleFields(row)" :key="field.key">
+              <strong>{{ field.label }}:</strong> {{ field.displayValue }}
             </span>
           </button>
         </label>
@@ -120,9 +119,21 @@ const props = defineProps({
     type: Number,
     default: 10,
   },
+  /**
+   * Object to customize fields display, exclusion and length clamping.
+   * Example payload from parent:
+   * {
+   *   password_hash: { exclude: true },
+   *   first_name: { displayName: 'First Name' },
+   *   biography: { displayName: 'Bio Description', maxLength: 30 }
+   * }
+   */
+  fieldsConfig: {
+    type: Object,
+    default: () => ({}),
+  },
 })
 
-// Added 'back' to the emitted events
 const emit = defineEmits(['view-details', 'execute-action', 'back'])
 
 // State
@@ -131,6 +142,30 @@ const currentPage = ref(1)
 const isSelectionMode = ref(false)
 const currentAction = ref(null)
 const selectedRowIds = ref([]) // Preserves selections across pages
+
+// Helper utility to resolve exclusions, name mapping, and maximum value length cuts
+const getVisibleFields = (row) => {
+  return Object.entries(row)
+    .filter(([key]) => {
+      if (key === 'id') return false // Base ID column is always used as primary key lookup
+
+      const config = props.fieldsConfig[key]
+      return !config?.exclude // Exclude field if explicitly marked true
+    })
+    .map(([key, value]) => {
+      const config = props.fieldsConfig[key] || {}
+      const label = config.displayName || key // Option 3: Proper display name or default key fallback
+
+      let displayValue = value !== null && value !== undefined ? String(value) : ''
+
+      // Option 1: Handle text cropping via maxLength
+      if (config.maxLength && displayValue.length > config.maxLength) {
+        displayValue = displayValue.substring(0, config.maxLength) + '...'
+      }
+
+      return { key, label, displayValue }
+    })
+}
 
 // Methods for Action Handling
 const enterSelectionMode = (action) => {
@@ -146,12 +181,11 @@ const cancelOperation = () => {
 }
 
 const confirmOperation = () => {
-  // Emit the action identifier alongside the array of selected IDs
   emit('execute-action', {
     action: currentAction.value,
     selectedIds: Array.from(selectedRowIds.value),
   })
-  cancelOperation() // Reset UI after execution
+  cancelOperation()
 }
 
 const resetPagination = () => {
@@ -161,10 +195,9 @@ const resetPagination = () => {
 // Computed Data Pipeline
 const filteredRows = computed(() => {
   return props.rows.filter((row) => {
-    // Check against every filter element
     return localFilters.value.every((filter) => {
       const [attrName, , filterValue] = filter
-      if (!filterValue) return true // Skip empty filters
+      if (!filterValue) return true
 
       const rowValue = String(row[attrName]).toLowerCase()
       const search = String(filterValue).toLowerCase()
@@ -183,7 +216,6 @@ const paginatedRows = computed(() => {
   return filteredRows.value.slice(start, end)
 })
 
-// Sync internal filters if parent updates them manually
 watch(
   () => props.filtersConfig,
   (newConfig) => {
@@ -371,7 +403,6 @@ button:disabled {
 }
 
 .row-item.selection-mode {
-  /* Give visual feedback that the whole row can be clicked to toggle checkbox */
   cursor: pointer;
 }
 

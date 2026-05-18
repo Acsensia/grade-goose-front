@@ -2,6 +2,29 @@ import * as env from '@/config/env.js'
 
 // exported functions
 
+async function _getAccountInfo(_shortUserType, _accessToken) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/info/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({}),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_getAccountInfo) general error:', error)
+    return false
+  }
+}
+
 async function _changeAccountPassword(_shortUserType, _accessToken, _oldPassword, _newPassword) {
   try {
     const response = await fetch(env.BACKEND_URL + '/api/account/change/pass/' + _shortUserType, {
@@ -127,6 +150,7 @@ async function _changeAccountPName(_shortUserType, _accessToken, _newPName) {
 }
 
 //exports
+export const getAccountInfo = _getAccountInfo
 export const changeAccountPassword = _changeAccountPassword
 export const changeAccountEmail = _changeAccountEmail
 export const changeAccountFName = _changeAccountFName

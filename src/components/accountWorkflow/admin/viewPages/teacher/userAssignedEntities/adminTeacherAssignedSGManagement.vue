@@ -5,6 +5,7 @@
         :rows="rows"
         :filters-config="filtersConfig"
         :group-actions="groupActions"
+        :fields-config="fieldsConfig"
         @back="handleBackEmit"
         @view-details="handleViewDetailsEvent"
         @execute-action="handleExecuteActionEvent"
@@ -34,6 +35,11 @@ const filtersConfig = [
   ['description', 'Student Group Description', ''],
 ]
 const groupActions = [{ id: 'unassign', name: 'Unassign selected...' }]
+const fieldsConfig = {
+  student_group_id: { exclude: true },
+  name: { displayName: 'Group name' },
+  description: { displayName: 'Group description', maxLength: 50 },
+}
 
 async function reloadRows() {
   rows.value = []

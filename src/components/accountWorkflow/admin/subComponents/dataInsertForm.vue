@@ -50,6 +50,16 @@
           :maxlength="field.maxLength"
         />
 
+        <!-- LARGE TEXT TYPE (Scrollable, limited dimensions) -->
+        <textarea
+          v-else-if="field.type === 'large-text'"
+          :id="field.name"
+          v-model="formData[field.name]"
+          :required="field.required"
+          :maxlength="field.maxLength"
+          class="large-text-input"
+        ></textarea>
+
         <!-- DEFAULT / STRING TYPE -->
         <input
           v-else
@@ -86,6 +96,7 @@ const props = defineProps({
     [
       { name: 'username', label: 'Username', type: 'text', required: true, maxLength: 50 },
       { name: 'email', label: 'Email Address', type: 'email', required: true, maxLength: 255 },
+      { name: 'bio', label: 'Biography', type: 'large-text', required: false, maxLength: 2000 },
       { name: 'age', label: 'Age', type: 'number', required: false },
       { name: 'enrollment_date', label: 'Enrollment Date', type: 'date', required: true },
       { name: 'is_active', label: 'Active Status', type: 'boolean', required: false }
@@ -216,7 +227,8 @@ label {
 input[type='text'],
 input[type='email'],
 input[type='number'],
-input[type='date'] {
+input[type='date'],
+textarea {
   width: 100%;
   padding: 0.6rem;
   background-color: var(--bg-color);
@@ -226,7 +238,18 @@ input[type='date'] {
   font-family: inherit;
 }
 
-input:focus {
+/* Specific styling for the large text area */
+.large-text-input {
+  max-width: 100%; /* Constrains it to the container */
+  height: 120px;
+  max-height: 300px;
+  overflow-y: auto;
+  resize: vertical; /* Allows the user to expand height slightly if needed, but locks width */
+  margin-bottom: 10px;
+}
+
+input:focus,
+textarea:focus {
   outline: 2px solid var(--text-color);
   outline-offset: -2px;
 }

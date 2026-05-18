@@ -30,7 +30,7 @@
 //TODO check if absence of patronymic name is handled properly
 import { onMounted } from 'vue'
 import { useAccountStore } from './stores/account'
-import * as accountInfo from '@/utilities/account/accountInfo.js'
+import { getAccountInfo } from '@/utilities/account/accountManagement.js'
 import { useAccessTokenStore } from './stores/accessToken'
 import { capitalizeFirstLetter } from './utilities/strings/stringsUtilities'
 import router from './router'
@@ -55,7 +55,7 @@ onMounted(async () => {
 })
 
 async function __refreshAccountStore() {
-  let foundAccountInfo = await accountInfo.getAccountInfo(
+  let foundAccountInfo = await getAccountInfo(
     accessTokenStore.shortUserType,
     accessTokenStore.accessToken,
   )

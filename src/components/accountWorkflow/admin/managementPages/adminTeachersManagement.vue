@@ -5,6 +5,7 @@
         :rows="rows"
         :filters-config="filtersConfig"
         :group-actions="groupActions"
+        :fields-config="fieldsConfig"
         @back="handleBackEmit"
         @view-details="handleViewDetailsEvent"
         @execute-action="handleExecuteActionEvent"
@@ -25,11 +26,19 @@ const accessTokenStore = useAccessTokenStore()
 let rows = ref([])
 const filtersConfig = [
   ['id', 'ID', ''],
+  ['email', 'Email', ''],
   ['first_name', 'First Name', ''],
   ['last_name', 'Last Name', ''],
   ['patronymic_name', 'Patronymic Name', ''],
 ]
 const groupActions = [{ id: 'delete', name: 'Delete selected...' }]
+const fieldsConfig = {
+  teacher_id: { exclude: true },
+  email: { displayName: 'Email address' },
+  first_name: { displayName: 'First name' },
+  last_name: { displayName: 'Last name' },
+  patronymic_name: { displayName: 'Patronymic name' },
+}
 
 async function reloadRows() {
   rows.value = []
