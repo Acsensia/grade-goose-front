@@ -45,6 +45,8 @@ import AdminSubjectView from '@/components/accountWorkflow/admin/viewPages/subje
 import AdminTaskView from '@/components/accountWorkflow/admin/viewPages/task/adminTaskView.vue'
 import AdminTeacherAssignedSPManagement from '@/components/accountWorkflow/admin/viewPages/teacher/userAssignedEntities/adminTeacherAssignedSPManagement.vue'
 import AdminStudentAssignedSPManagement from '@/components/accountWorkflow/admin/viewPages/student/userAssignedEntries/adminStudentAssignedSPManagement.vue'
+import AdminTeacherAssignedSJManagement from '@/components/accountWorkflow/admin/viewPages/teacher/userAssignedEntities/adminTeacherAssignedSJManagement.vue'
+import AdminStudentAssignedSJManagement from '@/components/accountWorkflow/admin/viewPages/student/userAssignedEntries/adminStudentAssignedSJManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -80,6 +82,10 @@ const router = createRouter({
       path: '/admin/manage/teacher/seeassigned/specialties',
       component: AdminTeacherAssignedSPManagement,
     },
+    {
+      path: '/admin/manage/teacher/seeassigned/subjects',
+      component: AdminTeacherAssignedSJManagement,
+    },
 
     { path: '/admin/manage/students', component: AdminStudentsManagement },
     { path: '/admin/manage/student/changePass', component: AdminStudentSetNewPass },
@@ -95,6 +101,10 @@ const router = createRouter({
     {
       path: '/admin/manage/student/seeassigned/specialties',
       component: AdminStudentAssignedSPManagement,
+    },
+    {
+      path: '/admin/manage/student/seeassigned/subjects',
+      component: AdminStudentAssignedSJManagement,
     },
 
     { path: '/admin/manage/studentgroups', component: AdminSGManagement },

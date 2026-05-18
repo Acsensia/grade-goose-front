@@ -307,6 +307,32 @@ async function _getAccountAssignedSpecialties(_accessToken, _shortUserType, _idC
   }
 }
 
+async function _getAccountAssignedSubjects(_accessToken, _shortUserType, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/getinfo/account/assigned/subjects/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_getAccountAssignedSubjects) general error:', error)
+    return false
+  }
+}
+
 async function _unassignAccountStudentGroupSelection(
   _accessToken,
   _shortUserType,
@@ -375,6 +401,40 @@ async function _unassignAccountSpecialtySelection(
   }
 }
 
+async function _unassignAccountSubjectSelection(
+  _accessToken,
+  _shortUserType,
+  _subjectIdColumnValues,
+  _accountId,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/unassign/subjects/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({
+          subject_id_selection: _subjectIdColumnValues,
+          account_id: _accountId,
+        }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_unassignAccountSubjectSelection) general error:', error)
+    return false
+  }
+}
+
 //exports
 export const getAllAccounts = _getAllAccounts
 export const getAccountInfo = _getAccountInfo
@@ -387,5 +447,7 @@ export const setNewAccountLName = _setNewAccountLName
 export const setNewAccountPName = _setNewAccountPName
 export const getAccountAssignedStudentGroups = _getAccountAssignedStudentGroups
 export const getAccountAssignedSpecialties = _getAccountAssignedSpecialties
+export const getAccountAssignedSubjects = _getAccountAssignedSubjects
 export const unassignAccountStudentGroupSelection = _unassignAccountStudentGroupSelection
 export const unassignAccountSpecialtySelection = _unassignAccountSpecialtySelection
+export const unassignAccountSubjectSelection = _unassignAccountSubjectSelection
