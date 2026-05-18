@@ -24,6 +24,10 @@ import AdminTeacherSetNewPName from '@/components/accountWorkflow/admin/viewPage
 import AdminTeacherAssignedSGManagement from '@/components/accountWorkflow/admin/viewPages/teacher/userAssignedEntities/adminTeacherAssignedSGManagement.vue'
 import AdminStudentGroupAddition from '@/components/accountWorkflow/admin/additionPages/adminStudentGroupAddition.vue'
 import AdminSGManagement from '@/components/accountWorkflow/admin/managementPages/adminSGManagement.vue'
+import AdminStudentAddition from '@/components/accountWorkflow/admin/additionPages/adminStudentAddition.vue'
+import AdminSpecialtyAddition from '@/components/accountWorkflow/admin/additionPages/adminSpecialtyAddition.vue'
+import AdminSubjectAddition from '@/components/accountWorkflow/admin/additionPages/adminSubjectAddition.vue'
+import AdminTaskAddition from '@/components/accountWorkflow/admin/additionPages/adminTaskAddition.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,7 +40,11 @@ const router = createRouter({
     { path: '/admin', component: adminMainPage },
     { path: '/admin/add', component: AdminAdditionPage },
     { path: '/admin/add/teacher', component: AdminTeacherAddition },
+    { path: '/admin/add/student', component: AdminStudentAddition },
     { path: '/admin/add/studentgroup', component: AdminStudentGroupAddition },
+    { path: '/admin/add/specialty', component: AdminSpecialtyAddition },
+    { path: '/admin/add/subject', component: AdminSubjectAddition },
+    { path: '/admin/add/task', component: AdminTaskAddition },
     { path: '/admin/manage', component: AdminManagementPage },
     { path: '/admin/manage/teachers', component: AdminTeachersManagement },
     { path: '/admin/manage/teacher/changePass', component: AdminTeacherSetNewPass },
