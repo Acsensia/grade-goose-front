@@ -48,6 +48,29 @@ export async function getSpecialtyInfo(_accessToken, _idColumnValue) {
   }
 }
 
+export async function getSubjectInfo(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getinfo/subject', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).entity
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectInfo) general error:', error)
+    return false
+  }
+}
+
 // getall functions //
 
 export async function getAllStudentGroups(_accessToken) {

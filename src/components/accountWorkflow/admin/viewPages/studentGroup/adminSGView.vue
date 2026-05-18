@@ -94,8 +94,8 @@ const actionGroups = [
 ]
 
 onMounted(async () => {
-  const accountInfo = await entityManagement.getStudentGroupInfo(accessTokenStore.accessToken, id)
-  record.value = accountInfo
+  const entityInfo = await entityManagement.getStudentGroupInfo(accessTokenStore.accessToken, id)
+  record.value = entityInfo
 })
 
 async function handleBackEmit() {

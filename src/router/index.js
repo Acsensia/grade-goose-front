@@ -41,6 +41,7 @@ import AdminStudentSetNewPName from '@/components/accountWorkflow/admin/viewPage
 import AdminStudentAssignedSGManagement from '@/components/accountWorkflow/admin/viewPages/student/userAssignedEntries/adminStudentAssignedSGManagement.vue'
 import AdminSGView from '@/components/accountWorkflow/admin/viewPages/studentGroup/adminSGView.vue'
 import AdminSpecialtyView from '@/components/accountWorkflow/admin/viewPages/specialty/adminSpecialtyView.vue'
+import AdminSubjectView from '@/components/accountWorkflow/admin/viewPages/subject/adminSubjectView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -97,6 +98,7 @@ const router = createRouter({
     { path: '/admin/view/student', component: AdminStudentView },
     { path: '/admin/view/studentgroup', component: AdminSGView },
     { path: '/admin/view/specialty', component: AdminSpecialtyView },
+    { path: '/admin/view/subject', component: AdminSubjectView },
 
     { path: '/account', component: ManagementMainPage },
     { path: '/account/changePass', component: ManagementChangePass },

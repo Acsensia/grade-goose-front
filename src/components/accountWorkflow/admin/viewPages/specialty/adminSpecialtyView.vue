@@ -52,7 +52,7 @@ const actionGroups = [
       },
       {
         id: 'changeDesc',
-        label: 'Set New Group Description...',
+        label: 'Set New Specialty Description...',
         payload: { route: '/admin/manage/specialty/changeDesc' },
       },
     ],
@@ -63,21 +63,21 @@ const actionGroups = [
       {
         id: 'seeAssignedTeachers',
         label: 'See Assigned Teachers...',
-        payload: { route: '/admin/manage/studentgroup/seeassigned/teachers' },
+        payload: { route: '/admin/manage/specialty/seeassigned/teachers' },
       },
       {
         id: 'seeAssignedStudents',
         label: 'See Assigned Students...',
-        payload: { route: '/admin/manage/studentgroup/seeassigned/students' },
+        payload: { route: '/admin/manage/specialty/seeassigned/students' },
       },
       {
         id: 'seeAssignedSubjects',
-        label: 'See Assigned Specialties...',
+        label: 'See Assigned Subjects...',
         payload: { route: '/admin/manage/specialty/seeassigned/subjects' },
       },
       {
         id: 'seeAssignedStudentGroups',
-        label: 'See Assigned Specialties...',
+        label: 'See Assigned Student Groups...',
         payload: { route: '/admin/manage/specialty/seeassigned/studentgroups' },
       },
     ],
@@ -88,21 +88,21 @@ const actionGroups = [
       {
         id: 'seeUnassignedTeachers',
         label: 'See Unassigned Teachers...',
-        payload: { route: '/admin/manage/studentgroup/seeunassigned/teachers' },
+        payload: { route: '/admin/manage/specialty/seeunassigned/teachers' },
       },
       {
         id: 'seeUnassignedStudents',
         label: 'See Unassigned Students...',
-        payload: { route: '/admin/manage/studentgroup/seeunassigned/students' },
+        payload: { route: '/admin/manage/specialty/seeunassigned/students' },
       },
       {
         id: 'seeUnassignedSubjects',
-        label: 'See Unassigned Specialties...',
+        label: 'See Unassigned Subjects...',
         payload: { route: '/admin/manage/specialty/seeunassigned/subjects' },
       },
       {
         id: 'seeUnassignedStudentGroups',
-        label: 'See Unassigned Specialties...',
+        label: 'See Unassigned Student Groups...',
         payload: { route: '/admin/manage/specialty/seeunassigned/studentgroups' },
       },
     ],
@@ -110,8 +110,8 @@ const actionGroups = [
 ]
 
 onMounted(async () => {
-  const accountInfo = await entityManagement.getSpecialtyInfo(accessTokenStore.accessToken, id)
-  record.value = accountInfo
+  const entityInfo = await entityManagement.getSpecialtyInfo(accessTokenStore.accessToken, id)
+  record.value = entityInfo
 })
 
 async function handleBackEmit() {
