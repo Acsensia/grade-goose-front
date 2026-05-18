@@ -70,12 +70,13 @@ async function handleExecuteActionEvent(payload) {
       accessTokenStore.accessToken,
       'teacher',
       payload.selectedIds,
+      id,
     )
     if (deletionResult) {
-      alert('Successfully deleted selected teacher accounts!')
+      alert('Successfully unassigned selected student groups from this teacher account!')
       reloadRows()
     } else {
-      alert('Failed to delete selected teacher accounts!')
+      alert('Failed to unassign selected student groups from this teacher account!')
     }
   }
 }

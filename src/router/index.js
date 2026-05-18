@@ -31,6 +31,14 @@ import AdminTaskAddition from '@/components/accountWorkflow/admin/additionPages/
 import AdminSpecialtiesManagement from '@/components/accountWorkflow/admin/managementPages/adminSpecialtiesManagement.vue'
 import AdminSubjectsManagement from '@/components/accountWorkflow/admin/managementPages/adminSubjectsManagement.vue'
 import AdminTasksManagement from '@/components/accountWorkflow/admin/managementPages/adminTasksManagement.vue'
+import AdminStudentView from '@/components/accountWorkflow/admin/viewPages/student/adminStudentView.vue'
+import AdminStudentsManagement from '@/components/accountWorkflow/admin/managementPages/adminStudentsManagement.vue'
+import AdminStudentSetNewPass from '@/components/accountWorkflow/admin/viewPages/student/userManagement/adminStudentSetNewPass.vue'
+import AdminStudentSetNewEmail from '@/components/accountWorkflow/admin/viewPages/student/userManagement/adminStudentSetNewEmail.vue'
+import AdminStudentSetNewFName from '@/components/accountWorkflow/admin/viewPages/student/userManagement/adminStudentSetNewFName.vue'
+import AdminStudentSetNewLName from '@/components/accountWorkflow/admin/viewPages/student/userManagement/adminStudentSetNewLName.vue'
+import AdminStudentSetNewPName from '@/components/accountWorkflow/admin/viewPages/student/userManagement/adminStudentSetNewPName.vue'
+import AdminStudentAssignedSGManagement from '@/components/accountWorkflow/admin/viewPages/student/userAssignedEntries/adminStudentAssignedSGManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +48,7 @@ const router = createRouter({
     { path: '/login/teacher', component: teacherLogin },
     { path: '/login/admin', component: adminLogin },
     { path: '/login/test', component: authTester },
+
     { path: '/admin', component: adminMainPage },
     { path: '/admin/add', component: AdminAdditionPage },
     { path: '/admin/add/teacher', component: AdminTeacherAddition },
@@ -48,6 +57,7 @@ const router = createRouter({
     { path: '/admin/add/specialty', component: AdminSpecialtyAddition },
     { path: '/admin/add/subject', component: AdminSubjectAddition },
     { path: '/admin/add/task', component: AdminTaskAddition },
+
     { path: '/admin/manage', component: AdminManagementPage },
     { path: '/admin/manage/teachers', component: AdminTeachersManagement },
     { path: '/admin/manage/teacher/changePass', component: AdminTeacherSetNewPass },
@@ -55,15 +65,36 @@ const router = createRouter({
     { path: '/admin/manage/teacher/changeFName', component: AdminTeacherSetNewFName },
     { path: '/admin/manage/teacher/changeLName', component: AdminTeacherSetNewLName },
     { path: '/admin/manage/teacher/changePName', component: AdminTeacherSetNewPName },
+
     {
       path: '/admin/manage/teacher/seeassigned/studentgroups',
       component: AdminTeacherAssignedSGManagement,
     },
+
+    { path: '/admin/manage/students', component: AdminStudentsManagement },
+    { path: '/admin/manage/student/changePass', component: AdminStudentSetNewPass },
+    { path: '/admin/manage/student/changeEmail', component: AdminStudentSetNewEmail },
+    { path: '/admin/manage/student/changeFName', component: AdminStudentSetNewFName },
+    { path: '/admin/manage/student/changeLName', component: AdminStudentSetNewLName },
+    { path: '/admin/manage/student/changePName', component: AdminStudentSetNewPName },
+
+    {
+      path: '/admin/manage/student/seeassigned/studentgroups',
+      component: AdminStudentAssignedSGManagement,
+    },
+
     { path: '/admin/manage/studentgroups', component: AdminSGManagement },
+
     { path: '/admin/manage/specialties', component: AdminSpecialtiesManagement },
+
     { path: '/admin/manage/subjects', component: AdminSubjectsManagement },
+
     { path: '/admin/manage/tasks', component: AdminTasksManagement },
+
     { path: '/admin/view/teacher', component: AdminTeacherView },
+
+    { path: '/admin/view/student', component: AdminStudentView },
+
     { path: '/account', component: ManagementMainPage },
     { path: '/account/changePass', component: ManagementChangePass },
     { path: '/account/changeEmail', component: ManagementChangeEmail },
