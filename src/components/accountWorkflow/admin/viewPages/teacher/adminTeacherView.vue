@@ -17,7 +17,7 @@ import { useAccessTokenStore } from '@/stores/accessToken'
 import * as otherAccountManagement from '@/utilities/account/otherAccountManagement.js'
 import router from '@/router'
 import { useRoute } from 'vue-router'
-import DataRecordView from '@/components/accountWorkflow/admin/subComponents/dataRecordView.vue'
+import DataRecordView from '@/components/accountWorkflow/shared/subComponents/dataRecordView.vue'
 
 const accessTokenStore = useAccessTokenStore()
 

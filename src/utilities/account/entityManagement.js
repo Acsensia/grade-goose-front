@@ -1,6 +1,6 @@
 import * as env from '@/config/env.js'
 
-// student groups //
+// getall functions //
 
 export async function getAllStudentGroups(_accessToken) {
   try {
@@ -48,6 +48,31 @@ export async function getAllSpecialties(_accessToken) {
   }
 }
 
+export async function getAllSubjects(_accessToken) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getall/subjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({}),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getAllSubjects) general error:', error)
+    return false
+  }
+}
+
+// delete functions //
+
 export async function deleteStudentGroupSelection(_accessToken, _idColumnValues) {
   try {
     const response = await fetch(env.BACKEND_URL + '/api/account/admin/delete/studentgroups', {
@@ -93,6 +118,31 @@ export async function deleteSpecialtySelection(_accessToken, _idColumnValues) {
     return false
   }
 }
+
+export async function deleteSubjectSelection(_accessToken, _idColumnValues) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/admin/delete/subjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id_selection: _idColumnValues }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(deleteSubjectSelection) general error:', error)
+    return false
+  }
+}
+
+// addNew functions //
 
 export async function addNewStudentGroup(_accessToken, _name, _description) {
   try {

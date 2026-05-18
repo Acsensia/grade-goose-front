@@ -17,7 +17,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
-import DataTableView from '@/components/accountWorkflow/admin/subComponents/dataTableView.vue'
+import DataTableView from '@/components/accountWorkflow/shared/subComponents/dataTableView.vue'
 import * as otherAccountManagement from '@/utilities/account/otherAccountManagement.js'
 import router from '@/router'
 import { useRoute } from 'vue-router'

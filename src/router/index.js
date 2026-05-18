@@ -29,6 +29,7 @@ import AdminSpecialtyAddition from '@/components/accountWorkflow/admin/additionP
 import AdminSubjectAddition from '@/components/accountWorkflow/admin/additionPages/adminSubjectAddition.vue'
 import AdminTaskAddition from '@/components/accountWorkflow/admin/additionPages/adminTaskAddition.vue'
 import AdminSpecialtiesManagement from '@/components/accountWorkflow/admin/managementPages/adminSpecialtiesManagement.vue'
+import AdminSubjectsManagement from '@/components/accountWorkflow/admin/managementPages/adminSubjectsManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -59,6 +60,7 @@ const router = createRouter({
     },
     { path: '/admin/manage/studentgroups', component: AdminSGManagement },
     { path: '/admin/manage/specialties', component: AdminSpecialtiesManagement },
+    { path: '/admin/manage/subjects', component: AdminSubjectsManagement },
     { path: '/admin/view/teacher', component: AdminTeacherView },
     { path: '/account', component: ManagementMainPage },
     { path: '/account/changePass', component: ManagementChangePass },

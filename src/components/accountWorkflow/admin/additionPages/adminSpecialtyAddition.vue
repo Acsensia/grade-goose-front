@@ -27,7 +27,7 @@
 
 <script setup>
 import { useAccessTokenStore } from '@/stores/accessToken'
-import dataInsertForm from '@/components/accountWorkflow/admin/subComponents/dataInsertForm.vue'
+import dataInsertForm from '@/components/accountWorkflow/shared/subComponents/dataInsertForm.vue'
 import router from '@/router'
 import * as entityManagement from '@/utilities/account/entityManagement.js'
 
