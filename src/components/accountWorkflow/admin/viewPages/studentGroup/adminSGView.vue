@@ -24,6 +24,9 @@ const accessTokenStore = useAccessTokenStore()
 //getting the query
 const route = useRoute()
 const id = route.query.id
+//getting optional back parameters
+const backRoute = route.query.backRoute ?? false
+const backId = route.query.backId ?? false
 
 //DataRecordView variables
 const record = ref({})
@@ -96,7 +99,10 @@ onMounted(async () => {
 })
 
 async function handleBackEmit() {
-  await router.push('/admin/manage/studentgroups')
+  if (backRoute) {
+    if (backId) await router.push({ path: backRoute, query: { id: backId } })
+    else await router.push(backRoute)
+  } else await router.push('/admin/manage/studentgroups')
 }
 
 async function handleExecuteActionEmit(payload) {

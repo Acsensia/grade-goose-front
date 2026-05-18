@@ -27,6 +27,9 @@ const accessTokenStore = useAccessTokenStore()
 //getting the query
 const route = useRoute()
 const id = route.query.id
+//getting optional back parameters
+const backRoute = route.query.backRoute ?? false
+const backId = route.query.backId ?? false
 
 let rows = ref([])
 const filtersConfig = [
@@ -56,12 +59,21 @@ onMounted(async () => {
 })
 
 async function handleBackEmit() {
-  await router.push({ path: '/admin/view/student', query: { id: id } })
+  if (backRoute) {
+    if (backId) await router.push({ path: backRoute, query: { id: backId } })
+    else await router.push(backRoute)
+  } else await router.push({ path: '/admin/view/student', query: { id: id } })
 }
 
 async function handleViewDetailsEvent(rowId) {
-  //TODO change
-  // await router.push({ path: '/admin/view/teacher', query: { id: rowId } })
+  await router.push({
+    path: '/admin/view/studentGroup',
+    query: {
+      id: rowId,
+      backRoute: '/admin/manage/student/seeassigned/studentgroups',
+      backId: id,
+    },
+  })
 }
 
 async function handleExecuteActionEvent(payload) {

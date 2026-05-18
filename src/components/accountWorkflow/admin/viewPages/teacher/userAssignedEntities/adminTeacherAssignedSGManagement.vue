@@ -60,8 +60,14 @@ async function handleBackEmit() {
 }
 
 async function handleViewDetailsEvent(rowId) {
-  //TODO change
-  // await router.push({ path: '/admin/view/teacher', query: { id: rowId } })
+  await router.push({
+    path: '/admin/view/studentGroup',
+    query: {
+      id: rowId,
+      backRoute: '/admin/manage/teacher/seeassigned/studentgroups',
+      backId: id,
+    },
+  })
 }
 
 async function handleExecuteActionEvent(payload) {
