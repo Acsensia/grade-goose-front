@@ -71,6 +71,35 @@ export async function getAllSubjects(_accessToken) {
   }
 }
 
+export async function getAllTasks(_accessToken) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getall/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({}),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      let getAllResult = await response.json()
+      if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
+      getAllResult.result.forEach((entityRecord) => {
+        let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
+        entityRecord.can_be_handed_in_past_due = nestedValue ? 'True' : 'False'
+      })
+      return getAllResult
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getAllTasks) general error:', error)
+    return false
+  }
+}
+
 // delete functions //
 
 export async function deleteStudentGroupSelection(_accessToken, _idColumnValues) {
@@ -138,6 +167,29 @@ export async function deleteSubjectSelection(_accessToken, _idColumnValues) {
     }
   } catch (error) {
     console.error('(deleteSubjectSelection) general error:', error)
+    return false
+  }
+}
+
+export async function deleteTaskSelection(_accessToken, _idColumnValues) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/admin/delete/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id_selection: _idColumnValues }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(deleteTaskSelection) general error:', error)
     return false
   }
 }
