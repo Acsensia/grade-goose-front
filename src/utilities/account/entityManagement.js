@@ -71,6 +71,29 @@ export async function getSubjectInfo(_accessToken, _idColumnValue) {
   }
 }
 
+export async function getTaskInfo(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getinfo/task', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).entity
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getTaskInfo) general error:', error)
+    return false
+  }
+}
+
 // getall functions //
 
 export async function getAllStudentGroups(_accessToken) {
