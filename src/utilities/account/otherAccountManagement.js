@@ -281,6 +281,32 @@ async function _getAccountAssignedStudentGroups(_accessToken, _shortUserType, _i
   }
 }
 
+async function _getAccountAssignedSpecialties(_accessToken, _shortUserType, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/getinfo/account/assigned/specialties/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_getAccountAssignedSpecialties) general error:', error)
+    return false
+  }
+}
+
 async function _unassignAccountStudentGroupSelection(
   _accessToken,
   _shortUserType,
@@ -315,6 +341,40 @@ async function _unassignAccountStudentGroupSelection(
   }
 }
 
+async function _unassignAccountSpecialtySelection(
+  _accessToken,
+  _shortUserType,
+  _specialtyIdColumnValues,
+  _accountId,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/account/admin/unassign/specialties/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({
+          specialty_id_selection: _specialtyIdColumnValues,
+          account_id: _accountId,
+        }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(_unassignAccountSpecialtySelection) general error:', error)
+    return false
+  }
+}
+
 //exports
 export const getAllAccounts = _getAllAccounts
 export const getAccountInfo = _getAccountInfo
@@ -326,4 +386,6 @@ export const setNewAccountFName = _setNewAccountFName
 export const setNewAccountLName = _setNewAccountLName
 export const setNewAccountPName = _setNewAccountPName
 export const getAccountAssignedStudentGroups = _getAccountAssignedStudentGroups
+export const getAccountAssignedSpecialties = _getAccountAssignedSpecialties
 export const unassignAccountStudentGroupSelection = _unassignAccountStudentGroupSelection
+export const unassignAccountSpecialtySelection = _unassignAccountSpecialtySelection
