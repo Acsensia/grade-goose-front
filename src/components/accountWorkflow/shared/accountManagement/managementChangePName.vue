@@ -1,7 +1,7 @@
 <template>
   <div class="overContainer">
     <DataUpdateForm
-      entity-name="Account"
+      entity-name="Own account"
       :field-config="{
         name: 'patronymic_name',
         label: 'Patronymic Name',

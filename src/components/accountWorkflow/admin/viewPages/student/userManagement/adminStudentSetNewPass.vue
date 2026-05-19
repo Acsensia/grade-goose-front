@@ -1,32 +1,27 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <div class="header">
-        <h2>Set new student password...</h2>
-      </div>
-      <form @submit.prevent="handleSetNewPass">
-        <label for="newPass">New password</label>
-        <input id="password" type="password" v-model="newPass" required />
-
-        <div class="actions">
-          <button
-            type="button"
-            @click="$router.push({ path: '/admin/view/student', query: { id: id } })"
-          >
-            Back
-          </button>
-          <button type="submit">Set new password</button>
-        </div>
-      </form>
-    </div>
+    <DataUpdateForm
+      :entity-name="entityName"
+      :field-config="{
+        name: 'password',
+        label: 'Password',
+        type: 'password',
+        requireCurrent: false,
+        requireConfirm: false,
+        maxLength: 255,
+      }"
+      @back="handleBackEmit"
+      @submit-update="handleSubmitUpdateEmit"
+    ></DataUpdateForm>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { useRoute } from 'vue-router'
 import { setNewAccountPassword } from '@/utilities/account/otherAccountManagement'
+import DataUpdateForm from '@/components/accountWorkflow/shared/subComponents/dataUpdateForm.vue'
+import router from '@/router'
 
 const accessTokenStore = useAccessTokenStore()
 
@@ -34,19 +29,24 @@ const accessTokenStore = useAccessTokenStore()
 const route = useRoute()
 const id = route.query.id
 
-const newPass = ref('')
+const entityName = `Student(ID: ${id})`
 
-const handleSetNewPass = async () => {
+async function handleBackEmit() {
+  await router.push({ path: '/admin/view/student', query: { id: id } })
+}
+
+async function handleSubmitUpdateEmit(payload) {
   try {
     const response = await setNewAccountPassword(
       accessTokenStore.accessToken,
       'student',
       id,
-      newPass.value,
+      payload.newValue,
     )
 
     if (typeof response.message !== 'undefined') {
       alert('Password changed successfully.')
+      await handleBackEmit()
     } else {
       alert('Password change failed.')
     }

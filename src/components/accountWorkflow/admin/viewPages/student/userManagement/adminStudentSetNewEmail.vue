@@ -1,32 +1,27 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <div class="header">
-        <h2>Set new student email...</h2>
-      </div>
-      <form @submit.prevent="handleSetNewEmail">
-        <label for="newEmail">New email</label>
-        <input id="email" type="email" v-model="newEmail" required />
-
-        <div class="actions">
-          <button
-            type="button"
-            @click="$router.push({ path: '/admin/view/student', query: { id: id } })"
-          >
-            Back
-          </button>
-          <button type="submit">Set new email</button>
-        </div>
-      </form>
-    </div>
+    <DataUpdateForm
+      :entity-name="entityName"
+      :field-config="{
+        name: 'email',
+        label: 'Email',
+        type: 'email',
+        requireCurrent: false,
+        requireConfirm: false,
+        maxLength: 254,
+      }"
+      @back="handleBackEmit"
+      @submit-update="handleSubmitUpdateEmit"
+    ></DataUpdateForm>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { useRoute } from 'vue-router'
 import { setNewAccountEmail } from '@/utilities/account/otherAccountManagement'
+import DataUpdateForm from '@/components/accountWorkflow/shared/subComponents/dataUpdateForm.vue'
+import router from '@/router'
 
 const accessTokenStore = useAccessTokenStore()
 
@@ -34,19 +29,24 @@ const accessTokenStore = useAccessTokenStore()
 const route = useRoute()
 const id = route.query.id
 
-const newEmail = ref('')
+const entityName = `Student(ID: ${id})`
 
-const handleSetNewEmail = async () => {
+async function handleBackEmit() {
+  await router.push({ path: '/admin/view/student', query: { id: id } })
+}
+
+async function handleSubmitUpdateEmit(payload) {
   try {
     const response = await setNewAccountEmail(
       accessTokenStore.accessToken,
       'student',
       id,
-      newEmail.value,
+      payload.newValue,
     )
 
     if (typeof response.message !== 'undefined') {
       alert('Email changed successfully.')
+      await handleBackEmit()
     } else {
       alert('Email change failed.')
     }

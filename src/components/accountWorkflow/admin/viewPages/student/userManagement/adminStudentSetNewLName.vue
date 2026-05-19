@@ -1,32 +1,27 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <div class="header">
-        <h2>Set new student last name...</h2>
-      </div>
-      <form @submit.prevent="handleSetNewLName">
-        <label for="newLName">New last name</label>
-        <input id="text" type="text" v-model="newLName" required />
-
-        <div class="actions">
-          <button
-            type="button"
-            @click="$router.push({ path: '/admin/view/student', query: { id: id } })"
-          >
-            Back
-          </button>
-          <button type="submit">Set new last name</button>
-        </div>
-      </form>
-    </div>
+    <DataUpdateForm
+      :entity-name="entityName"
+      :field-config="{
+        name: 'last_name',
+        label: 'Last Name',
+        type: 'string',
+        requireCurrent: false,
+        requireConfirm: false,
+        maxLength: 50,
+      }"
+      @back="handleBackEmit"
+      @submit-update="handleSubmitUpdateEmit"
+    ></DataUpdateForm>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { useRoute } from 'vue-router'
 import { setNewAccountLName } from '@/utilities/account/otherAccountManagement'
+import DataUpdateForm from '@/components/accountWorkflow/shared/subComponents/dataUpdateForm.vue'
+import router from '@/router'
 
 const accessTokenStore = useAccessTokenStore()
 
@@ -34,19 +29,24 @@ const accessTokenStore = useAccessTokenStore()
 const route = useRoute()
 const id = route.query.id
 
-const newLName = ref('')
+const entityName = `Student(ID: ${id})`
 
-const handleSetNewLName = async () => {
+async function handleBackEmit() {
+  await router.push({ path: '/admin/view/student', query: { id: id } })
+}
+
+async function handleSubmitUpdateEmit(payload) {
   try {
     const response = await setNewAccountLName(
       accessTokenStore.accessToken,
       'student',
       id,
-      newLName.value,
+      payload.newValue,
     )
 
     if (typeof response.message !== 'undefined') {
       alert('Last name changed successfully.')
+      await handleBackEmit()
     } else {
       alert('Last name change failed.')
     }

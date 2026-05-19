@@ -1,32 +1,27 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <div class="header">
-        <h2>Set new teacher patronymic name...</h2>
-      </div>
-      <form @submit.prevent="handleSetNewPName">
-        <label for="newPName">New patronymic name</label>
-        <input id="text" type="text" v-model="newPName" required />
-
-        <div class="actions">
-          <button
-            type="button"
-            @click="$router.push({ path: '/admin/view/teacher', query: { id: id } })"
-          >
-            Back
-          </button>
-          <button type="submit">Set new patronymic name</button>
-        </div>
-      </form>
-    </div>
+    <DataUpdateForm
+      :entity-name="entityName"
+      :field-config="{
+        name: 'patronymic_name',
+        label: 'Patronymic Name',
+        type: 'string',
+        requireCurrent: false,
+        requireConfirm: false,
+        maxLength: 50,
+      }"
+      @back="handleBackEmit"
+      @submit-update="handleSubmitUpdateEmit"
+    ></DataUpdateForm>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { useRoute } from 'vue-router'
 import { setNewAccountPName } from '@/utilities/account/otherAccountManagement'
+import DataUpdateForm from '@/components/accountWorkflow/shared/subComponents/dataUpdateForm.vue'
+import router from '@/router'
 
 const accessTokenStore = useAccessTokenStore()
 
@@ -34,19 +29,24 @@ const accessTokenStore = useAccessTokenStore()
 const route = useRoute()
 const id = route.query.id
 
-const newPName = ref('')
+const entityName = `Teacher(ID: ${id})`
 
-const handleSetNewPName = async () => {
+async function handleBackEmit() {
+  await router.push({ path: '/admin/view/teacher', query: { id: id } })
+}
+
+async function handleSubmitUpdateEmit(payload) {
   try {
     const response = await setNewAccountPName(
       accessTokenStore.accessToken,
       'teacher',
       id,
-      newPName.value,
+      payload.newValue,
     )
 
     if (typeof response.message !== 'undefined') {
       alert('Patronymic name changed successfully.')
+      await handleBackEmit()
     } else {
       alert('Patronymic name change failed.')
     }
