@@ -2,13 +2,21 @@
   <div class="overContainer">
     <div class="container">
       <div class="button-group">
-        <button @click="$router.push('/teacher/manage/studentgroups')">
-          View Assigned Student Groups
+        <button @click="$router.push('/teacher/manage/assigned/studentgroups')">
+          Manage Assigned Student Groups
         </button>
-        <button @click="$router.push('/teacher/manage/specialties')">
-          View Assigned Specialties
+        <button @click="$router.push('/teacher/manage/assigned/specialties')">
+          Manage Assigned Specialties
         </button>
-        <button @click="$router.push('/teacher/manage/subjects')">View Assigned Subjects</button>
+        <button @click="$router.push('/teacher/manage/assigned/subjects')">
+          Manage Assigned Subjects
+        </button>
+        <button @click="$router.push('/teacher/manage/assigned/subjects')">
+          Manage Assigned Subjects
+        </button>
+        <button @click="$router.push('/teacher/manage/assigned/tasks')">
+          Manage Assigned Tasks
+        </button>
       </div>
 
       <div class="button-group">
