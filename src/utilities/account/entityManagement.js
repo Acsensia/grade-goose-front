@@ -459,6 +459,86 @@ export async function setNewStudentGroupDesc(_accessToken, _idColumnValue, _newV
   }
 }
 
+/// specialty setField functions ///
+
+export async function setNewSpecialtyName(_accessToken, _idColumnValue, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/specialty/name', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSpecialtyName) general error:', error)
+    return false
+  }
+}
+
+export async function setNewSpecialtyAbbr(_accessToken, _idColumnValue, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/specialty/abbr', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSpecialtyAbbreviation) general error:', error)
+    return false
+  }
+}
+
+export async function setNewSpecialtyDesc(_accessToken, _idColumnValue, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/specialty/desc', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSpecialtyDesc) general error:', error)
+    return false
+  }
+}
+
 /// subject setField functions ///
 
 export async function setNewSubjectName(_accessToken, _idColumnValue, _newValue) {

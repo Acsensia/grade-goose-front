@@ -61,6 +61,9 @@ import AdminSGSetNewName from '@/components/accountWorkflow/admin/viewPages/stud
 import AdminSGSetNewDesc from '@/components/accountWorkflow/admin/viewPages/studentGroup/entityManagement/adminSGSetNewDesc.vue'
 import AdminSJSetNewName from '@/components/accountWorkflow/admin/viewPages/subject/entityManagement/adminSJSetNewName.vue'
 import AdminSJSetNewDesc from '@/components/accountWorkflow/admin/viewPages/subject/entityManagement/adminSJSetNewDesc.vue'
+import AdminSPSetNewName from '@/components/accountWorkflow/admin/viewPages/specialty/entityManagement/adminSPSetNewName.vue'
+import AdminSPSetNewDesc from '@/components/accountWorkflow/admin/viewPages/specialty/entityManagement/adminSPSetNewDesc.vue'
+import AdminSPSetNewAbbr from '@/components/accountWorkflow/admin/viewPages/specialty/entityManagement/adminSPSetNewAbbr.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -168,6 +171,9 @@ const router = createRouter({
     { path: '/admin/manage/studentgroup/changeDesc', component: AdminSGSetNewDesc },
 
     { path: '/admin/manage/specialties', component: AdminSpecialtiesManagement },
+    { path: '/admin/manage/specialty/changeName', component: AdminSPSetNewName },
+    { path: '/admin/manage/specialty/changeAbbr', component: AdminSPSetNewAbbr },
+    { path: '/admin/manage/specialty/changeDesc', component: AdminSPSetNewDesc },
 
     { path: '/admin/manage/subjects', component: AdminSubjectsManagement },
     { path: '/admin/manage/subject/changeName', component: AdminSJSetNewName },
