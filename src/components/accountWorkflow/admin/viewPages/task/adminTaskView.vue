@@ -47,6 +47,11 @@ const actionGroups = [
         payload: { route: '/admin/manage/task/changeName' },
       },
       {
+        id: 'changeInstr',
+        label: 'Set New Task Instructions...',
+        payload: { route: '/admin/manage/task/changeInstr' },
+      },
+      {
         id: 'changeTimeDue',
         label: 'Set New Task Due Date...',
         payload: { route: '/admin/manage/task/changeTimeDue' },
@@ -55,11 +60,6 @@ const actionGroups = [
         id: 'changePDEnforcement',
         label: 'Choose whether the task can be handed in past due...',
         payload: { route: '/admin/manage/task/changePDEnforcement' },
-      },
-      {
-        id: 'changeInstr',
-        label: 'Set New Task Instructions...',
-        payload: { route: '/admin/manage/task/changeInstr' },
       },
     ],
   },

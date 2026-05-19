@@ -84,7 +84,10 @@ export async function getTaskInfo(_accessToken, _idColumnValue) {
     })
 
     if (response.ok) {
-      return (await response.json()).entity
+      const result = (await response.json()).entity
+      const nestedValue = result.can_be_handed_in_past_due.data[0]
+      result.can_be_handed_in_past_due = Boolean(nestedValue)
+      return result
     } else {
       return false
     }
@@ -182,7 +185,7 @@ export async function getAllTasks(_accessToken) {
       if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
       getAllResult.result.forEach((entityRecord) => {
         let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
-        entityRecord.can_be_handed_in_past_due = nestedValue ? 'True' : 'False'
+        entityRecord.can_be_handed_in_past_due = Boolean(nestedValue)
       })
       return getAllResult
     } else {
@@ -589,6 +592,112 @@ export async function setNewSubjectDesc(_accessToken, _idColumnValue, _newValue)
     }
   } catch (error) {
     console.error('(setNewSubjectDesc) general error:', error)
+    return false
+  }
+}
+
+/// task setField functions ///
+
+export async function setNewTaskName(_accessToken, _idColumnValue, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/task/name', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewTaskName) general error:', error)
+    return false
+  }
+}
+
+export async function setNewTaskInstr(_accessToken, _idColumnValue, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/task/instr', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewTaskInstr) general error:', error)
+    return false
+  }
+}
+
+export async function setNewTaskDue(_accessToken, _idColumnValue, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/task/due', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewTaskDue) general error:', error)
+    return false
+  }
+}
+
+export async function setNewTaskEnforceDue(_accessToken, _idColumnValue, _newBoolValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/task/enforcedue', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newBoolValue: _newBoolValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewTaskEnforceDue) general error:', error)
     return false
   }
 }

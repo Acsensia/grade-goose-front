@@ -64,6 +64,10 @@ import AdminSJSetNewDesc from '@/components/accountWorkflow/admin/viewPages/subj
 import AdminSPSetNewName from '@/components/accountWorkflow/admin/viewPages/specialty/entityManagement/adminSPSetNewName.vue'
 import AdminSPSetNewDesc from '@/components/accountWorkflow/admin/viewPages/specialty/entityManagement/adminSPSetNewDesc.vue'
 import AdminSPSetNewAbbr from '@/components/accountWorkflow/admin/viewPages/specialty/entityManagement/adminSPSetNewAbbr.vue'
+import AdminTSSetNewName from '@/components/accountWorkflow/admin/viewPages/task/entityManagement/adminTSSetNewName.vue'
+import AdminTSSetNewDue from '@/components/accountWorkflow/admin/viewPages/task/entityManagement/adminTSSetNewDue.vue'
+import AdminTSSetEnforceDue from '@/components/accountWorkflow/admin/viewPages/task/entityManagement/adminTSSetEnforceDue.vue'
+import AdminTSSetNewInstr from '@/components/accountWorkflow/admin/viewPages/task/entityManagement/adminTSSetNewInstr.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -180,6 +184,10 @@ const router = createRouter({
     { path: '/admin/manage/subject/changeDesc', component: AdminSJSetNewDesc },
 
     { path: '/admin/manage/tasks', component: AdminTasksManagement },
+    { path: '/admin/manage/task/changeName', component: AdminTSSetNewName },
+    { path: '/admin/manage/task/changeInstr', component: AdminTSSetNewInstr },
+    { path: '/admin/manage/task/changeTimeDue', component: AdminTSSetNewDue },
+    { path: '/admin/manage/task/changePDEnforcement', component: AdminTSSetEnforceDue },
 
     { path: '/admin/view/teacher', component: AdminTeacherView },
     { path: '/admin/view/student', component: AdminStudentView },
