@@ -701,3 +701,259 @@ export async function setNewTaskEnforceDue(_accessToken, _idColumnValue, _newBoo
     return false
   }
 }
+
+/// getAssigned functions ///
+
+/// student group getAssigned functions ///
+
+export async function getStudentGroupAssignedAccounts(
+  _accessToken,
+  _shortUserType,
+  _idColumnValue,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/studentgroup/assigned/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentGroupAssignedAccounts) general error:', error)
+    return false
+  }
+}
+
+export async function getStudentGroupAssignedSpecialties(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/studentgroup/assigned/specialties',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentGroupAssignedSpecialties) general error:', error)
+    return false
+  }
+}
+
+/// unassign functions ///
+
+/// student group unassign functions ///
+
+export async function unassignStudentGroupAccountSelection(
+  _accessToken,
+  _shortUserType,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/unassign/studentgroup/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({
+          child_id_selection: _childIdSelection,
+          parent_id: _parentId,
+        }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignStudentGroupAccountSelection) general error:', error)
+    return false
+  }
+}
+
+export async function unassignStudentGroupSpecialtySelection(
+  _accessToken,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/unassign/studentgroup/specialties', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignStudentGroupSpecialtySelection) general error:', error)
+    return false
+  }
+}
+
+/// assign functions ///
+
+/// student group assign functions ///
+
+export async function assignStudentGroupAccountSelection(
+  _accessToken,
+  _shortUserType,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/assign/studentgroup/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({
+          child_id_selection: _childIdSelection,
+          parent_id: _parentId,
+        }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignStudentGroupAccountSelection) general error:', error)
+    return false
+  }
+}
+
+export async function assignStudentGroupSpecialtySelection(
+  _accessToken,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/assign/studentgroup/specialties', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignStudentGroupSpecialtySelection) general error:', error)
+    return false
+  }
+}
+
+/// getUnassigned functions ///
+
+/// student group getUnassigned functions ///
+
+export async function getStudentGroupUnassignedAccounts(
+  _accessToken,
+  _shortUserType,
+  _idColumnValue,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/studentgroup/unassigned/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentGroupUnassignedAccounts) general error:', error)
+    return false
+  }
+}
+
+export async function getStudentGroupUnassignedSpecialties(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/studentgroup/unassigned/specialties',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentGroupUnassignedSpecialties) general error:', error)
+    return false
+  }
+}

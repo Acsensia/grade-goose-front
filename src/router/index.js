@@ -68,6 +68,12 @@ import AdminTSSetNewName from '@/components/accountWorkflow/admin/viewPages/task
 import AdminTSSetNewDue from '@/components/accountWorkflow/admin/viewPages/task/entityManagement/adminTSSetNewDue.vue'
 import AdminTSSetEnforceDue from '@/components/accountWorkflow/admin/viewPages/task/entityManagement/adminTSSetEnforceDue.vue'
 import AdminTSSetNewInstr from '@/components/accountWorkflow/admin/viewPages/task/entityManagement/adminTSSetNewInstr.vue'
+import AdminSGAssignedTEManagement from '@/components/accountWorkflow/admin/viewPages/studentGroup/assignedEntities/adminSGAssignedTEManagement.vue'
+import AdminSGAssignedSTManagement from '@/components/accountWorkflow/admin/viewPages/studentGroup/assignedEntities/adminSGAssignedSTManagement.vue'
+import AdminSGAssignedSPManagement from '@/components/accountWorkflow/admin/viewPages/studentGroup/assignedEntities/adminSGAssignedSPManagement.vue'
+import AdminSGUnassignedTEManagement from '@/components/accountWorkflow/admin/viewPages/studentGroup/unassignedEntities/adminSGUnassignedTEManagement.vue'
+import AdminSGUnassignedSTManagement from '@/components/accountWorkflow/admin/viewPages/studentGroup/unassignedEntities/adminSGUnassignedSTManagement.vue'
+import AdminSGUnassignedSPManagement from '@/components/accountWorkflow/admin/viewPages/studentGroup/unassignedEntities/adminSGUnassignedSPManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -173,6 +179,32 @@ const router = createRouter({
     { path: '/admin/manage/studentgroups', component: AdminSGManagement },
     { path: '/admin/manage/studentgroup/changeName', component: AdminSGSetNewName },
     { path: '/admin/manage/studentgroup/changeDesc', component: AdminSGSetNewDesc },
+
+    {
+      path: '/admin/manage/studentgroup/seeassigned/teachers',
+      component: AdminSGAssignedTEManagement,
+    },
+    {
+      path: '/admin/manage/studentgroup/seeassigned/students',
+      component: AdminSGAssignedSTManagement,
+    },
+    {
+      path: '/admin/manage/studentgroup/seeassigned/specialties',
+      component: AdminSGAssignedSPManagement,
+    },
+
+    {
+      path: '/admin/manage/studentgroup/seeunassigned/teachers',
+      component: AdminSGUnassignedTEManagement,
+    },
+    {
+      path: '/admin/manage/studentgroup/seeunassigned/students',
+      component: AdminSGUnassignedSTManagement,
+    },
+    {
+      path: '/admin/manage/studentgroup/seeunassigned/specialties',
+      component: AdminSGUnassignedSPManagement,
+    },
 
     { path: '/admin/manage/specialties', component: AdminSpecialtiesManagement },
     { path: '/admin/manage/specialty/changeName', component: AdminSPSetNewName },
