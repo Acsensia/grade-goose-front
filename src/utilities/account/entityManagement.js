@@ -842,6 +842,83 @@ export async function getSpecialtyAssignedSubjects(_accessToken, _idColumnValue)
   }
 }
 
+/// subject getAssigned functions ///
+
+export async function getSubjectAssignedAccounts(_accessToken, _shortUserType, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/subject/assigned/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectAssignedAccounts) general error:', error)
+    return false
+  }
+}
+
+export async function getSubjectAssignedSpecialties(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/subject/assigned/specialties',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectAssignedSpecialties) general error:', error)
+    return false
+  }
+}
+
+export async function getSubjectAssignedTasks(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getinfo/subject/assigned/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectAssignedTasks) general error:', error)
+    return false
+  }
+}
+
 /// unassign functions ///
 
 /// student group unassign functions ///
@@ -1006,6 +1083,98 @@ export async function unassignSpecialtySubjectSelection(
   }
 }
 
+/// subject unassign functions ///
+
+export async function unassignSubjectAccountSelection(
+  _accessToken,
+  _shortUserType,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/unassign/subject/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({
+          child_id_selection: _childIdSelection,
+          parent_id: _parentId,
+        }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignSubjectAccountSelection) general error:', error)
+    return false
+  }
+}
+
+export async function unassignSubjectSpecialtySelection(
+  _accessToken,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/unassign/subject/specialties', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignSubjectSpecialtySelection) general error:', error)
+    return false
+  }
+}
+
+export async function unassignSubjectTaskSelection(_accessToken, _childIdSelection, _parentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/unassign/subject/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignSubjectTaskSelection) general error:', error)
+    return false
+  }
+}
+
 /// assign functions ///
 
 /// student group assign functions ///
@@ -1074,7 +1243,7 @@ export async function assignStudentGroupSpecialtySelection(
   }
 }
 
-/// specialty unassign functions ///
+/// specialty assign functions ///
 
 export async function assignSpecialtyAccountSelection(
   _accessToken,
@@ -1166,6 +1335,94 @@ export async function assignSpecialtySubjectSelection(_accessToken, _childIdSele
   }
 }
 
+/// subject assign functions ///
+
+export async function assignSubjectAccountSelection(
+  _accessToken,
+  _shortUserType,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/assign/subject/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({
+          child_id_selection: _childIdSelection,
+          parent_id: _parentId,
+        }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignSubjectAccountSelection) general error:', error)
+    return false
+  }
+}
+
+export async function assignSubjectSpecialtySelection(_accessToken, _childIdSelection, _parentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/assign/subject/specialties', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignSubjectSpecialtySelection) general error:', error)
+    return false
+  }
+}
+
+export async function assignSubjectTaskSelection(_accessToken, _childIdSelection, _parentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/assign/subject/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignSubjectTaskSelection) general error:', error)
+    return false
+  }
+}
+
 /// getUnassigned functions ///
 
 /// student group getUnassigned functions ///
@@ -1226,7 +1483,7 @@ export async function getStudentGroupUnassignedSpecialties(_accessToken, _idColu
   }
 }
 
-/// specialty getAssigned functions ///
+/// specialty getUnassigned functions ///
 
 export async function getSpecialtyUnassignedAccounts(_accessToken, _shortUserType, _idColumnValue) {
   try {
@@ -1302,6 +1559,83 @@ export async function getSpecialtyUnassignedSubjects(_accessToken, _idColumnValu
     }
   } catch (error) {
     console.error('(getSpecialtyUnassignedSubjects) general error:', error)
+    return false
+  }
+}
+
+/// subject getUnassigned functions ///
+
+export async function getSubjectUnassignedAccounts(_accessToken, _shortUserType, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/subject/unassigned/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectUnassignedAccounts) general error:', error)
+    return false
+  }
+}
+
+export async function getSubjectUnassignedSpecialties(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/subject/unassigned/specialties',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectUnassignedSpecialties) general error:', error)
+    return false
+  }
+}
+
+export async function getSubjectUnassignedTasks(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getinfo/subject/unassigned/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectUnassignedTasks) general error:', error)
     return false
   }
 }

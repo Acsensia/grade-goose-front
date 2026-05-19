@@ -82,6 +82,14 @@ import AdminSPUnassignedTEManagement from '@/components/accountWorkflow/admin/vi
 import AdminSPUnassignedSTManagement from '@/components/accountWorkflow/admin/viewPages/specialty/unassignedEntries/adminSPUnassignedSTManagement.vue'
 import AdminSPUnassignedSGManagement from '@/components/accountWorkflow/admin/viewPages/specialty/unassignedEntries/adminSPUnassignedSGManagement.vue'
 import AdminSPUnassignedSJManagement from '@/components/accountWorkflow/admin/viewPages/specialty/unassignedEntries/adminSPUnassignedSJManagement.vue'
+import AdminSJAssignedTEManagement from '@/components/accountWorkflow/admin/viewPages/subject/assignedEntities/adminSJAssignedTEManagement.vue'
+import AdminSJAssignedSTManagement from '@/components/accountWorkflow/admin/viewPages/subject/assignedEntities/adminSJAssignedSTManagement.vue'
+import AdminSJAssignedSPManagement from '@/components/accountWorkflow/admin/viewPages/subject/assignedEntities/adminSJAssignedSPManagement.vue'
+import AdminSJAssignedTSManagement from '@/components/accountWorkflow/admin/viewPages/subject/assignedEntities/adminSJAssignedTSManagement.vue'
+import AdminSJUnassignedTEManagement from '@/components/accountWorkflow/admin/viewPages/subject/unassignedEntities/adminSJUnassignedTEManagement.vue'
+import AdminSJUnassignedSTManagement from '@/components/accountWorkflow/admin/viewPages/subject/unassignedEntities/adminSJUnassignedSTManagement.vue'
+import AdminSJUnassignedSPManagement from '@/components/accountWorkflow/admin/viewPages/subject/unassignedEntities/adminSJUnassignedSPManagement.vue'
+import AdminSJUnassignedTSManagement from '@/components/accountWorkflow/admin/viewPages/subject/unassignedEntities/adminSJUnassignedTSManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -256,6 +264,40 @@ const router = createRouter({
     { path: '/admin/manage/subjects', component: AdminSubjectsManagement },
     { path: '/admin/manage/subject/changeName', component: AdminSJSetNewName },
     { path: '/admin/manage/subject/changeDesc', component: AdminSJSetNewDesc },
+
+    {
+      path: '/admin/manage/subject/seeassigned/teachers',
+      component: AdminSJAssignedTEManagement,
+    },
+    {
+      path: '/admin/manage/subject/seeassigned/students',
+      component: AdminSJAssignedSTManagement,
+    },
+    {
+      path: '/admin/manage/subject/seeassigned/specialties',
+      component: AdminSJAssignedSPManagement,
+    },
+    {
+      path: '/admin/manage/subject/seeassigned/tasks',
+      component: AdminSJAssignedTSManagement,
+    },
+
+    {
+      path: '/admin/manage/subject/seeunassigned/teachers',
+      component: AdminSJUnassignedTEManagement,
+    },
+    {
+      path: '/admin/manage/subject/seeunassigned/students',
+      component: AdminSJUnassignedSTManagement,
+    },
+    {
+      path: '/admin/manage/subject/seeunassigned/specialties',
+      component: AdminSJUnassignedSPManagement,
+    },
+    {
+      path: '/admin/manage/subject/seeunassigned/tasks',
+      component: AdminSJUnassignedTSManagement,
+    },
 
     { path: '/admin/manage/tasks', component: AdminTasksManagement },
     { path: '/admin/manage/task/changeName', component: AdminTSSetNewName },
