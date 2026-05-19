@@ -1,49 +1,48 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <div class="header">
-        <h2>Password Change</h2>
-      </div>
-      <form @submit.prevent="handleChangePass">
-        <label for="prevPass">Previous password</label>
-        <input id="password" type="password" v-model="prevPass" required />
-
-        <label for="newPass">New password</label>
-        <input id="password" type="password" v-model="newPass" required />
-
-        <div class="actions">
-          <button type="button" @click="$router.push('/account')">Back</button>
-          <button type="submit">Change password</button>
-        </div>
-      </form>
-    </div>
+    <DataUpdateForm
+      entity-name="Account"
+      :field-config="{
+        name: 'password',
+        label: 'Password',
+        type: 'password',
+        requireCurrent: true,
+        requireConfirm: true,
+        maxLength: 255,
+      }"
+      @back="handleBackEmit"
+      @submit-update="handleSubmitUpdateEmit"
+    ></DataUpdateForm>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { changeAccountPassword } from '@/utilities/account/accountManagement'
 import { useAccountStore } from '@/stores/account'
+import DataUpdateForm from '@/components/accountWorkflow/shared/subComponents/dataUpdateForm.vue'
+import router from '@/router'
 
 const accessTokenStore = useAccessTokenStore()
 const accountStore = useAccountStore()
 
-const prevPass = ref('')
-const newPass = ref('')
+async function handleBackEmit() {
+  await router.push('/account')
+}
 
-const handleChangePass = async () => {
+async function handleSubmitUpdateEmit(payload) {
   try {
     const response = await changeAccountPassword(
       accessTokenStore.shortUserType,
       accessTokenStore.accessToken,
-      prevPass.value,
-      newPass.value,
+      payload.currentValue,
+      payload.newValue,
     )
 
     if (typeof response.message !== 'undefined') {
       alert('Password changed successfully.')
       await accountStore.refresh(accessTokenStore.shortUserType, accessTokenStore.accessToken)
+      await handleBackEmit()
     } else {
       alert('Password change failed.')
     }

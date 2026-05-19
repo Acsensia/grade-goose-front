@@ -1,49 +1,48 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <div class="header">
-        <h2>Email Change</h2>
-      </div>
-      <form @submit.prevent="handleChangeEmail">
-        <label for="prevEmail">Previous email</label>
-        <input id="email" type="email" v-model="prevEmail" required />
-
-        <label for="newEmail">New email</label>
-        <input id="email" type="email" v-model="newEmail" required />
-
-        <div class="actions">
-          <button type="button" @click="$router.push('/account')">Back</button>
-          <button type="submit">Change email</button>
-        </div>
-      </form>
-    </div>
+    <DataUpdateForm
+      entity-name="Account"
+      :field-config="{
+        name: 'email',
+        label: 'Email',
+        type: 'email',
+        requireCurrent: true,
+        requireConfirm: true,
+        maxLength: 254,
+      }"
+      @back="handleBackEmit"
+      @submit-update="handleSubmitUpdateEmit"
+    ></DataUpdateForm>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { changeAccountEmail } from '@/utilities/account/accountManagement'
 import { useAccountStore } from '@/stores/account'
+import DataUpdateForm from '@/components/accountWorkflow/shared/subComponents/dataUpdateForm.vue'
+import router from '@/router'
 
 const accessTokenStore = useAccessTokenStore()
 const accountStore = useAccountStore()
 
-const prevEmail = ref('')
-const newEmail = ref('')
+async function handleBackEmit() {
+  await router.push('/account')
+}
 
-const handleChangeEmail = async () => {
+async function handleSubmitUpdateEmit(payload) {
   try {
     const response = await changeAccountEmail(
       accessTokenStore.shortUserType,
       accessTokenStore.accessToken,
-      prevEmail.value,
-      newEmail.value,
+      payload.currentValue,
+      payload.newValue,
     )
 
     if (typeof response.message !== 'undefined') {
       alert('Email changed successfully.')
       await accountStore.refresh(accessTokenStore.shortUserType, accessTokenStore.accessToken)
+      await handleBackEmit()
     } else {
       alert('Email change failed.')
     }

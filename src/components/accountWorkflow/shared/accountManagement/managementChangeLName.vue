@@ -1,49 +1,52 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <div class="header">
-        <h2>Last Name Change</h2>
-      </div>
-      <form @submit.prevent="handleChangeLName">
-        <label for="newLName">New last name</label>
-        <input id="text" type="text" v-model="newLName" required />
-
-        <div class="actions">
-          <button type="button" @click="$router.push('/account')">Back</button>
-          <button type="submit">Change last name</button>
-        </div>
-      </form>
-    </div>
+    <DataUpdateForm
+      entity-name="Account"
+      :field-config="{
+        name: 'last_name',
+        label: 'Last Name',
+        type: 'string',
+        requireCurrent: false,
+        requireConfirm: false,
+        maxLength: 50,
+      }"
+      @back="handleBackEmit"
+      @submit-update="handleSubmitUpdateEmit"
+    ></DataUpdateForm>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { changeAccountLName } from '@/utilities/account/accountManagement'
 import { useAccountStore } from '@/stores/account'
+import DataUpdateForm from '@/components/accountWorkflow/shared/subComponents/dataUpdateForm.vue'
+import router from '@/router'
 
 const accessTokenStore = useAccessTokenStore()
 const accountStore = useAccountStore()
 
-const newLName = ref('')
+async function handleBackEmit() {
+  await router.push('/account')
+}
 
-const handleChangeLName = async () => {
+async function handleSubmitUpdateEmit(payload) {
   try {
     const response = await changeAccountLName(
       accessTokenStore.shortUserType,
       accessTokenStore.accessToken,
-      newLName.value,
+      payload.newValue,
     )
 
     if (typeof response.message !== 'undefined') {
-      alert('Last name changed successfully.')
+      alert('Last Name changed successfully.')
       await accountStore.refresh(accessTokenStore.shortUserType, accessTokenStore.accessToken)
+      await handleBackEmit()
     } else {
-      alert('Last name change failed.')
+      alert('Last Name change failed.')
     }
   } catch (error) {
-    console.error('Last name change error:', error)
+    console.error('Last Name change error:', error)
   }
 }
 </script>

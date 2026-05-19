@@ -1,49 +1,52 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <div class="header">
-        <h2>Patronymic Name Change</h2>
-      </div>
-      <form @submit.prevent="handleChangePName">
-        <label for="newPName">New patronymic name</label>
-        <input id="text" type="text" v-model="newPName" required />
-
-        <div class="actions">
-          <button type="button" @click="$router.push('/account')">Back</button>
-          <button type="submit">Change patronymic name</button>
-        </div>
-      </form>
-    </div>
+    <DataUpdateForm
+      entity-name="Account"
+      :field-config="{
+        name: 'patronymic_name',
+        label: 'Patronymic Name',
+        type: 'string',
+        requireCurrent: false,
+        requireConfirm: false,
+        maxLength: 50,
+      }"
+      @back="handleBackEmit"
+      @submit-update="handleSubmitUpdateEmit"
+    ></DataUpdateForm>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { changeAccountPName } from '@/utilities/account/accountManagement'
 import { useAccountStore } from '@/stores/account'
+import DataUpdateForm from '@/components/accountWorkflow/shared/subComponents/dataUpdateForm.vue'
+import router from '@/router'
 
 const accessTokenStore = useAccessTokenStore()
 const accountStore = useAccountStore()
 
-const newPName = ref('')
+async function handleBackEmit() {
+  await router.push('/account')
+}
 
-const handleChangePName = async () => {
+async function handleSubmitUpdateEmit(payload) {
   try {
     const response = await changeAccountPName(
       accessTokenStore.shortUserType,
       accessTokenStore.accessToken,
-      newPName.value,
+      payload.newValue,
     )
 
     if (typeof response.message !== 'undefined') {
-      alert('Patronymic name changed successfully.')
+      alert('Patronymic Name changed successfully.')
       await accountStore.refresh(accessTokenStore.shortUserType, accessTokenStore.accessToken)
+      await handleBackEmit()
     } else {
-      alert('Patronymic name change failed.')
+      alert('Patronymic Name change failed.')
     }
   } catch (error) {
-    console.error('Patronymic name change error:', error)
+    console.error('Patronymic Name change error:', error)
   }
 }
 </script>
