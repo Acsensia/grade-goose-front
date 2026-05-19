@@ -19,7 +19,7 @@
 <script setup>
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { useRoute } from 'vue-router'
-import { setNewAccountFName } from '@/utilities/account/otherAccountManagement'
+import { setNewStudentGroupName } from '@/utilities/account/entityManagement'
 import DataUpdateForm from '@/components/accountWorkflow/shared/subComponents/dataUpdateForm.vue'
 import router from '@/router'
 
@@ -37,21 +37,20 @@ async function handleBackEmit() {
 
 async function handleSubmitUpdateEmit(payload) {
   try {
-    const response = await setNewAccountFName(
+    const response = await setNewStudentGroupName(
       accessTokenStore.accessToken,
-      'student',
       id,
       payload.newValue,
     )
 
     if (typeof response.message !== 'undefined') {
-      alert('First name changed successfully.')
+      alert('Name changed successfully.')
       await handleBackEmit()
     } else {
-      alert('First name change failed.')
+      alert('Name change failed.')
     }
   } catch (error) {
-    console.error('First name change error:', error)
+    console.error('Name change error:', error)
   }
 }
 </script>

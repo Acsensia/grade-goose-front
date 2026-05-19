@@ -402,3 +402,59 @@ export async function addNewTask(
     return false
   }
 }
+
+/// setField functions ///
+
+/// student group setField functions ///
+
+export async function setNewStudentGroupName(_accessToken, _idColumnValue, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/studentgroup/name', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewStudentGroupName) general error:', error)
+    return false
+  }
+}
+
+export async function setNewStudentGroupDesc(_accessToken, _idColumnValue, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/studentgroup/desc', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewStudentGroupDesc) general error:', error)
+    return false
+  }
+}
