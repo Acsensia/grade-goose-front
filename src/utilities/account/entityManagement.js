@@ -4,7 +4,7 @@ import * as env from '@/config/env.js'
 
 export async function getStudentGroupInfo(_accessToken, _idColumnValue) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getinfo/studentgroup', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getinfo/studentgroup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export async function getStudentGroupInfo(_accessToken, _idColumnValue) {
 
 export async function getSpecialtyInfo(_accessToken, _idColumnValue) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getinfo/specialty', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getinfo/specialty', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export async function getSpecialtyInfo(_accessToken, _idColumnValue) {
 
 export async function getSubjectInfo(_accessToken, _idColumnValue) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getinfo/subject', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getinfo/subject', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export async function getSubjectInfo(_accessToken, _idColumnValue) {
 
 export async function getTaskInfo(_accessToken, _idColumnValue) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getinfo/task', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getinfo/task', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ export async function getTaskInfo(_accessToken, _idColumnValue) {
 
 export async function getAllStudentGroups(_accessToken) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getall/studentgroups', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getall/studentgroups', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ export async function getAllStudentGroups(_accessToken) {
 
 export async function getAllSpecialties(_accessToken) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getall/specialties', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getall/specialties', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ export async function getAllSpecialties(_accessToken) {
 
 export async function getAllSubjects(_accessToken) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getall/subjects', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getall/subjects', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ export async function getAllSubjects(_accessToken) {
 
 export async function getAllTasks(_accessToken) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getall/tasks', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getall/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -198,7 +198,7 @@ export async function getAllTasks(_accessToken) {
 
 export async function deleteStudentGroupSelection(_accessToken, _idColumnValues) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/delete/studentgroups', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/delete/studentgroups', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -221,7 +221,7 @@ export async function deleteStudentGroupSelection(_accessToken, _idColumnValues)
 
 export async function deleteSpecialtySelection(_accessToken, _idColumnValues) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/delete/specialties', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/delete/specialties', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -244,7 +244,7 @@ export async function deleteSpecialtySelection(_accessToken, _idColumnValues) {
 
 export async function deleteSubjectSelection(_accessToken, _idColumnValues) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/delete/subjects', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/delete/subjects', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -267,7 +267,7 @@ export async function deleteSubjectSelection(_accessToken, _idColumnValues) {
 
 export async function deleteTaskSelection(_accessToken, _idColumnValues) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/delete/tasks', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/delete/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -292,7 +292,7 @@ export async function deleteTaskSelection(_accessToken, _idColumnValues) {
 
 export async function addNewStudentGroup(_accessToken, _name, _description) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/add/studentgroup', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/add/studentgroup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -318,7 +318,7 @@ export async function addNewStudentGroup(_accessToken, _name, _description) {
 
 export async function addNewSpecialty(_accessToken, _name, _abbreviation, _description) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/add/specialty', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/add/specialty', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -345,7 +345,7 @@ export async function addNewSpecialty(_accessToken, _name, _abbreviation, _descr
 
 export async function addNewSubject(_accessToken, _name, _description) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/add/subject', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/add/subject', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -377,7 +377,7 @@ export async function addNewTask(
   _canBeHandedInPastDue,
 ) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/add/task', {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/add/task', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

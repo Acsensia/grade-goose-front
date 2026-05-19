@@ -6,7 +6,7 @@ import * as env from '@/config/env.js'
 
 async function _getAllAccounts(_accessToken, _shortUserType, _idColumnName) {
   try {
-    const response = await fetch(env.BACKEND_URL + '/api/account/admin/getall/' + _shortUserType, {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getall/' + _shortUserType, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -29,18 +29,15 @@ async function _getAllAccounts(_accessToken, _shortUserType, _idColumnName) {
 
 async function _getAccountInfo(_accessToken, _shortUserType, _idColumnValue) {
   try {
-    const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/getinfo/account/' + _shortUserType,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${_accessToken}`,
-        },
-        body: JSON.stringify({ id: _idColumnValue }),
-        credentials: 'include',
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getinfo/account/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
       },
-    )
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
 
     if (response.ok) {
       return await response.json()
@@ -63,24 +60,21 @@ async function _addNewAccount(
   _PatronymicName,
 ) {
   try {
-    const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/add/account/' + _shortUserType,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${_accessToken}`,
-        },
-        body: JSON.stringify({
-          email: _email,
-          password: _password,
-          first_name: _firstName,
-          last_name: _lastName,
-          patronymic_name: _PatronymicName,
-        }),
-        credentials: 'include',
+    const response = await fetch(env.BACKEND_URL + '/api/admin/add/account/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
       },
-    )
+      body: JSON.stringify({
+        email: _email,
+        password: _password,
+        first_name: _firstName,
+        last_name: _lastName,
+        patronymic_name: _PatronymicName,
+      }),
+      credentials: 'include',
+    })
 
     if (response.ok) {
       return await response.json()
@@ -95,18 +89,15 @@ async function _addNewAccount(
 
 async function _deleteAccountSelection(_accessToken, _shortUserType, _idColumnValues) {
   try {
-    const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/delete/accounts/' + _shortUserType,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${_accessToken}`,
-        },
-        body: JSON.stringify({ id_selection: _idColumnValues }),
-        credentials: 'include',
+    const response = await fetch(env.BACKEND_URL + '/api/admin/delete/accounts/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
       },
-    )
+      body: JSON.stringify({ id_selection: _idColumnValues }),
+      credentials: 'include',
+    })
 
     if (response.ok) {
       return await response.json()
@@ -123,18 +114,15 @@ async function _deleteAccountSelection(_accessToken, _shortUserType, _idColumnVa
 
 async function _setNewAccountPassword(_accessToken, _shortUserType, _idColumnValue, _newPassword) {
   try {
-    const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/update/pass/' + _shortUserType,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${_accessToken}`,
-        },
-        body: JSON.stringify({ id: _idColumnValue, newPassword: _newPassword }),
-        credentials: 'include',
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/pass/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
       },
-    )
+      body: JSON.stringify({ id: _idColumnValue, newPassword: _newPassword }),
+      credentials: 'include',
+    })
 
     if (response.ok) {
       return await response.json()
@@ -149,18 +137,15 @@ async function _setNewAccountPassword(_accessToken, _shortUserType, _idColumnVal
 
 async function _setNewAccountEmail(_accessToken, _shortUserType, _idColumnValue, _newEmail) {
   try {
-    const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/update/email/' + _shortUserType,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${_accessToken}`,
-        },
-        body: JSON.stringify({ id: _idColumnValue, newEmail: _newEmail }),
-        credentials: 'include',
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/email/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
       },
-    )
+      body: JSON.stringify({ id: _idColumnValue, newEmail: _newEmail }),
+      credentials: 'include',
+    })
 
     if (response.ok) {
       return await response.json()
@@ -176,7 +161,7 @@ async function _setNewAccountEmail(_accessToken, _shortUserType, _idColumnValue,
 async function _setNewAccountFName(_accessToken, _shortUserType, _idColumnValue, _newFName) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/update/firstname/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/update/firstname/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -201,18 +186,15 @@ async function _setNewAccountFName(_accessToken, _shortUserType, _idColumnValue,
 
 async function _setNewAccountLName(_accessToken, _shortUserType, _idColumnValue, _newLName) {
   try {
-    const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/update/lastname/' + _shortUserType,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${_accessToken}`,
-        },
-        body: JSON.stringify({ id: _idColumnValue, newLastName: _newLName }),
-        credentials: 'include',
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/lastname/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
       },
-    )
+      body: JSON.stringify({ id: _idColumnValue, newLastName: _newLName }),
+      credentials: 'include',
+    })
 
     if (response.ok) {
       return await response.json()
@@ -228,7 +210,7 @@ async function _setNewAccountLName(_accessToken, _shortUserType, _idColumnValue,
 async function _setNewAccountPName(_accessToken, _shortUserType, _idColumnValue, _newPName) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/update/patronymicname/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/update/patronymicname/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -258,9 +240,7 @@ async function _setNewAccountPName(_accessToken, _shortUserType, _idColumnValue,
 async function _getAccountAssignedStudentGroups(_accessToken, _shortUserType, _idColumnValue) {
   try {
     const response = await fetch(
-      env.BACKEND_URL +
-        '/api/account/admin/getinfo/account/assigned/studentgroups/' +
-        _shortUserType,
+      env.BACKEND_URL + '/api/admin/getinfo/account/assigned/studentgroups/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -286,7 +266,7 @@ async function _getAccountAssignedStudentGroups(_accessToken, _shortUserType, _i
 async function _getAccountAssignedSpecialties(_accessToken, _shortUserType, _idColumnValue) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/getinfo/account/assigned/specialties/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/getinfo/account/assigned/specialties/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -312,7 +292,7 @@ async function _getAccountAssignedSpecialties(_accessToken, _shortUserType, _idC
 async function _getAccountAssignedSubjects(_accessToken, _shortUserType, _idColumnValue) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/getinfo/account/assigned/subjects/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/getinfo/account/assigned/subjects/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -338,7 +318,7 @@ async function _getAccountAssignedSubjects(_accessToken, _shortUserType, _idColu
 async function _getAccountAssignedTasks(_accessToken, _shortUserType, _idColumnValue) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/getinfo/account/assigned/tasks/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/getinfo/account/assigned/tasks/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -366,9 +346,7 @@ async function _getAccountAssignedTasks(_accessToken, _shortUserType, _idColumnV
 async function _getAccountUnassignedStudentGroups(_accessToken, _shortUserType, _idColumnValue) {
   try {
     const response = await fetch(
-      env.BACKEND_URL +
-        '/api/account/admin/getinfo/account/unassigned/studentgroups/' +
-        _shortUserType,
+      env.BACKEND_URL + '/api/admin/getinfo/account/unassigned/studentgroups/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -394,9 +372,7 @@ async function _getAccountUnassignedStudentGroups(_accessToken, _shortUserType, 
 async function _getAccountUnassignedSpecialties(_accessToken, _shortUserType, _idColumnValue) {
   try {
     const response = await fetch(
-      env.BACKEND_URL +
-        '/api/account/admin/getinfo/account/unassigned/specialties/' +
-        _shortUserType,
+      env.BACKEND_URL + '/api/admin/getinfo/account/unassigned/specialties/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -422,7 +398,7 @@ async function _getAccountUnassignedSpecialties(_accessToken, _shortUserType, _i
 async function _getAccountUnassignedSubjects(_accessToken, _shortUserType, _idColumnValue) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/getinfo/account/unassigned/subjects/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/getinfo/account/unassigned/subjects/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -448,7 +424,7 @@ async function _getAccountUnassignedSubjects(_accessToken, _shortUserType, _idCo
 async function _getAccountUnassignedTasks(_accessToken, _shortUserType, _idColumnValue) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/getinfo/account/unassigned/tasks/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/getinfo/account/unassigned/tasks/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -481,7 +457,7 @@ async function _unassignAccountStudentGroupSelection(
 ) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/unassign/studentgroups/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/unassign/studentgroups/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -515,7 +491,7 @@ async function _unassignAccountSpecialtySelection(
 ) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/unassign/specialties/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/unassign/specialties/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -549,7 +525,7 @@ async function _unassignAccountSubjectSelection(
 ) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/unassign/subjects/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/unassign/subjects/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -582,21 +558,18 @@ async function _unassignAccountTaskSelection(
   _accountId,
 ) {
   try {
-    const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/unassign/tasks/' + _shortUserType,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${_accessToken}`,
-        },
-        body: JSON.stringify({
-          task_id_selection: _taskIdColumnValues,
-          account_id: _accountId,
-        }),
-        credentials: 'include',
+    const response = await fetch(env.BACKEND_URL + '/api/admin/unassign/tasks/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
       },
-    )
+      body: JSON.stringify({
+        task_id_selection: _taskIdColumnValues,
+        account_id: _accountId,
+      }),
+      credentials: 'include',
+    })
 
     if (response.ok) {
       return await response.json()
@@ -619,7 +592,7 @@ async function _assignAccountStudentGroupSelection(
 ) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/assign/studentgroups/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/assign/studentgroups/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -653,7 +626,7 @@ async function _assignAccountSpecialtySelection(
 ) {
   try {
     const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/assign/specialties/' + _shortUserType,
+      env.BACKEND_URL + '/api/admin/assign/specialties/' + _shortUserType,
       {
         method: 'POST',
         headers: {
@@ -686,21 +659,18 @@ async function _assignAccountSubjectSelection(
   _accountId,
 ) {
   try {
-    const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/assign/subjects/' + _shortUserType,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${_accessToken}`,
-        },
-        body: JSON.stringify({
-          subject_id_selection: _subjectIdColumnValues,
-          account_id: _accountId,
-        }),
-        credentials: 'include',
+    const response = await fetch(env.BACKEND_URL + '/api/admin/assign/subjects/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
       },
-    )
+      body: JSON.stringify({
+        subject_id_selection: _subjectIdColumnValues,
+        account_id: _accountId,
+      }),
+      credentials: 'include',
+    })
 
     if (response.ok) {
       return await response.json()
@@ -720,21 +690,18 @@ async function _assignAccountTaskSelection(
   _accountId,
 ) {
   try {
-    const response = await fetch(
-      env.BACKEND_URL + '/api/account/admin/assign/tasks/' + _shortUserType,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${_accessToken}`,
-        },
-        body: JSON.stringify({
-          task_id_selection: _taskIdColumnValues,
-          account_id: _accountId,
-        }),
-        credentials: 'include',
+    const response = await fetch(env.BACKEND_URL + '/api/admin/assign/tasks/' + _shortUserType, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
       },
-    )
+      body: JSON.stringify({
+        task_id_selection: _taskIdColumnValues,
+        account_id: _accountId,
+      }),
+      credentials: 'include',
+    })
 
     if (response.ok) {
       return await response.json()

@@ -1,32 +1,27 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <div class="header">
-        <h2>Set new student group name...</h2>
-      </div>
-      <form @submit.prevent="handleSetNewFName">
-        <label for="newFName">New student group name</label>
-        <input id="text" type="text" v-model="newFName" required />
-
-        <div class="actions">
-          <button
-            type="button"
-            @click="$router.push({ path: '/admin/view/student', query: { id: id } })"
-          >
-            Back
-          </button>
-          <button type="submit">Set new student group name</button>
-        </div>
-      </form>
-    </div>
+    <DataUpdateForm
+      :entity-name="entityName"
+      :field-config="{
+        name: 'name',
+        label: 'Name',
+        type: 'string',
+        requireCurrent: false,
+        requireConfirm: false,
+        maxLength: 50,
+      }"
+      @back="handleBackEmit"
+      @submit-update="handleSubmitUpdateEmit"
+    ></DataUpdateForm>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useAccessTokenStore } from '@/stores/accessToken'
 import { useRoute } from 'vue-router'
 import { setNewAccountFName } from '@/utilities/account/otherAccountManagement'
+import DataUpdateForm from '@/components/accountWorkflow/shared/subComponents/dataUpdateForm.vue'
+import router from '@/router'
 
 const accessTokenStore = useAccessTokenStore()
 
@@ -34,24 +29,29 @@ const accessTokenStore = useAccessTokenStore()
 const route = useRoute()
 const id = route.query.id
 
-const newFName = ref('')
+const entityName = `Student Group(ID: ${id})`
 
-const handleSetNewFName = async () => {
+async function handleBackEmit() {
+  await router.push({ path: '/admin/view/studentgroup', query: { id: id } })
+}
+
+async function handleSubmitUpdateEmit(payload) {
   try {
     const response = await setNewAccountFName(
       accessTokenStore.accessToken,
       'student',
       id,
-      newFName.value,
+      payload.newValue,
     )
 
     if (typeof response.message !== 'undefined') {
-      alert('Student group name changed successfully.')
+      alert('First name changed successfully.')
+      await handleBackEmit()
     } else {
-      alert('Student group name change failed.')
+      alert('First name change failed.')
     }
   } catch (error) {
-    console.error('Student group name change error:', error)
+    console.error('First name change error:', error)
   }
 }
 </script>
