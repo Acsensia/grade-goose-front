@@ -2,18 +2,20 @@
   <div class="overContainer">
     <div class="container">
       <div class="button-group">
-        <button @click="$router.push('/teacher/view/studentgroups')">
+        <button @click="$router.push('/teacher/manage/studentgroups')">
           View Assigned Student Groups
         </button>
-        <button @click="$router.push('/teacher/view/specialties')">
+        <button @click="$router.push('/teacher/manage/specialties')">
           View Assigned Specialties
         </button>
-        <button @click="$router.push('/teacher/view/subjects')">View Assigned Subjects</button>
+        <button @click="$router.push('/teacher/manage/subjects')">View Assigned Subjects</button>
       </div>
+
       <div class="button-group">
         <button @click="$router.push('/teacher/add/task')">Task Addition</button>
         <button @click="$router.push('/teacher/manage/tasks')">Manage Tasks</button>
       </div>
+
       <div class="button-group">
         <button @click="$router.push('/teacher/manage/donetasks/all')">Manage All Solutions</button>
         <button @click="$router.push('/teacher/manage/donetasks/marked')">
@@ -45,6 +47,10 @@
   padding: 20px;
   width: 100%;
   max-width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .header {

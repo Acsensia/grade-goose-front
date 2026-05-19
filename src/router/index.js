@@ -98,6 +98,7 @@ import AdminTSUnassignedSTManagement from '@/components/accountWorkflow/admin/vi
 import AdminTSUnassignedSBManagement from '@/components/accountWorkflow/admin/viewPages/task/unassignedEntities/adminTSUnassignedSBManagement.vue'
 import TeacherMainPage from '@/components/accountWorkflow/teacher/teacherMainPage.vue'
 import TeacherTaskAddition from '@/components/accountWorkflow/teacher/additionPages/teacherTaskAddition.vue'
+import TeacherTasksManagement from '@/components/accountWorkflow/teacher/managementPages/teacherTasksManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -110,6 +111,8 @@ const router = createRouter({
 
     { path: '/teacher', component: TeacherMainPage },
     { path: '/teacher/add/task', component: TeacherTaskAddition },
+
+    { path: '/teacher/manage/tasks', component: TeacherTasksManagement },
 
     { path: '/admin', component: adminMainPage },
     { path: '/admin/add', component: AdminAdditionPage },
