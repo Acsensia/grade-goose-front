@@ -59,6 +59,8 @@ import AdminStudentUnassignedSJManagement from '@/components/accountWorkflow/adm
 import AdminStudentUnassignedTSManagement from '@/components/accountWorkflow/admin/viewPages/student/userUnassignedEntities/adminStudentUnassignedTSManagement.vue'
 import AdminSGSetNewName from '@/components/accountWorkflow/admin/viewPages/studentGroup/entityManagement/adminSGSetNewName.vue'
 import AdminSGSetNewDesc from '@/components/accountWorkflow/admin/viewPages/studentGroup/entityManagement/adminSGSetNewDesc.vue'
+import AdminSJSetNewName from '@/components/accountWorkflow/admin/viewPages/subject/entityManagement/adminSJSetNewName.vue'
+import AdminSJSetNewDesc from '@/components/accountWorkflow/admin/viewPages/subject/entityManagement/adminSJSetNewDesc.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -168,6 +170,8 @@ const router = createRouter({
     { path: '/admin/manage/specialties', component: AdminSpecialtiesManagement },
 
     { path: '/admin/manage/subjects', component: AdminSubjectsManagement },
+    { path: '/admin/manage/subject/changeName', component: AdminSJSetNewName },
+    { path: '/admin/manage/subject/changeDesc', component: AdminSJSetNewDesc },
 
     { path: '/admin/manage/tasks', component: AdminTasksManagement },
 

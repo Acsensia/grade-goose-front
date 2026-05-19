@@ -458,3 +458,57 @@ export async function setNewStudentGroupDesc(_accessToken, _idColumnValue, _newV
     return false
   }
 }
+
+/// subject setField functions ///
+
+export async function setNewSubjectName(_accessToken, _idColumnValue, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/subject/name', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSubjectName) general error:', error)
+    return false
+  }
+}
+
+export async function setNewSubjectDesc(_accessToken, _idColumnValue, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/subject/desc', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        id: _idColumnValue,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSubjectDesc) general error:', error)
+    return false
+  }
+}

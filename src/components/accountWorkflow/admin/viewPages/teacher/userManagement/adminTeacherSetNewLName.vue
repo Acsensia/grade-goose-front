@@ -29,7 +29,7 @@ const accessTokenStore = useAccessTokenStore()
 const route = useRoute()
 const id = route.query.id
 
-const entityName = `Teacher(ID: ${id})`
+const entityName = `Teacher (ID: ${id})`
 
 async function handleBackEmit() {
   await router.push({ path: '/admin/view/teacher', query: { id: id } })
