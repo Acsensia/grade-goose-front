@@ -919,6 +919,57 @@ export async function getSubjectAssignedTasks(_accessToken, _idColumnValue) {
   }
 }
 
+/// task getAssigned functions ///
+
+export async function getTaskAssignedAccounts(_accessToken, _shortUserType, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/task/assigned/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getTaskAssignedAccounts) general error:', error)
+    return false
+  }
+}
+
+export async function getTaskAssignedSubjects(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getinfo/task/assigned/subjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getTaskAssignedSubjects) general error:', error)
+    return false
+  }
+}
+
 /// unassign functions ///
 
 /// student group unassign functions ///
@@ -1175,6 +1226,68 @@ export async function unassignSubjectTaskSelection(_accessToken, _childIdSelecti
   }
 }
 
+/// task unassign functions ///
+
+export async function unassignTaskAccountSelection(
+  _accessToken,
+  _shortUserType,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/unassign/task/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({
+          child_id_selection: _childIdSelection,
+          parent_id: _parentId,
+        }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignTaskAccountSelection) general error:', error)
+    return false
+  }
+}
+
+export async function unassignTaskSubjectSelection(_accessToken, _childIdSelection, _parentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/unassign/task/subjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignTaskSubjectSelection) general error:', error)
+    return false
+  }
+}
+
 /// assign functions ///
 
 /// student group assign functions ///
@@ -1423,6 +1536,68 @@ export async function assignSubjectTaskSelection(_accessToken, _childIdSelection
   }
 }
 
+/// task assign functions ///
+
+export async function assignTaskAccountSelection(
+  _accessToken,
+  _shortUserType,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/assign/task/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({
+          child_id_selection: _childIdSelection,
+          parent_id: _parentId,
+        }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignTaskAccountSelection) general error:', error)
+    return false
+  }
+}
+
+export async function assignTaskSubjectSelection(_accessToken, _childIdSelection, _parentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/assign/task/subjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignTaskSubjectSelection) general error:', error)
+    return false
+  }
+}
+
 /// getUnassigned functions ///
 
 /// student group getUnassigned functions ///
@@ -1636,6 +1811,57 @@ export async function getSubjectUnassignedTasks(_accessToken, _idColumnValue) {
     }
   } catch (error) {
     console.error('(getSubjectUnassignedTasks) general error:', error)
+    return false
+  }
+}
+
+/// task getUnassigned functions ///
+
+export async function getTaskUnassignedAccounts(_accessToken, _shortUserType, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/task/unassigned/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getTaskUnassignedAccounts) general error:', error)
+    return false
+  }
+}
+
+export async function getTaskUnassignedSubjects(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getinfo/task/unassigned/subjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getTaskUnassignedSubjects) general error:', error)
     return false
   }
 }

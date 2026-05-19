@@ -90,6 +90,12 @@ import AdminSJUnassignedTEManagement from '@/components/accountWorkflow/admin/vi
 import AdminSJUnassignedSTManagement from '@/components/accountWorkflow/admin/viewPages/subject/unassignedEntities/adminSJUnassignedSTManagement.vue'
 import AdminSJUnassignedSPManagement from '@/components/accountWorkflow/admin/viewPages/subject/unassignedEntities/adminSJUnassignedSPManagement.vue'
 import AdminSJUnassignedTSManagement from '@/components/accountWorkflow/admin/viewPages/subject/unassignedEntities/adminSJUnassignedTSManagement.vue'
+import AdminTSAssignedTEManagement from '@/components/accountWorkflow/admin/viewPages/task/assignedEntities/adminTSAssignedTEManagement.vue'
+import AdminTSAssignedSTManagement from '@/components/accountWorkflow/admin/viewPages/task/assignedEntities/adminTSAssignedSTManagement.vue'
+import AdminTSAssignedSBManagement from '@/components/accountWorkflow/admin/viewPages/task/assignedEntities/adminTSAssignedSBManagement.vue'
+import AdminTSUnassignedTEManagement from '@/components/accountWorkflow/admin/viewPages/task/unassignedEntities/adminTSUnassignedTEManagement.vue'
+import AdminTSUnassignedSTManagement from '@/components/accountWorkflow/admin/viewPages/task/unassignedEntities/adminTSUnassignedSTManagement.vue'
+import AdminTSUnassignedSBManagement from '@/components/accountWorkflow/admin/viewPages/task/unassignedEntities/adminTSUnassignedSBManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -304,6 +310,32 @@ const router = createRouter({
     { path: '/admin/manage/task/changeInstr', component: AdminTSSetNewInstr },
     { path: '/admin/manage/task/changeTimeDue', component: AdminTSSetNewDue },
     { path: '/admin/manage/task/changePDEnforcement', component: AdminTSSetEnforceDue },
+
+    {
+      path: '/admin/manage/task/seeassigned/teachers',
+      component: AdminTSAssignedTEManagement,
+    },
+    {
+      path: '/admin/manage/task/seeassigned/students',
+      component: AdminTSAssignedSTManagement,
+    },
+    {
+      path: '/admin/manage/task/seeassigned/subjects',
+      component: AdminTSAssignedSBManagement,
+    },
+
+    {
+      path: '/admin/manage/task/seeunassigned/teachers',
+      component: AdminTSUnassignedTEManagement,
+    },
+    {
+      path: '/admin/manage/task/seeunassigned/students',
+      component: AdminTSUnassignedSTManagement,
+    },
+    {
+      path: '/admin/manage/task/seeunassigned/subjects',
+      component: AdminTSUnassignedSBManagement,
+    },
 
     { path: '/admin/view/teacher', component: AdminTeacherView },
     { path: '/admin/view/student', component: AdminStudentView },
