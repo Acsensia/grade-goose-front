@@ -762,6 +762,86 @@ export async function getStudentGroupAssignedSpecialties(_accessToken, _idColumn
   }
 }
 
+/// specialty getAssigned functions ///
+
+export async function getSpecialtyAssignedAccounts(_accessToken, _shortUserType, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/specialty/assigned/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSpecialtyAssignedAccounts) general error:', error)
+    return false
+  }
+}
+
+export async function getSpecialtyAssignedStudentGroups(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/specialty/assigned/studentgroups',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSpecialtyAssignedStudentGroups) general error:', error)
+    return false
+  }
+}
+
+export async function getSpecialtyAssignedSubjects(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/specialty/assigned/subjects',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSpecialtyAssignedSubjects) general error:', error)
+    return false
+  }
+}
+
 /// unassign functions ///
 
 /// student group unassign functions ///
@@ -826,6 +906,102 @@ export async function unassignStudentGroupSpecialtySelection(
     }
   } catch (error) {
     console.error('(unassignStudentGroupSpecialtySelection) general error:', error)
+    return false
+  }
+}
+
+/// specialty unassign functions ///
+
+export async function unassignSpecialtyAccountSelection(
+  _accessToken,
+  _shortUserType,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/unassign/specialty/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({
+          child_id_selection: _childIdSelection,
+          parent_id: _parentId,
+        }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignSpecialtyAccountSelection) general error:', error)
+    return false
+  }
+}
+
+export async function unassignSpecialtyStudentGroupSelection(
+  _accessToken,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/unassign/specialty/studentgroups', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignSpecialtyStudentGroupSelection) general error:', error)
+    return false
+  }
+}
+
+export async function unassignSpecialtySubjectSelection(
+  _accessToken,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/unassign/specialty/subjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignSpecialtySubjectSelection) general error:', error)
     return false
   }
 }
@@ -898,6 +1074,98 @@ export async function assignStudentGroupSpecialtySelection(
   }
 }
 
+/// specialty unassign functions ///
+
+export async function assignSpecialtyAccountSelection(
+  _accessToken,
+  _shortUserType,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/assign/specialty/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({
+          child_id_selection: _childIdSelection,
+          parent_id: _parentId,
+        }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignSpecialtyAccountSelection) general error:', error)
+    return false
+  }
+}
+
+export async function assignSpecialtyStudentGroupSelection(
+  _accessToken,
+  _childIdSelection,
+  _parentId,
+) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/assign/specialty/studentgroups', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignSpecialtyStudentGroupSelection) general error:', error)
+    return false
+  }
+}
+
+export async function assignSpecialtySubjectSelection(_accessToken, _childIdSelection, _parentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/assign/specialty/subjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignSpecialtySubjectSelection) general error:', error)
+    return false
+  }
+}
+
 /// getUnassigned functions ///
 
 /// student group getUnassigned functions ///
@@ -954,6 +1222,86 @@ export async function getStudentGroupUnassignedSpecialties(_accessToken, _idColu
     }
   } catch (error) {
     console.error('(getStudentGroupUnassignedSpecialties) general error:', error)
+    return false
+  }
+}
+
+/// specialty getAssigned functions ///
+
+export async function getSpecialtyUnassignedAccounts(_accessToken, _shortUserType, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/specialty/unassigned/accounts/' + _shortUserType,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSpecialtyUnassignedAccounts) general error:', error)
+    return false
+  }
+}
+
+export async function getSpecialtyUnassignedStudentGroups(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/specialty/unassigned/studentgroups',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSpecialtyUnassignedStudentGroups) general error:', error)
+    return false
+  }
+}
+
+export async function getSpecialtyUnassignedSubjects(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getinfo/specialty/unassigned/subjects',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSpecialtyUnassignedSubjects) general error:', error)
     return false
   }
 }
