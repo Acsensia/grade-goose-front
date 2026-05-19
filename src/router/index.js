@@ -96,6 +96,8 @@ import AdminTSAssignedSBManagement from '@/components/accountWorkflow/admin/view
 import AdminTSUnassignedTEManagement from '@/components/accountWorkflow/admin/viewPages/task/unassignedEntities/adminTSUnassignedTEManagement.vue'
 import AdminTSUnassignedSTManagement from '@/components/accountWorkflow/admin/viewPages/task/unassignedEntities/adminTSUnassignedSTManagement.vue'
 import AdminTSUnassignedSBManagement from '@/components/accountWorkflow/admin/viewPages/task/unassignedEntities/adminTSUnassignedSBManagement.vue'
+import TeacherMainPage from '@/components/accountWorkflow/teacher/teacherMainPage.vue'
+import TeacherTaskAddition from '@/components/accountWorkflow/teacher/additionPages/teacherTaskAddition.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -105,6 +107,9 @@ const router = createRouter({
     { path: '/login/teacher', component: teacherLogin },
     { path: '/login/admin', component: adminLogin },
     { path: '/login/test', component: authTester },
+
+    { path: '/teacher', component: TeacherMainPage },
+    { path: '/teacher/add/task', component: TeacherTaskAddition },
 
     { path: '/admin', component: adminMainPage },
     { path: '/admin/add', component: AdminAdditionPage },
