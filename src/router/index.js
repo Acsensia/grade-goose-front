@@ -117,6 +117,10 @@ import TeacherSJAssignedTSManagement from '@/components/accountWorkflow/teacher/
 import TeacherSJUnassignedTSManagement from '@/components/accountWorkflow/teacher/viewPages/subject/unassignedEntities/teacherSJUnassignedTSManagement.vue'
 import TeacherSTAssignedTSManagement from '@/components/accountWorkflow/teacher/viewPages/student/assignedEntities/teacherSTAssignedTSManagement.vue'
 import TeacherSTUnassignedTSManagement from '@/components/accountWorkflow/teacher/viewPages/student/unassignedEntities/teacherSTUnassignedTSManagement.vue'
+import TeacherTSSetNewName from '@/components/accountWorkflow/teacher/viewPages/task/entityManagement/teacherTSSetNewName.vue'
+import TeacherTSSetNewInstr from '@/components/accountWorkflow/teacher/viewPages/task/entityManagement/teacherTSSetNewInstr.vue'
+import TeacherTSSetNewDue from '@/components/accountWorkflow/teacher/viewPages/task/entityManagement/teacherTSSetNewDue.vue'
+import TeacherTSSetEnforceDue from '@/components/accountWorkflow/teacher/viewPages/task/entityManagement/teacherTSSetEnforceDue.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -183,6 +187,10 @@ const router = createRouter({
     },
 
     { path: '/teacher/manage/assigned/tasks', component: TeacherAssignedTSManagement },
+    { path: '/teacher/manage/task/changeName', component: TeacherTSSetNewName },
+    { path: '/teacher/manage/task/changeInstr', component: TeacherTSSetNewInstr },
+    { path: '/teacher/manage/task/changeTimeDue', component: TeacherTSSetNewDue },
+    { path: '/teacher/manage/task/changePDEnforcement', component: TeacherTSSetEnforceDue },
 
     { path: '/teacher/view/student', component: TeacherSTView },
     { path: '/teacher/view/studentgroup', component: TeacherSGView },
