@@ -44,8 +44,8 @@ async function reloadRows() {
   rows.value = []
   const reloadedRows = await otherAccountManagement.getAllAccounts(
     accessTokenStore.accessToken,
-    'teacher',
-    'teacher_id',
+    'student',
+    'student_id',
   )
   rows.value = reloadedRows.result
 }

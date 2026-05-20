@@ -197,6 +197,29 @@ export async function getAllTasks(_accessToken) {
   }
 }
 
+export async function getAllSolutions(_accessToken) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getall/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({}),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getAllSolutions) general error:', error)
+    return false
+  }
+}
+
 // delete functions //
 
 export async function deleteStudentGroupSelection(_accessToken, _idColumnValues) {
@@ -287,6 +310,29 @@ export async function deleteTaskSelection(_accessToken, _idColumnValues) {
     }
   } catch (error) {
     console.error('(deleteTaskSelection) general error:', error)
+    return false
+  }
+}
+
+export async function deleteSolutionSelection(_accessToken, _idColumnPairs) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/delete/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id_pairs_selection: _idColumnPairs }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(deleteSolutionSelection) general error:', error)
     return false
   }
 }
@@ -391,6 +437,44 @@ export async function addNewTask(
         instructions: _instructions,
         time_due: _timeDue,
         can_be_handed_in_past_due: _canBeHandedInPastDue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(addNewTask) general error:', error)
+    return false
+  }
+}
+
+export async function addNewSolution(
+  _accessToken,
+  _taskId,
+  _studentId,
+  _internetFileLink,
+  _mark,
+  _studentCommentary,
+  _teacherCommentary,
+) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/add/solution', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        tasks_task_id: _taskId,
+        students_student_id: _studentId,
+        internet_file_link: _internetFileLink ?? 'null',
+        mark: _mark ?? 'null',
+        student_commentary: _studentCommentary ?? 'null',
+        teacher_commentary: _teacherCommentary ?? 'null',
       }),
       credentials: 'include',
     })

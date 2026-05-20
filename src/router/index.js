@@ -121,6 +121,8 @@ import TeacherTSSetNewName from '@/components/accountWorkflow/teacher/viewPages/
 import TeacherTSSetNewInstr from '@/components/accountWorkflow/teacher/viewPages/task/entityManagement/teacherTSSetNewInstr.vue'
 import TeacherTSSetNewDue from '@/components/accountWorkflow/teacher/viewPages/task/entityManagement/teacherTSSetNewDue.vue'
 import TeacherTSSetEnforceDue from '@/components/accountWorkflow/teacher/viewPages/task/entityManagement/teacherTSSetEnforceDue.vue'
+import AdminSLManagement from '@/components/accountWorkflow/admin/managementPages/adminSLManagement.vue'
+import AdminSolutionAddition from '@/components/accountWorkflow/admin/additionPages/adminSolutionAddition.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -206,6 +208,7 @@ const router = createRouter({
     { path: '/admin/add/specialty', component: AdminSpecialtyAddition },
     { path: '/admin/add/subject', component: AdminSubjectAddition },
     { path: '/admin/add/task', component: AdminTaskAddition },
+    { path: '/admin/add/solution', component: AdminSolutionAddition },
 
     { path: '/admin/manage', component: AdminManagementPage },
     { path: '/admin/manage/teachers', component: AdminTeachersManagement },
@@ -428,6 +431,8 @@ const router = createRouter({
       path: '/admin/manage/task/seeunassigned/subjects',
       component: AdminTSUnassignedSBManagement,
     },
+
+    { path: '/admin/manage/solutions', component: AdminSLManagement },
 
     { path: '/admin/view/teacher', component: AdminTeacherView },
     { path: '/admin/view/student', component: AdminStudentView },

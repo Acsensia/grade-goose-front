@@ -10,6 +10,7 @@
         <button @click="$router.push('/admin/manage/specialties')">Specialties management</button>
         <button @click="$router.push('/admin/manage/subjects')">Subjects management</button>
         <button @click="$router.push('/admin/manage/tasks')">Tasks management</button>
+        <button @click="$router.push('/admin/manage/solutions')">Solutions management</button>
       </div>
       <div class="button-group">
         <button @click="$router.push('/admin')">Back</button>

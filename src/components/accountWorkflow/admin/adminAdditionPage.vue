@@ -8,6 +8,7 @@
         <button @click="$router.push('/admin/add/specialty')">Add a new specialty...</button>
         <button @click="$router.push('/admin/add/subject')">Add a new subject...</button>
         <button @click="$router.push('/admin/add/task')">Add a new task...</button>
+        <button @click="$router.push('/admin/add/solution')">Add a new solution...</button>
       </div>
       <div class="button-group">
         <button @click="$router.push('/admin')">Back</button>
