@@ -99,6 +99,17 @@ import AdminTSUnassignedSBManagement from '@/components/accountWorkflow/admin/vi
 import TeacherMainPage from '@/components/accountWorkflow/teacher/teacherMainPage.vue'
 import TeacherTaskAddition from '@/components/accountWorkflow/teacher/additionPages/teacherTaskAddition.vue'
 import TeacherTasksManagement from '@/components/accountWorkflow/teacher/managementPages/teacherTasksManagement.vue'
+import TeacherAssignedSGManagement from '@/components/accountWorkflow/teacher/managementPages/assigned/teacherAssignedSGManagement.vue'
+import TeacherAssignedSPManagement from '@/components/accountWorkflow/teacher/managementPages/assigned/teacherAssignedSPManagement.vue'
+import TeacherAssignedSJManagement from '@/components/accountWorkflow/teacher/managementPages/assigned/teacherAssignedSJManagement.vue'
+import TeacherAssignedTSManagement from '@/components/accountWorkflow/teacher/managementPages/assigned/teacherAssignedTSManagement.vue'
+import TeacherSTView from '@/components/accountWorkflow/teacher/viewPages/student/teacherSTView.vue'
+import TeacherSGView from '@/components/accountWorkflow/teacher/viewPages/studentGroup/teacherSGView.vue'
+import TeacherSPView from '@/components/accountWorkflow/teacher/viewPages/specialty/teacherSPView.vue'
+import TeacherSJView from '@/components/accountWorkflow/teacher/viewPages/subject/teacherSJView.vue'
+import TeacherTSView from '@/components/accountWorkflow/teacher/viewPages/task/teacherTSView.vue'
+import TeacherSPAssignedSTManagement from '@/components/accountWorkflow/teacher/viewPages/specialty/assignedEntities/teacherSPAssignedSTManagement.vue'
+import TeacherSPAssignedSJManagement from '@/components/accountWorkflow/teacher/viewPages/specialty/assignedEntities/teacherSPAssignedSJManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -113,6 +124,29 @@ const router = createRouter({
     { path: '/teacher/add/task', component: TeacherTaskAddition },
 
     { path: '/teacher/manage/tasks', component: TeacherTasksManagement },
+
+    { path: '/teacher/manage/assigned/studentgroups', component: TeacherAssignedSGManagement },
+
+    { path: '/teacher/manage/assigned/specialties', component: TeacherAssignedSPManagement },
+
+    {
+      path: '/teacher/manage/assigned/specialty/seeassigned/students',
+      component: TeacherSPAssignedSTManagement,
+    },
+    {
+      path: '/teacher/manage/assigned/specialty/seeassigned/subjects',
+      component: TeacherSPAssignedSJManagement,
+    },
+
+    { path: '/teacher/manage/assigned/subjects', component: TeacherAssignedSJManagement },
+
+    { path: '/teacher/manage/assigned/tasks', component: TeacherAssignedTSManagement },
+
+    { path: '/teacher/view/student', component: TeacherSTView },
+    { path: '/teacher/view/studentgroup', component: TeacherSGView },
+    { path: '/teacher/view/specialty', component: TeacherSPView },
+    { path: '/teacher/view/subject', component: TeacherSJView },
+    { path: '/teacher/view/task', component: TeacherTSView },
 
     { path: '/admin', component: adminMainPage },
     { path: '/admin/add', component: AdminAdditionPage },

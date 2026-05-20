@@ -11,9 +11,6 @@
         <button @click="$router.push('/teacher/manage/assigned/subjects')">
           Manage Assigned Subjects
         </button>
-        <button @click="$router.push('/teacher/manage/assigned/subjects')">
-          Manage Assigned Subjects
-        </button>
         <button @click="$router.push('/teacher/manage/assigned/tasks')">
           Manage Assigned Tasks
         </button>
