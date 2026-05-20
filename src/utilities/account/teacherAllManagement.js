@@ -305,6 +305,37 @@ export async function addNewTask(
 
 /// getAssigned functions ///
 
+/// student getAssigned functions ///
+
+export async function getStudentAssignedTasks(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/getall/student/assigned/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      let getAllResult = await response.json()
+      if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
+      getAllResult.result.forEach((entityRecord) => {
+        let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
+        entityRecord.can_be_handed_in_past_due = Boolean(nestedValue)
+      })
+      return getAllResult
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentAssignedTasks) general error:', error)
+    return false
+  }
+}
+
 /// student group getAssigned functions ///
 
 export async function getStudentGroupAssignedStudents(_accessToken, _idColumnValue) {
@@ -472,6 +503,34 @@ export async function getSubjectAssignedTasks(_accessToken, _idColumnValue) {
 
 /// unassign functions ///
 
+/// student unassign functions ///
+
+export async function unassignStudentTaskSelection(_accessToken, _childIdSelection, _parentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/unassign/student/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        task_id_selection: _childIdSelection,
+        account_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignSubjectTaskSelection) general error:', error)
+    return false
+  }
+}
+
 /// subject unassign functions ///
 
 export async function unassignSubjectTaskSelection(_accessToken, _childIdSelection, _parentId) {
@@ -501,6 +560,37 @@ export async function unassignSubjectTaskSelection(_accessToken, _childIdSelecti
 }
 
 /// getUnassigned functions ///
+
+/// student getUnassigned functions ///
+
+export async function getStudentUnassignedTasks(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/getall/student/unassigned/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      let getAllResult = await response.json()
+      if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
+      getAllResult.result.forEach((entityRecord) => {
+        let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
+        entityRecord.can_be_handed_in_past_due = Boolean(nestedValue)
+      })
+      return getAllResult
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentUnassignedTasks) general error:', error)
+    return false
+  }
+}
 
 /// subject getUnassigned functions ///
 
@@ -534,6 +624,34 @@ export async function getSubjectUnassignedTasks(_accessToken, _idColumnValue) {
 }
 
 /// assign functions ///
+
+/// student assign functions ///
+
+export async function assignStudentTaskSelection(_accessToken, _childIdSelection, _parentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/assign/student/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        task_id_selection: _childIdSelection,
+        account_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignStudentTaskSelection) general error:', error)
+    return false
+  }
+}
 
 /// subject assign functions ///
 

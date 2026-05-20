@@ -44,12 +44,12 @@ const actionGroups = [
       {
         id: 'seeAssignedTasks',
         label: 'See Assigned Tasks...',
-        payload: { route: '/teacher/manage/student/seeassigned/tasks' },
+        payload: { route: '/teacher/manage/assigned/student/seeassigned/tasks' },
       },
       {
         id: 'seeUnassignedTasks',
         label: 'See Unassigned Tasks...',
-        payload: { route: '/teacher/manage/student/seeunassigned/tasks' },
+        payload: { route: '/teacher/manage/assigned/student/seeunassigned/tasks' },
       },
     ],
   },
