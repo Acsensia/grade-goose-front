@@ -63,36 +63,6 @@ const actionGroups = [
       },
     ],
   },
-  {
-    name: 'Task Assigned Entities',
-    actions: [
-      {
-        id: 'seeAssignedStudents',
-        label: 'See Assigned Students...',
-        payload: { route: '/teacher/manage/task/seeassigned/students' },
-      },
-      {
-        id: 'seeAssignedSubjects',
-        label: 'See Assigned Subjects...',
-        payload: { route: '/teacher/manage/task/seeassigned/subjects' },
-      },
-    ],
-  },
-  {
-    name: 'Task Unassigned Entities',
-    actions: [
-      {
-        id: 'seeUnassignedStudents',
-        label: 'See Unassigned Students...',
-        payload: { route: '/teacher/manage/task/seeunassigned/students' },
-      },
-      {
-        id: 'seeUnassignedSubjects',
-        label: 'See Unassigned Subjects...',
-        payload: { route: '/teacher/manage/task/seeunassigned/subjects' },
-      },
-    ],
-  },
 ]
 
 onMounted(async () => {
