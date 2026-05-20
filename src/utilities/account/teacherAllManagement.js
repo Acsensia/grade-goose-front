@@ -412,3 +412,153 @@ export async function getSpecialtyAssignedSubjects(_accessToken, _idColumnValue)
     return false
   }
 }
+
+/// subject getAssigned functions ///
+
+export async function getSubjectAssignedStudents(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/teacher/getall/subject/assigned/students',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectAssignedStudents) general error:', error)
+    return false
+  }
+}
+
+export async function getSubjectAssignedTasks(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/getall/subject/assigned/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      let getAllResult = await response.json()
+      if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
+      getAllResult.result.forEach((entityRecord) => {
+        let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
+        entityRecord.can_be_handed_in_past_due = Boolean(nestedValue)
+      })
+      return getAllResult
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectAssignedTasks) general error:', error)
+    return false
+  }
+}
+
+/// unassign functions ///
+
+/// subject unassign functions ///
+
+export async function unassignSubjectTaskSelection(_accessToken, _childIdSelection, _parentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/unassign/subject/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(unassignSubjectTaskSelection) general error:', error)
+    return false
+  }
+}
+
+/// getUnassigned functions ///
+
+/// subject getUnassigned functions ///
+
+export async function getSubjectUnassignedTasks(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/getall/subject/unassigned/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      let getAllResult = await response.json()
+      if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
+      getAllResult.result.forEach((entityRecord) => {
+        let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
+        entityRecord.can_be_handed_in_past_due = Boolean(nestedValue)
+      })
+      return getAllResult
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectUnassignedTasks) general error:', error)
+    return false
+  }
+}
+
+/// assign functions ///
+
+/// subject assign functions ///
+
+export async function assignSubjectTaskSelection(_accessToken, _childIdSelection, _parentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/assign/subject/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        child_id_selection: _childIdSelection,
+        parent_id: _parentId,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(assignSubjectTaskSelection) general error:', error)
+    return false
+  }
+}

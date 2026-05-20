@@ -909,7 +909,13 @@ export async function getSubjectAssignedTasks(_accessToken, _idColumnValue) {
     })
 
     if (response.ok) {
-      return await response.json()
+      let getAllResult = await response.json()
+      if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
+      getAllResult.result.forEach((entityRecord) => {
+        let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
+        entityRecord.can_be_handed_in_past_due = Boolean(nestedValue)
+      })
+      return getAllResult
     } else {
       return false
     }
@@ -1805,7 +1811,13 @@ export async function getSubjectUnassignedTasks(_accessToken, _idColumnValue) {
     })
 
     if (response.ok) {
-      return await response.json()
+      let getAllResult = await response.json()
+      if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
+      getAllResult.result.forEach((entityRecord) => {
+        let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
+        entityRecord.can_be_handed_in_past_due = Boolean(nestedValue)
+      })
+      return getAllResult
     } else {
       return false
     }

@@ -331,7 +331,13 @@ async function _getAccountAssignedTasks(_accessToken, _shortUserType, _idColumnV
     )
 
     if (response.ok) {
-      return await response.json()
+      let getAllResult = await response.json()
+      if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
+      getAllResult.result.forEach((entityRecord) => {
+        let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
+        entityRecord.can_be_handed_in_past_due = Boolean(nestedValue)
+      })
+      return getAllResult
     } else {
       return false
     }
@@ -437,7 +443,13 @@ async function _getAccountUnassignedTasks(_accessToken, _shortUserType, _idColum
     )
 
     if (response.ok) {
-      return await response.json()
+      let getAllResult = await response.json()
+      if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
+      getAllResult.result.forEach((entityRecord) => {
+        let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
+        entityRecord.can_be_handed_in_past_due = Boolean(nestedValue)
+      })
+      return getAllResult
     } else {
       return false
     }

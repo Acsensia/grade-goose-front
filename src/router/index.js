@@ -112,6 +112,9 @@ import TeacherSPAssignedSTManagement from '@/components/accountWorkflow/teacher/
 import TeacherSPAssignedSJManagement from '@/components/accountWorkflow/teacher/viewPages/specialty/assignedEntities/teacherSPAssignedSJManagement.vue'
 import TeacherSGAssignedSTManagement from '@/components/accountWorkflow/teacher/viewPages/studentGroup/assignedEntities/teacherSGAssignedSTManagement.vue'
 import TeacherSGAssignedSPManagement from '@/components/accountWorkflow/teacher/viewPages/studentGroup/assignedEntities/teacherSGAssignedSPManagement.vue'
+import TeacherSJAssignedSTManagement from '@/components/accountWorkflow/teacher/viewPages/subject/assignedEntities/teacherSJAssignedSTManagement.vue'
+import TeacherSJAssignedTSManagement from '@/components/accountWorkflow/teacher/viewPages/subject/assignedEntities/teacherSJAssignedTSManagement.vue'
+import TeacherSJUnassignedTSManagement from '@/components/accountWorkflow/teacher/viewPages/subject/unassignedEntities/teacherSJUnassignedTSManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -150,6 +153,20 @@ const router = createRouter({
     },
 
     { path: '/teacher/manage/assigned/subjects', component: TeacherAssignedSJManagement },
+
+    {
+      path: '/teacher/manage/assigned/subject/seeassigned/students',
+      component: TeacherSJAssignedSTManagement,
+    },
+    {
+      path: '/teacher/manage/assigned/subject/seeassigned/tasks',
+      component: TeacherSJAssignedTSManagement,
+    },
+
+    {
+      path: '/teacher/manage/assigned/subject/seeunassigned/tasks',
+      component: TeacherSJUnassignedTSManagement,
+    },
 
     { path: '/teacher/manage/assigned/tasks', component: TeacherAssignedTSManagement },
 
