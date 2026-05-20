@@ -39,7 +39,8 @@ const accessTokenStore = useAccessTokenStore()
 const accountStore = useAccountStore()
 
 accessTokenStore.$subscribe((/*mutation, state*/) => {
-  __refreshAccountStore()
+  if (accessTokenStore.accessToken !== '' && accessTokenStore.shortUserType !== '')
+    __refreshAccountStore()
 })
 
 onMounted(async () => {

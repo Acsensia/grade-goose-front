@@ -305,6 +305,60 @@ export async function addNewTask(
 
 /// getAssigned functions ///
 
+/// student group getAssigned functions ///
+
+export async function getStudentGroupAssignedStudents(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/teacher/getall/studentgroup/assigned/students',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentGroupAssignedStudents) general error:', error)
+    return false
+  }
+}
+
+export async function getStudentGroupAssignedSpecialties(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/teacher/getall/studentgroup/assigned/specialties',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentGroupAssignedSpecialties) general error:', error)
+    return false
+  }
+}
+
 /// specialty getAssigned functions ///
 
 export async function getSpecialtyAssignedStudents(_accessToken, _idColumnValue) {
