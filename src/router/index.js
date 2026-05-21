@@ -132,6 +132,13 @@ import AdminSJMarkedSLManagement from '@/components/accountWorkflow/admin/viewPa
 import AdminSJUnmarkedSLManagement from '@/components/accountWorkflow/admin/viewPages/subject/solutionsManagement/adminSJUnmarkedSLManagement.vue'
 import AdminSTMarkedSLManagement from '@/components/accountWorkflow/admin/viewPages/student/solutionsManagement/adminSTMarkedSLManagement.vue'
 import AdminSTUnmarkedSLManagement from '@/components/accountWorkflow/admin/viewPages/student/solutionsManagement/adminSTUnmarkedSLManagement.vue'
+import TeacherSJMarkedSLManagement from '@/components/accountWorkflow/teacher/viewPages/subject/solutionsManagement/teacherSJMarkedSLManagement.vue'
+import TeacherSJUnmarkedSLManagement from '@/components/accountWorkflow/teacher/viewPages/subject/solutionsManagement/teacherSJUnmarkedSLManagement.vue'
+import TeacherSTMarkedSLManagement from '@/components/accountWorkflow/teacher/viewPages/student/solutionsManagement/teacherSTMarkedSLManagement.vue'
+import TeacherSTUnmarkedSLManagement from '@/components/accountWorkflow/teacher/viewPages/student/solutionsManagement/teacherSTUnmarkedSLManagement.vue'
+import TeacherSolutionView from '@/components/accountWorkflow/teacher/viewPages/solution/teacherSolutionView.vue'
+import TeacherSLSetNewMark from '@/components/accountWorkflow/teacher/viewPages/solution/entityManagement/teacherSLSetNewMark.vue'
+import TeacherSLSetNewTeComm from '@/components/accountWorkflow/teacher/viewPages/solution/entityManagement/teacherSLSetNewTeComm.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -185,6 +192,15 @@ const router = createRouter({
       component: TeacherSJUnassignedTSManagement,
     },
 
+    {
+      path: '/teacher/manage/assigned/subject/seemarked/solutions',
+      component: TeacherSJMarkedSLManagement,
+    },
+    {
+      path: '/teacher/manage/assigned/subject/seeunmarked/solutions',
+      component: TeacherSJUnmarkedSLManagement,
+    },
+
     //???
 
     {
@@ -197,6 +213,20 @@ const router = createRouter({
       component: TeacherSTUnassignedTSManagement,
     },
 
+    {
+      path: '/teacher/manage/assigned/student/seemarked/solutions',
+      component: TeacherSTMarkedSLManagement,
+    },
+    {
+      path: '/teacher/manage/assigned/student/seeunmarked/solutions',
+      component: TeacherSTUnmarkedSLManagement,
+    },
+
+    //???
+
+    { path: '/teacher/manage/solution/changeMark', component: TeacherSLSetNewMark },
+    { path: '/teacher/manage/solution/changeTeComm', component: TeacherSLSetNewTeComm },
+
     { path: '/teacher/manage/assigned/tasks', component: TeacherAssignedTSManagement },
     { path: '/teacher/manage/task/changeName', component: TeacherTSSetNewName },
     { path: '/teacher/manage/task/changeInstr', component: TeacherTSSetNewInstr },
@@ -208,6 +238,7 @@ const router = createRouter({
     { path: '/teacher/view/specialty', component: TeacherSPView },
     { path: '/teacher/view/subject', component: TeacherSJView },
     { path: '/teacher/view/task', component: TeacherTSView },
+    { path: '/teacher/view/solution', component: TeacherSolutionView },
 
     { path: '/admin', component: adminMainPage },
     { path: '/admin/add', component: AdminAdditionPage },

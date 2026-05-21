@@ -239,6 +239,62 @@ export async function setNewTaskEnforceDue(_accessToken, _idColumnValue, _newBoo
   }
 }
 
+/// solution setField functions ///
+
+export async function setNewSolutionMark(_accessToken, _taskId, _studentId, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/update/solution/mark', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        taskId: _taskId,
+        studentId: _studentId,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSolutionMark) general error:', error)
+    return false
+  }
+}
+
+export async function setNewSolutionTeComm(_accessToken, _taskId, _studentId, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/update/solution/tecomm', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        taskId: _taskId,
+        studentId: _studentId,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSolutionTeComm) general error:', error)
+    return false
+  }
+}
+
 // getinfo functions //
 
 export async function getStudentInfo(_accessToken, _idColumnValue) {
@@ -355,6 +411,29 @@ export async function getTaskInfo(_accessToken, _idColumnValue) {
     }
   } catch (error) {
     console.error('(getTaskInfo) general error:', error)
+    return false
+  }
+}
+
+export async function getSolutionInfo(_accessToken, _taskId, _studentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/getinfo/solution', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ taskId: _taskId, studentId: _studentId }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).entity
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSolutionInfo) general error:', error)
     return false
   }
 }
@@ -614,6 +693,106 @@ export async function getSubjectAssignedTasks(_accessToken, _idColumnValue) {
     }
   } catch (error) {
     console.error('(getSubjectAssignedTasks) general error:', error)
+    return false
+  }
+}
+
+/// subject solution getAssigned functions ///
+
+export async function getSubjectMarkedSolutions(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/getall/subject/marked/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectMarkedSolutions) general error:', error)
+    return false
+  }
+}
+
+export async function getSubjectUnmarkedSolutions(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/teacher/getall/subject/unmarked/solutions',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectUnmarkedSolutions) general error:', error)
+    return false
+  }
+}
+
+export async function getStudentMarkedSolutions(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/teacher/getall/student/marked/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentMarkedSolutions) general error:', error)
+    return false
+  }
+}
+
+export async function getStudentUnmarkedSolutions(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/teacher/getall/student/unmarked/solutions',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentUnmarkedSolutions) general error:', error)
     return false
   }
 }

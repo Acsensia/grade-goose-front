@@ -20,16 +20,6 @@
         <button @click="$router.push('/teacher/add/task')">Task Addition</button>
         <button @click="$router.push('/teacher/manage/tasks')">Manage Tasks</button>
       </div>
-
-      <div class="button-group">
-        <button @click="$router.push('/teacher/manage/donetasks/all')">Manage All Solutions</button>
-        <button @click="$router.push('/teacher/manage/donetasks/marked')">
-          Manage Marked Solutions
-        </button>
-        <button @click="$router.push('/teacher/manage/donetasks/unmarked')">
-          Manage Unmarked Solutions
-        </button>
-      </div>
     </div>
   </div>
 </template>
