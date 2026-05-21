@@ -57,7 +57,12 @@ async function handleBackEmit() {
 }
 
 async function handleViewDetailsEvent(rowId) {
-  await router.push({ path: '/admin/view/solution', query: { id: rowId } })
+  // console.log(rows.value)
+  // console.log(rows.value.find((row) => row.id === rowId))
+  const row = rows.value.find((row) => row.id === rowId)
+  const taskId = row.tasks_task_id
+  const studentId = row.students_student_id
+  await router.push({ path: '/admin/view/solution', query: { id: taskId, id2: studentId } })
 }
 
 async function handleExecuteActionEvent(payload) {

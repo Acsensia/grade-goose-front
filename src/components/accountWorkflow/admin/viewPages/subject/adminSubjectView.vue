@@ -24,9 +24,11 @@ const accessTokenStore = useAccessTokenStore()
 //getting the query
 const route = useRoute()
 const id = route.query.id
+// const id2 = route.query.id2
 //getting optional back parameters
 const backRoute = route.query.backRoute ?? false
 const backId = route.query.backId ?? false
+const backId2 = route.query.backId2 ?? false
 
 //DataRecordView variables
 const record = ref({})
@@ -110,8 +112,11 @@ onMounted(async () => {
 
 async function handleBackEmit() {
   if (backRoute) {
-    if (backId) await router.push({ path: backRoute, query: { id: backId } })
-    else await router.push(backRoute)
+    if (backId) {
+      if (backId2) {
+        await router.push({ path: backRoute, query: { id: backId, id2: backId2 } })
+      } else await router.push({ path: backRoute, query: { id: backId } })
+    } else await router.push(backRoute)
   } else await router.push('/admin/manage/subjects')
 }
 

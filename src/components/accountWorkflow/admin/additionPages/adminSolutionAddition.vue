@@ -1,7 +1,7 @@
 <template>
   <div class="overContainer">
     <dataInsertForm
-      entity-name="Task"
+      entity-name="Solution"
       :fields="[
         { name: 'tasks_task_id', label: 'Task ID', type: 'number', required: true },
         { name: 'students_student_id', label: 'Student ID', type: 'number', required: true },

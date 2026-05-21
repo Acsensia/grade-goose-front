@@ -97,6 +97,29 @@ export async function getTaskInfo(_accessToken, _idColumnValue) {
   }
 }
 
+export async function getSolutionInfo(_accessToken, _taskId, _studentId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getinfo/solution', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ taskId: _taskId, studentId: _studentId }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).entity
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSolutionInfo) general error:', error)
+    return false
+  }
+}
+
 // getall functions //
 
 export async function getAllStudentGroups(_accessToken) {

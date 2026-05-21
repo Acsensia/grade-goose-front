@@ -123,6 +123,7 @@ import TeacherTSSetNewDue from '@/components/accountWorkflow/teacher/viewPages/t
 import TeacherTSSetEnforceDue from '@/components/accountWorkflow/teacher/viewPages/task/entityManagement/teacherTSSetEnforceDue.vue'
 import AdminSLManagement from '@/components/accountWorkflow/admin/managementPages/adminSLManagement.vue'
 import AdminSolutionAddition from '@/components/accountWorkflow/admin/additionPages/adminSolutionAddition.vue'
+import AdminSolutionView from '@/components/accountWorkflow/admin/viewPages/solution/adminSolutionView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -440,6 +441,7 @@ const router = createRouter({
     { path: '/admin/view/specialty', component: AdminSpecialtyView },
     { path: '/admin/view/subject', component: AdminSubjectView },
     { path: '/admin/view/task', component: AdminTaskView },
+    { path: '/admin/view/solution', component: AdminSolutionView },
 
     { path: '/account', component: ManagementMainPage },
     { path: '/account/changePass', component: ManagementChangePass },
