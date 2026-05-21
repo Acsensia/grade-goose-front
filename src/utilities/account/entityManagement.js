@@ -809,6 +809,116 @@ export async function setNewTaskEnforceDue(_accessToken, _idColumnValue, _newBoo
   }
 }
 
+/// solution setField functions ///
+
+export async function setNewSolutionMark(_accessToken, _taskId, _studentId, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/solution/mark', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        taskId: _taskId,
+        studentId: _studentId,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSolutionMark) general error:', error)
+    return false
+  }
+}
+
+export async function setNewSolutionLink(_accessToken, _taskId, _studentId, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/solution/link', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        taskId: _taskId,
+        studentId: _studentId,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSolutionLink) general error:', error)
+    return false
+  }
+}
+
+export async function setNewSolutionTeComm(_accessToken, _taskId, _studentId, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/solution/tecomm', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        taskId: _taskId,
+        studentId: _studentId,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSolutionTeComm) general error:', error)
+    return false
+  }
+}
+
+export async function setNewSolutionStComm(_accessToken, _taskId, _studentId, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/update/solution/stcomm', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        taskId: _taskId,
+        studentId: _studentId,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSolutionStComm) general error:', error)
+    return false
+  }
+}
+
 /// getAssigned functions ///
 
 /// student group getAssigned functions ///

@@ -114,7 +114,7 @@ async function handleBackEmit() {
 
 async function handleExecuteActionEmit(payload) {
   if (payload.actionType === 'change') {
-    await router.push({ path: payload.route, query: { id: id } })
+    await router.push({ path: payload.route, query: { id: id, id2: id2 } })
   } else if (payload.actionType === 'view') {
     await router.push({
       path: payload.route,
