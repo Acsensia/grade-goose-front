@@ -128,6 +128,10 @@ import AdminSLSetNewLink from '@/components/accountWorkflow/admin/viewPages/solu
 import AdminSLSetNewMark from '@/components/accountWorkflow/admin/viewPages/solution/entityManagement/adminSLSetNewMark.vue'
 import AdminSLSetNewStComm from '@/components/accountWorkflow/admin/viewPages/solution/entityManagement/adminSLSetNewStComm.vue'
 import AdminSLSetNewTeComm from '@/components/accountWorkflow/admin/viewPages/solution/entityManagement/adminSLSetNewTeComm.vue'
+import AdminSJMarkedSLManagement from '@/components/accountWorkflow/admin/viewPages/subject/solutionsManagement/adminSJMarkedSLManagement.vue'
+import AdminSJUnmarkedSLManagement from '@/components/accountWorkflow/admin/viewPages/subject/solutionsManagement/adminSJUnmarkedSLManagement.vue'
+import AdminSTMarkedSLManagement from '@/components/accountWorkflow/admin/viewPages/student/solutionsManagement/adminSTMarkedSLManagement.vue'
+import AdminSTUnmarkedSLManagement from '@/components/accountWorkflow/admin/viewPages/student/solutionsManagement/adminSTUnmarkedSLManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -298,6 +302,15 @@ const router = createRouter({
       component: AdminStudentUnassignedTSManagement,
     },
 
+    {
+      path: '/admin/manage/student/seemarked/solutions',
+      component: AdminSTMarkedSLManagement,
+    },
+    {
+      path: '/admin/manage/student/seeunmarked/solutions',
+      component: AdminSTUnmarkedSLManagement,
+    },
+
     { path: '/admin/manage/studentgroups', component: AdminSGManagement },
     { path: '/admin/manage/studentgroup/changeName', component: AdminSGSetNewName },
     { path: '/admin/manage/studentgroup/changeDesc', component: AdminSGSetNewDesc },
@@ -403,6 +416,15 @@ const router = createRouter({
     {
       path: '/admin/manage/subject/seeunassigned/tasks',
       component: AdminSJUnassignedTSManagement,
+    },
+
+    {
+      path: '/admin/manage/subject/seemarked/solutions',
+      component: AdminSJMarkedSLManagement,
+    },
+    {
+      path: '/admin/manage/subject/seeunmarked/solutions',
+      component: AdminSJUnmarkedSLManagement,
     },
 
     { path: '/admin/manage/tasks', component: AdminTasksManagement },

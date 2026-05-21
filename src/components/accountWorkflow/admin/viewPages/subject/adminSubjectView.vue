@@ -103,6 +103,21 @@ const actionGroups = [
       },
     ],
   },
+  {
+    name: 'Subject Solutions Management',
+    actions: [
+      {
+        id: 'seeMarkedSolutions',
+        label: 'See Marked Solutions...',
+        payload: { route: '/admin/manage/subject/seemarked/solutions' },
+      },
+      {
+        id: 'seeUnmarkedSolutions',
+        label: 'See Unmarked Solutions...',
+        payload: { route: '/admin/manage/subject/seeunmarked/solutions' },
+      },
+    ],
+  },
 ]
 
 onMounted(async () => {

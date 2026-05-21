@@ -347,6 +347,54 @@ async function _getAccountAssignedTasks(_accessToken, _shortUserType, _idColumnV
   }
 }
 
+/// student solution getAssigned ///
+
+export async function getStudentMarkedSolutions(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getall/student/marked/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentMarkedSolutions) general error:', error)
+    return false
+  }
+}
+
+export async function getStudentUnmarkedSolutions(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getall/student/unmarked/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentUnmarkedSolutions) general error:', error)
+    return false
+  }
+}
+
 // getUnassigned
 
 async function _getAccountUnassignedStudentGroups(_accessToken, _shortUserType, _idColumnValue) {
