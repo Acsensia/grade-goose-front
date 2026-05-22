@@ -273,3 +273,59 @@ export async function checkExistsSolution(_accessToken, _taskId) {
     return false
   }
 }
+
+/// setField functions ///
+
+/// solution setField functions ///
+
+export async function setNewSolutionLink(_accessToken, _taskId, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/update/solution/link', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        taskId: _taskId,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSolutionLink) general error:', error)
+    return false
+  }
+}
+
+export async function setNewSolutionStComm(_accessToken, _taskId, _newValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/update/solution/stcomm', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        taskId: _taskId,
+        newValue: _newValue,
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(setNewSolutionStComm) general error:', error)
+    return false
+  }
+}

@@ -34,9 +34,9 @@ const backId2 = route.query.backId2 ?? false
 const record = ref({})
 const fields = [
   { key: 'tasks_task_id', label: 'Task ID', type: 'number' },
-  { key: 'mark', label: 'Mark', type: 'number' },
   { key: 'internet_file_link', label: 'Internet File Link', type: 'large-text' },
   { key: 'student_commentary', label: 'Student Commentary', type: 'large-text' },
+  { key: 'mark', label: 'Mark', type: 'number' },
   { key: 'teacher_commentary', label: 'Teacher Commentary', type: 'large-text' },
 ]
 const actionGroups = [

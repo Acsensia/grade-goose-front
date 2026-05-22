@@ -150,6 +150,8 @@ import StudentSPView from '@/components/accountWorkflow/student/viewPages/specia
 import StudentSJView from '@/components/accountWorkflow/student/viewPages/subject/studentSJView.vue'
 import StudentTSView from '@/components/accountWorkflow/student/viewPages/task/studentTSView.vue'
 import StudentSLView from '@/components/accountWorkflow/student/viewPages/solution/studentSLView.vue'
+import StudentSLSetNewLink from '@/components/accountWorkflow/student/viewPages/solution/entityManagement/studentSLSetNewLink.vue'
+import StudentSLSetNewStComm from '@/components/accountWorkflow/student/viewPages/solution/entityManagement/studentSLSetNewStComm.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -167,6 +169,10 @@ const router = createRouter({
     { path: '/student/manage/assigned/specialties', component: StudentAssignedSPManagement },
     { path: '/student/manage/assigned/subjects', component: StudentAssignedSJManagement },
     { path: '/student/manage/assigned/tasks', component: StudentAssignedTSManagement },
+
+    // ???
+    { path: '/student/manage/solution/changeLink', component: StudentSLSetNewLink },
+    { path: '/student/manage/solution/changeStComm', component: StudentSLSetNewStComm },
 
     { path: '/student/view/studentgroup', component: StudentSGView },
     { path: '/student/view/specialty', component: StudentSPView },
