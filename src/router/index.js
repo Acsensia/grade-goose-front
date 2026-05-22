@@ -159,6 +159,8 @@ import StudentSJMarkedSLManagement from '@/components/accountWorkflow/student/vi
 import StudentSJUnmarkedSLManagement from '@/components/accountWorkflow/student/viewPages/subject/solutionsManagement/studentSJUnmarkedSLManagement.vue'
 import StudentMarkedSLManagement from '@/components/accountWorkflow/student/managementPages/solutions/studentMarkedSLManagement.vue'
 import StudentUnmarkedSLManagement from '@/components/accountWorkflow/student/managementPages/solutions/studentUnmarkedSLManagement.vue'
+import StudentSJDoneTSManagement from '@/components/accountWorkflow/student/viewPages/subject/doneTasks/studentSJDoneTSManagement.vue'
+import StudentSJUndoneTSManagement from '@/components/accountWorkflow/student/viewPages/subject/doneTasks/studentSJUndoneTSManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -196,6 +198,14 @@ const router = createRouter({
     {
       path: '/student/manage/assigned/subject/seeunmarked/solutions',
       component: StudentSJUnmarkedSLManagement,
+    },
+    {
+      path: '/student/manage/assigned/subject/seedone/tasks',
+      component: StudentSJDoneTSManagement,
+    },
+    {
+      path: '/student/manage/assigned/subject/seeundone/tasks',
+      component: StudentSJUndoneTSManagement,
     },
 
     { path: '/student/manage/assigned/tasks', component: StudentAssignedTSManagement },

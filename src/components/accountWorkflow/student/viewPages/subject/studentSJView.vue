@@ -46,6 +46,16 @@ const actionGroups = [
         label: 'See Assigned Tasks...',
         payload: { route: '/student/manage/assigned/subject/seeassigned/tasks' },
       },
+      {
+        id: 'seeDoneTasks',
+        label: 'See Done Tasks...',
+        payload: { route: '/student/manage/assigned/subject/seedone/tasks' },
+      },
+      {
+        id: 'seeUndoneTasks',
+        label: 'See Undone Tasks...',
+        payload: { route: '/student/manage/assigned/subject/seeundone/tasks' },
+      },
     ],
   },
   {
