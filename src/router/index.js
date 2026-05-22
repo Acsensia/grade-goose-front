@@ -139,6 +139,11 @@ import TeacherSTUnmarkedSLManagement from '@/components/accountWorkflow/teacher/
 import TeacherSolutionView from '@/components/accountWorkflow/teacher/viewPages/solution/teacherSolutionView.vue'
 import TeacherSLSetNewMark from '@/components/accountWorkflow/teacher/viewPages/solution/entityManagement/teacherSLSetNewMark.vue'
 import TeacherSLSetNewTeComm from '@/components/accountWorkflow/teacher/viewPages/solution/entityManagement/teacherSLSetNewTeComm.vue'
+import StudentMainPage from '@/components/accountWorkflow/student/studentMainPage.vue'
+import StudentAssignedSGManagement from '@/components/accountWorkflow/student/managementPages/assigned/studentAssignedSGManagement.vue'
+import StudentAssignedSPManagement from '@/components/accountWorkflow/student/managementPages/assigned/studentAssignedSPManagement.vue'
+import StudentAssignedSJManagement from '@/components/accountWorkflow/student/managementPages/assigned/studentAssignedSJManagement.vue'
+import StudentAssignedTSManagement from '@/components/accountWorkflow/student/managementPages/assigned/studentAssignedTSManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -148,6 +153,13 @@ const router = createRouter({
     { path: '/login/teacher', component: teacherLogin },
     { path: '/login/admin', component: adminLogin },
     { path: '/login/test', component: authTester },
+
+    { path: '/student', component: StudentMainPage },
+
+    { path: '/student/manage/assigned/studentgroups', component: StudentAssignedSGManagement },
+    { path: '/student/manage/assigned/specialties', component: StudentAssignedSPManagement },
+    { path: '/student/manage/assigned/subjects', component: StudentAssignedSJManagement },
+    { path: '/student/manage/assigned/tasks', component: StudentAssignedTSManagement },
 
     { path: '/teacher', component: TeacherMainPage },
     { path: '/teacher/add/task', component: TeacherTaskAddition },
