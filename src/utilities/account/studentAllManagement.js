@@ -412,3 +412,54 @@ export async function getSubjectAssignedTasks(_accessToken, _idColumnValue) {
     return false
   }
 }
+
+/// subject solution getAssigned functions ///
+
+export async function getSubjectMarkedSolutions(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/getall/subject/marked/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectMarkedSolutions) general error:', error)
+    return false
+  }
+}
+
+export async function getSubjectUnmarkedSolutions(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/student/getall/subject/unmarked/solutions',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectUnmarkedSolutions) general error:', error)
+    return false
+  }
+}
