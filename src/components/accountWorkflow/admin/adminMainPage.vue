@@ -5,6 +5,7 @@
         <!-- <button @click="$router.push('/account')">Manage my account...</button> -->
         <button @click="$router.push('/admin/manage')">Object management</button>
         <button @click="$router.push('/admin/add')">Object addition</button>
+        <button @click="$router.push('/admin/stats')">Object stats</button>
       </div>
     </div>
   </div>

@@ -161,6 +161,7 @@ import StudentMarkedSLManagement from '@/components/accountWorkflow/student/mana
 import StudentUnmarkedSLManagement from '@/components/accountWorkflow/student/managementPages/solutions/studentUnmarkedSLManagement.vue'
 import StudentSJDoneTSManagement from '@/components/accountWorkflow/student/viewPages/subject/doneTasks/studentSJDoneTSManagement.vue'
 import StudentSJUndoneTSManagement from '@/components/accountWorkflow/student/viewPages/subject/doneTasks/studentSJUndoneTSManagement.vue'
+import AdminStatsPage from '@/components/accountWorkflow/admin/adminStatsPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -577,6 +578,8 @@ const router = createRouter({
     { path: '/admin/view/subject', component: AdminSubjectView },
     { path: '/admin/view/task', component: AdminTaskView },
     { path: '/admin/view/solution', component: AdminSolutionView },
+
+    { path: '/admin/stats', component: AdminStatsPage },
 
     { path: '/account', component: ManagementMainPage },
     { path: '/account/changePass', component: ManagementChangePass },

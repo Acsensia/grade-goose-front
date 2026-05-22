@@ -2142,3 +2142,80 @@ export async function getTaskUnassignedSubjects(_accessToken, _idColumnValue) {
     return false
   }
 }
+
+/// statistics functions ///
+
+export async function getStudentGroupsSpecialtiesCount(_accessToken) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getstats/assignedcounts/studentgroups',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({}),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentGroupsSpecialtiesCount) general error:', error)
+    return false
+  }
+}
+
+export async function getSpecialtiesSubjectsCount(_accessToken) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/admin/getstats/assignedcounts/specialties',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({}),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSpecialtiesSubjectsCount) general error:', error)
+    return false
+  }
+}
+
+export async function getSubjectsTasksCount(_accessToken) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/admin/getstats/assignedcounts/subjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({}),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectsTasksCount) general error:', error)
+    return false
+  }
+}
