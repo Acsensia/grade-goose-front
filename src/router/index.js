@@ -152,6 +152,9 @@ import StudentTSView from '@/components/accountWorkflow/student/viewPages/task/s
 import StudentSLView from '@/components/accountWorkflow/student/viewPages/solution/studentSLView.vue'
 import StudentSLSetNewLink from '@/components/accountWorkflow/student/viewPages/solution/entityManagement/studentSLSetNewLink.vue'
 import StudentSLSetNewStComm from '@/components/accountWorkflow/student/viewPages/solution/entityManagement/studentSLSetNewStComm.vue'
+import StudentSGAssignedSPManagement from '@/components/accountWorkflow/student/viewPages/studentGroup/assignedEntities/studentSGAssignedSPManagement.vue'
+import StudentSPAssignedSJManagement from '@/components/accountWorkflow/student/viewPages/specialty/assignedEntities/studentSPAssignedSJManagement.vue'
+import StudentSJAssignedTSManagement from '@/components/accountWorkflow/student/viewPages/subject/assignedEntities/studentSJAssignedTSManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -166,8 +169,23 @@ const router = createRouter({
     { path: '/student/add/solution', component: StudentSLAddition },
 
     { path: '/student/manage/assigned/studentgroups', component: StudentAssignedSGManagement },
+    {
+      path: '/student/manage/assigned/studentgroup/seeassigned/specialties',
+      component: StudentSGAssignedSPManagement,
+    },
+
     { path: '/student/manage/assigned/specialties', component: StudentAssignedSPManagement },
+    {
+      path: '/student/manage/assigned/specialty/seeassigned/subjects',
+      component: StudentSPAssignedSJManagement,
+    },
+
     { path: '/student/manage/assigned/subjects', component: StudentAssignedSJManagement },
+    {
+      path: '/student/manage/assigned/subject/seeassigned/tasks',
+      component: StudentSJAssignedTSManagement,
+    },
+
     { path: '/student/manage/assigned/tasks', component: StudentAssignedTSManagement },
 
     // ???

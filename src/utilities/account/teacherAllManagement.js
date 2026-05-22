@@ -748,6 +748,8 @@ export async function getSubjectUnmarkedSolutions(_accessToken, _idColumnValue) 
   }
 }
 
+/// student solution getAssigned functions ///
+
 export async function getStudentMarkedSolutions(_accessToken, _idColumnValue) {
   try {
     const response = await fetch(env.BACKEND_URL + '/api/teacher/getall/student/marked/solutions', {

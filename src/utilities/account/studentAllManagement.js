@@ -329,3 +329,86 @@ export async function setNewSolutionStComm(_accessToken, _taskId, _newValue) {
     return false
   }
 }
+
+/// getAssigned functions ///
+
+export async function getStudentGroupAssignedSpecialties(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/student/getall/studentgroup/assigned/specialties',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentGroupAssignedSpecialties) general error:', error)
+    return false
+  }
+}
+
+export async function getSpecialtyAssignedSubjects(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(
+      env.BACKEND_URL + '/api/student/getall/specialty/assigned/subjects',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ id: _idColumnValue }),
+        credentials: 'include',
+      },
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSpecialtyAssignedSubjects) general error:', error)
+    return false
+  }
+}
+
+export async function getSubjectAssignedTasks(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/getall/subject/assigned/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      let getAllResult = await response.json()
+      if (typeof getAllResult.result.length === 'undefined') getAllResult.result = [getAllResult]
+      getAllResult.result.forEach((entityRecord) => {
+        let nestedValue = entityRecord.can_be_handed_in_past_due.data[0]
+        entityRecord.can_be_handed_in_past_due = Boolean(nestedValue)
+      })
+      return getAllResult
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectAssignedTasks) general error:', error)
+    return false
+  }
+}
