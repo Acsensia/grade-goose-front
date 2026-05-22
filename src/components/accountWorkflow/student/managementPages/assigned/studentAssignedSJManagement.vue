@@ -56,7 +56,7 @@ async function handleViewDetailsEvent(rowId) {
     path: '/student/view/subject',
     query: {
       id: rowId,
-      backRoute: '/student/manage/assigned/specialties',
+      backRoute: '/student/manage/assigned/subjects',
     },
   })
 }

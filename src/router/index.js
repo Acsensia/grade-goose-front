@@ -144,6 +144,12 @@ import StudentAssignedSGManagement from '@/components/accountWorkflow/student/ma
 import StudentAssignedSPManagement from '@/components/accountWorkflow/student/managementPages/assigned/studentAssignedSPManagement.vue'
 import StudentAssignedSJManagement from '@/components/accountWorkflow/student/managementPages/assigned/studentAssignedSJManagement.vue'
 import StudentAssignedTSManagement from '@/components/accountWorkflow/student/managementPages/assigned/studentAssignedTSManagement.vue'
+import StudentSLAddition from '@/components/accountWorkflow/student/additionPages/studentSLAddition.vue'
+import StudentSGView from '@/components/accountWorkflow/student/viewPages/studentGroup/studentSGView.vue'
+import StudentSPView from '@/components/accountWorkflow/student/viewPages/specialty/studentSPView.vue'
+import StudentSJView from '@/components/accountWorkflow/student/viewPages/subject/studentSJView.vue'
+import StudentTSView from '@/components/accountWorkflow/student/viewPages/task/studentTSView.vue'
+import StudentSLView from '@/components/accountWorkflow/student/viewPages/solution/studentSLView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -155,11 +161,18 @@ const router = createRouter({
     { path: '/login/test', component: authTester },
 
     { path: '/student', component: StudentMainPage },
+    { path: '/student/add/solution', component: StudentSLAddition },
 
     { path: '/student/manage/assigned/studentgroups', component: StudentAssignedSGManagement },
     { path: '/student/manage/assigned/specialties', component: StudentAssignedSPManagement },
     { path: '/student/manage/assigned/subjects', component: StudentAssignedSJManagement },
     { path: '/student/manage/assigned/tasks', component: StudentAssignedTSManagement },
+
+    { path: '/student/view/studentgroup', component: StudentSGView },
+    { path: '/student/view/specialty', component: StudentSPView },
+    { path: '/student/view/subject', component: StudentSJView },
+    { path: '/student/view/task', component: StudentTSView },
+    { path: '/student/view/solution', component: StudentSLView },
 
     { path: '/teacher', component: TeacherMainPage },
     { path: '/teacher/add/task', component: TeacherTaskAddition },

@@ -1,0 +1,136 @@
+<template>
+  <div class="overContainer">
+    <DataRecordView
+      entity-name="Task"
+      :record="record"
+      :fields="fields"
+      :action-groups="actionGroups"
+      @back="handleBackEmit"
+      @execute-action="handleExecuteActionEmit"
+    ></DataRecordView>
+  </div>
+</template>
+
+<script setup>
+import { onMounted, ref } from 'vue'
+import { useAccessTokenStore } from '@/stores/accessToken'
+import * as studentAllManagement from '@/utilities/account/studentAllManagement.js'
+import router from '@/router'
+import { useRoute } from 'vue-router'
+import DataRecordView from '@/components/accountWorkflow/shared/subComponents/dataRecordView.vue'
+
+const accessTokenStore = useAccessTokenStore()
+
+//getting the query
+const route = useRoute()
+const id = route.query.id
+// const id2 = route.query.id2
+//getting optional back parameters
+const backRoute = route.query.backRoute ?? false
+const backId = route.query.backId ?? false
+const backId2 = route.query.backId2 ?? false
+
+//DataRecordView variables
+const record = ref({})
+const fields = [
+  { key: 'id', label: 'ID', type: 'number' },
+  { key: 'name', label: 'Task Name', type: 'string' },
+  { key: 'time_due', label: 'Due Date', type: 'date' },
+  { key: 'can_be_handed_in_past_due', label: 'Can be handed in past due', type: 'boolean' },
+  { key: 'instructions', label: 'Task Instructions', type: 'large-text' },
+]
+const actionGroups = [
+  {
+    name: 'Related Solution',
+    actions: [
+      {
+        id: 'seeRelatedSolution',
+        label: 'See Related Solution',
+        payload: { route: '/student/view/solution' },
+      },
+    ],
+  },
+]
+
+onMounted(async () => {
+  const entityInfo = await studentAllManagement.getTaskInfo(accessTokenStore.accessToken, id)
+  record.value = entityInfo
+})
+
+async function handleBackEmit() {
+  if (backRoute) {
+    if (backId) {
+      if (backId2) {
+        await router.push({ path: backRoute, query: { id: backId, id2: backId2 } })
+      } else await router.push({ path: backRoute, query: { id: backId } })
+    } else await router.push(backRoute)
+  } else await router.push('/student/manage/assigned/tasks')
+}
+
+async function handleExecuteActionEmit(payload) {
+  await router.push({
+    path: payload.route,
+    query: {
+      id: id,
+      backRoute: '/student/view/task',
+      backId: id,
+    },
+  })
+}
+</script>
+
+<style lang="scss" scoped>
+.overContainer {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  width: 100%;
+  //max-width: 400px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+}
+</style>

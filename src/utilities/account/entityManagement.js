@@ -508,7 +508,7 @@ export async function addNewSolution(
       return false
     }
   } catch (error) {
-    console.error('(addNewTask) general error:', error)
+    console.error('(addNewSolution) general error:', error)
     return false
   }
 }

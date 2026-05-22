@@ -99,3 +99,177 @@ export async function getAllAssignedTasks(_accessToken) {
     return false
   }
 }
+
+// getinfo functions //
+
+export async function getStudentGroupInfo(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/getinfo/studentgroup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).entity
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentGroupInfo) general error:', error)
+    return false
+  }
+}
+
+export async function getSpecialtyInfo(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/getinfo/specialty', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).entity
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSpecialtyInfo) general error:', error)
+    return false
+  }
+}
+
+export async function getSubjectInfo(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/getinfo/subject', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).entity
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSubjectInfo) general error:', error)
+    return false
+  }
+}
+
+export async function getTaskInfo(_accessToken, _idColumnValue) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/getinfo/task', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ id: _idColumnValue }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      const result = (await response.json()).entity
+      const nestedValue = result.can_be_handed_in_past_due.data[0]
+      result.can_be_handed_in_past_due = Boolean(nestedValue)
+      return result
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getTaskInfo) general error:', error)
+    return false
+  }
+}
+
+export async function getSolutionInfo(_accessToken, _taskId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/getinfo/solution', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ taskId: _taskId }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).entity
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getSolutionInfo) general error:', error)
+    return false
+  }
+}
+
+// addNew functions //
+
+export async function addNewSolution(_accessToken, _taskId, _internetFileLink, _studentCommentary) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/add/solution', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({
+        tasks_task_id: _taskId,
+        internet_file_link: _internetFileLink ?? 'null',
+        student_commentary: _studentCommentary ?? 'null',
+      }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(addNewSolution) general error:', error)
+    return false
+  }
+}
+
+// checkExists functions //
+
+export async function checkExistsSolution(_accessToken, _taskId) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/checkexists/solution', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ taskId: _taskId }),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return (await response.json()).exists_flag
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(checkExistsSolution) general error:', error)
+    return false
+  }
+}
