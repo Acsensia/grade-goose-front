@@ -157,6 +157,8 @@ import StudentSPAssignedSJManagement from '@/components/accountWorkflow/student/
 import StudentSJAssignedTSManagement from '@/components/accountWorkflow/student/viewPages/subject/assignedEntities/studentSJAssignedTSManagement.vue'
 import StudentSJMarkedSLManagement from '@/components/accountWorkflow/student/viewPages/subject/solutionsManagement/studentSJMarkedSLManagement.vue'
 import StudentSJUnmarkedSLManagement from '@/components/accountWorkflow/student/viewPages/subject/solutionsManagement/studentSJUnmarkedSLManagement.vue'
+import StudentMarkedSLManagement from '@/components/accountWorkflow/student/managementPages/solutions/studentMarkedSLManagement.vue'
+import StudentUnmarkedSLManagement from '@/components/accountWorkflow/student/managementPages/solutions/studentUnmarkedSLManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -197,6 +199,9 @@ const router = createRouter({
     },
 
     { path: '/student/manage/assigned/tasks', component: StudentAssignedTSManagement },
+
+    { path: '/student/manage/marked/solutions', component: StudentMarkedSLManagement },
+    { path: '/student/manage/unmarked/solutions', component: StudentUnmarkedSLManagement },
 
     // ???
     { path: '/student/manage/solution/changeLink', component: StudentSLSetNewLink },

@@ -463,3 +463,51 @@ export async function getSubjectUnmarkedSolutions(_accessToken, _idColumnValue) 
     return false
   }
 }
+
+/// student solution getAssigned functions ///
+
+export async function getStudentMarkedSolutions(_accessToken) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/getall/marked/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({}),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentMarkedSolutions) general error:', error)
+    return false
+  }
+}
+
+export async function getStudentUnmarkedSolutions(_accessToken) {
+  try {
+    const response = await fetch(env.BACKEND_URL + '/api/student/getall/unmarked/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({}),
+      credentials: 'include',
+    })
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('(getStudentUnmarkedSolutions) general error:', error)
+    return false
+  }
+}

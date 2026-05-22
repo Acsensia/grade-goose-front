@@ -65,12 +65,10 @@ async function handleBackEmit() {
 async function handleViewDetailsEvent(rowId) {
   const row = rows.value.find((row) => row.id === rowId)
   const taskId = row.tasks_task_id
-  const studentId = row.students_student_id
   await router.push({
     path: '/student/view/solution',
     query: {
       id: taskId,
-      id2: studentId,
       backRoute: '/student/manage/assigned/subject/seemarked/solutions',
       backId: id,
     },
