@@ -1,15 +1,14 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <DataTableView
-        :rows="rows"
-        :filters-config="filtersConfig"
-        :group-actions="groupActions"
-        :fields-config="fieldsConfig"
-        @back="handleBackEmit"
-        @view-details="handleViewDetailsEvent"
-      ></DataTableView>
-    </div>
+    <DataTableView
+      :rows="rows"
+      :filters-config="filtersConfig"
+      :group-actions="groupActions"
+      :fields-config="fieldsConfig"
+      :viewTitle="`Managing All NOT Marked Solutions sent by a Student With the ${id} ID...`"
+      @back="handleBackEmit"
+      @view-details="handleViewDetailsEvent"
+    ></DataTableView>
   </div>
 </template>
 

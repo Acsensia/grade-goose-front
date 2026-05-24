@@ -1,16 +1,14 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <DataTableView
-        :rows="rows"
-        :filters-config="filtersConfig"
-        :group-actions="groupActions"
-        :fields-config="fieldsConfig"
-        :viewTitle="`Viewing All NOT Marked Solutions of Tasks Assigned to the Subject With the ${id} ID...`"
-        @back="handleBackEmit"
-        @view-details="handleViewDetailsEvent"
-      ></DataTableView>
-    </div>
+    <DataTableView
+      :rows="rows"
+      :filters-config="filtersConfig"
+      :group-actions="groupActions"
+      :fields-config="fieldsConfig"
+      :viewTitle="`Viewing All NOT Marked Solutions of Tasks Assigned to the Subject With the ${id} ID...`"
+      @back="handleBackEmit"
+      @view-details="handleViewDetailsEvent"
+    ></DataTableView>
   </div>
 </template>
 

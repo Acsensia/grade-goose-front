@@ -1,17 +1,15 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <DataTableView
-        :rows="rows"
-        :filters-config="filtersConfig"
-        :group-actions="groupActions"
-        :fields-config="fieldsConfig"
-        :viewTitle="`Managing All Specialties Assigned to the Teacher with the ${id} ID...`"
-        @back="handleBackEmit"
-        @view-details="handleViewDetailsEvent"
-        @execute-action="handleExecuteActionEvent"
-      ></DataTableView>
-    </div>
+    <DataTableView
+      :rows="rows"
+      :filters-config="filtersConfig"
+      :group-actions="groupActions"
+      :fields-config="fieldsConfig"
+      :viewTitle="`Managing All Specialties Assigned to the Teacher with the ${id} ID...`"
+      @back="handleBackEmit"
+      @view-details="handleViewDetailsEvent"
+      @execute-action="handleExecuteActionEvent"
+    ></DataTableView>
   </div>
 </template>
 
