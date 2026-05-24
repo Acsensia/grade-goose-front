@@ -6,6 +6,7 @@
         :filters-config="filtersConfig"
         :group-actions="groupActions"
         :fields-config="fieldsConfig"
+        :viewTitle="`Viewing All My Marked Solutions...`"
         @back="handleBackEmit"
         @view-details="handleViewDetailsEvent"
       ></DataTableView>

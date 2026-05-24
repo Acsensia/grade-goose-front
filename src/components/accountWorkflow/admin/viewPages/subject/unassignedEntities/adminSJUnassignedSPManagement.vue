@@ -6,6 +6,7 @@
         :filters-config="filtersConfig"
         :group-actions="groupActions"
         :fields-config="fieldsConfig"
+        :viewTitle="`Managing All Specialties NOT Assigned to the Subject with the ${id} ID...`"
         @back="handleBackEmit"
         @view-details="handleViewDetailsEvent"
         @execute-action="handleExecuteActionEvent"

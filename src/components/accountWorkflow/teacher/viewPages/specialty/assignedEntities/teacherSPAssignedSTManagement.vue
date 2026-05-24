@@ -6,6 +6,7 @@
         :filters-config="filtersConfig"
         :group-actions="groupActions"
         :fields-config="fieldsConfig"
+        :viewTitle="`Viewing All Students Assigned to a Specialty With the ${id} ID...`"
         @back="handleBackEmit"
         @view-details="handleViewDetailsEvent"
       ></DataTableView>

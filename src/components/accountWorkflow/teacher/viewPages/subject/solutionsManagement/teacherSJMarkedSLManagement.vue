@@ -6,6 +6,7 @@
         :filters-config="filtersConfig"
         :group-actions="groupActions"
         :fields-config="fieldsConfig"
+        :viewTitle="`Viewing All Marked Solutions of Tasks Assigned to the Subject With the ${id} ID...`"
         @back="handleBackEmit"
         @view-details="handleViewDetailsEvent"
       ></DataTableView>

@@ -1,6 +1,9 @@
 <template>
   <div class="overContainer">
     <div class="container">
+      <div class="header">
+        <h2>Teacher Main Page</h2>
+      </div>
       <div class="button-group">
         <button @click="$router.push('/teacher/manage/assigned/studentgroups')">
           Manage Assigned Student Groups
@@ -52,7 +55,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 button {

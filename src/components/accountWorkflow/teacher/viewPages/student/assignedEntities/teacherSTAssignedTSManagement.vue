@@ -6,6 +6,7 @@
         :filters-config="filtersConfig"
         :group-actions="groupActions"
         :fields-config="fieldsConfig"
+        :viewTitle="`Managing All Tasks Assigned to a Student With the ${id} ID...`"
         @back="handleBackEmit"
         @view-details="handleViewDetailsEvent"
         @execute-action="handleExecuteActionEvent"

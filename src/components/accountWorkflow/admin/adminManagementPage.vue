@@ -1,6 +1,9 @@
 <template>
   <div class="overContainer">
     <div class="container">
+      <div class="header">
+        <h2>Object Management</h2>
+      </div>
       <div class="button-group">
         <button @click="$router.push('/admin/manage/teachers')">Teachers management</button>
         <button @click="$router.push('/admin/manage/students')">Students management</button>
@@ -47,7 +50,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 button {

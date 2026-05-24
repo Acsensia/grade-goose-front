@@ -1,6 +1,5 @@
 <template>
   <div class="data-view-wrapper">
-    <!-- LEFT: Sidebar Menu for Filters -->
     <aside class="sidebar">
       <div class="sidebar-header">
         <button class="action-btn" @click="$emit('back')">&larr; Back</button>
@@ -8,7 +7,6 @@
 
       <h3>Filters</h3>
       <div class="filter-list">
-        <!-- filters is an array of arrays: [attributeName, displayName, filterValue] -->
         <div v-for="(filter, index) in localFilters" :key="index" class="filter-item">
           <label :for="'filter-' + index">{{ filter[1] }}</label>
           <input
@@ -23,10 +21,12 @@
       </div>
     </aside>
 
-    <!-- RIGHT: Main Content Area -->
     <main class="main-content">
-      <!-- TOP: Action Menu -->
-      <header class="action-menu">
+      <div v-if="viewTitle" class="title-bar">
+        <h2>{{ viewTitle }}</h2>
+      </div>
+
+      <div class="action-menu">
         <div v-if="!isSelectionMode" class="standard-actions">
           <button
             v-for="(action, index) in groupActions"
@@ -49,9 +49,8 @@
             Cancel {{ currentAction.name }}
           </button>
         </div>
-      </header>
+      </div>
 
-      <!-- MIDDLE: Row List -->
       <div class="row-list">
         <label
           v-for="row in paginatedRows"
@@ -59,7 +58,6 @@
           class="row-item"
           :class="{ 'selection-mode': isSelectionMode }"
         >
-          <!-- Hidden normally, visible and functional in selection mode -->
           <input
             v-if="isSelectionMode"
             type="checkbox"
@@ -68,13 +66,11 @@
             class="row-checkbox"
           />
 
-          <!-- Row Button acts as the data display container -->
           <button
             class="row-btn"
             :disabled="isSelectionMode"
             @click="!isSelectionMode && $emit('view-details', row.id)"
           >
-            <!-- Dynamically processed fields based on field requirements -->
             <span class="row-data" v-for="field in getVisibleFields(row)" :key="field.key">
               <strong>{{ field.label }}:</strong> {{ field.displayValue }}
             </span>
@@ -84,7 +80,6 @@
         <div v-if="paginatedRows.length === 0" class="empty-state">No matching records found.</div>
       </div>
 
-      <!-- BOTTOM: Pagination -->
       <footer class="pagination">
         <button @click="currentPage--" :disabled="currentPage === 1">Prev</button>
         <span>Page {{ currentPage }} of {{ totalPages || 1 }}</span>
@@ -100,6 +95,11 @@
 import { ref, computed, watch } from 'vue'
 
 const props = defineProps({
+  // The title displayed at the top of the data view
+  viewTitle: {
+    type: String,
+    default: 'Data View',
+  },
   // Array of data objects. Must contain an 'id' property.
   rows: {
     type: Array,
@@ -123,9 +123,9 @@ const props = defineProps({
    * Object to customize fields display, exclusion and length clamping.
    * Example payload from parent:
    * {
-   *   password_hash: { exclude: true },
-   *   first_name: { displayName: 'First Name' },
-   *   biography: { displayName: 'Bio Description', maxLength: 30 }
+   * password_hash: { exclude: true },
+   * first_name: { displayName: 'First Name' },
+   * biography: { displayName: 'Bio Description', maxLength: 30 }
    * }
    */
   fieldsConfig: {
@@ -154,11 +154,11 @@ const getVisibleFields = (row) => {
     })
     .map(([key, value]) => {
       const config = props.fieldsConfig[key] || {}
-      const label = config.displayName || key // Option 3: Proper display name or default key fallback
+      const label = config.displayName || key
 
       let displayValue = value !== null && value !== undefined ? String(value) : ''
 
-      // Option 1: Handle text cropping via maxLength
+      // Handle text cropping via maxLength
       if (config.maxLength && displayValue.length > config.maxLength) {
         displayValue = displayValue.substring(0, config.maxLength) + '...'
       }
@@ -243,13 +243,6 @@ watch(
   max-width: 400px;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
 button {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -278,12 +271,6 @@ input {
   color: var(--text-color);
   border: 1px solid var(--border-color);
   box-sizing: border-box;
-}
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
 }
 
 label {
@@ -361,7 +348,20 @@ label {
   overflow: hidden;
 }
 
-/* Header / Actions */
+/* Title Bar */
+.title-bar {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+.title-bar h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Actions Menu */
 .action-menu {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--border-color);

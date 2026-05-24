@@ -1,6 +1,9 @@
 <template>
   <div class="overContainer">
     <div class="container">
+      <div class="header">
+        <h2>Object Addition</h2>
+      </div>
       <div class="button-group">
         <button @click="$router.push('/admin/add/teacher')">Add a new teacher...</button>
         <button @click="$router.push('/admin/add/student')">Add a new student...</button>
@@ -45,7 +48,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 button {

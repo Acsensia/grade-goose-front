@@ -1,6 +1,9 @@
 <template>
   <div class="overContainer">
     <div class="container">
+      <div class="header">
+        <h2>Object Stats</h2>
+      </div>
       <div class="button-group">
         <button @click="handleStudentGroupStats">Student Group Stats</button>
         <button @click="handleSpecialtyStats">Specialty Stats</button>
@@ -76,7 +79,6 @@ async function handleSubjectStats() {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 button {

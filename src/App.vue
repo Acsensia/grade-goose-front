@@ -1,6 +1,9 @@
 <template>
   <div class="topMenu">
-    <span class="websiteName">Grade Goose</span>
+    <span class="websiteName" @click="handleMainPage">Grade Goose</span>
+    <button @click="toggleTheme" class="theme-switch">
+      <span>Toggle {{ isDark ? 'White' : 'Black' }} Theme</span>
+    </button>
     <div class="topMenuRight">
       <div v-if="accountStore.account">
         <router-link
@@ -28,7 +31,7 @@
 
 <script setup>
 //TODO check if absence of patronymic name is handled properly
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useAccountStore } from './stores/account'
 import { getAccountInfo } from '@/utilities/account/accountManagement.js'
 import { useAccessTokenStore } from './stores/accessToken'
@@ -37,6 +40,8 @@ import router from './router'
 
 const accessTokenStore = useAccessTokenStore()
 const accountStore = useAccountStore()
+
+const isDark = ref(false)
 
 accessTokenStore.$subscribe((/*mutation, state*/) => {
   if (accessTokenStore.accessToken !== '' && accessTokenStore.shortUserType !== '')
@@ -53,7 +58,18 @@ onMounted(async () => {
   } else if (!accessTokenStore.hasAnything()) {
     await router.push('/login')
   }
+
+  const savedTheme = localStorage.getItem('app-theme') || 'light'
+  isDark.value = savedTheme === 'dark'
+  document.documentElement.setAttribute('data-theme', savedTheme)
 })
+
+const toggleTheme = () => {
+  isDark.value = !isDark.value
+  const theme = isDark.value ? 'dark' : 'light'
+  localStorage.setItem('app-theme', theme)
+  document.documentElement.setAttribute('data-theme', theme)
+}
 
 async function __refreshAccountStore() {
   let foundAccountInfo = await getAccountInfo(
@@ -69,6 +85,12 @@ async function __logout() {
   accessTokenStore.reset()
   accountStore.reset()
   await router.push('/login')
+}
+
+async function handleMainPage() {
+  if (accessTokenStore.shortUserType !== '') {
+    await router.push(`/${accessTokenStore.shortUserType}`)
+  } else await router.push('/login')
 }
 </script>
 
@@ -102,9 +124,34 @@ body {
     color 0.3s;
 }
 
+.theme-switch {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 200px;
+  height: 20px;
+
+  span {
+    font-size: smaller;
+  }
+}
+
+.theme-switch:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
 #app {
   min-height: 100%;
-  min-width: 98%;
+  min-width: 99.5%;
 
   display: flex;
   flex-direction: column;
@@ -119,6 +166,8 @@ body {
     height: 30px;
 
     padding: 1px 3px;
+    margin-left: 3px;
+    margin-right: 3px;
 
     border: 1px solid var(--border-color);
 
@@ -128,6 +177,8 @@ body {
       font-size: large;
 
       width: 20%;
+
+      cursor: pointer;
     }
     .topMenuRight {
       display: flex;

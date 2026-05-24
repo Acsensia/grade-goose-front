@@ -2,7 +2,7 @@
   <div class="overContainer">
     <div class="container">
       <div class="header">
-        <h2>Account Management</h2>
+        <h2>Own Account Management</h2>
       </div>
       <div class="button-group">
         <button @click="$router.push('/account/changeEmail')">Change email...</button>
@@ -10,6 +10,9 @@
         <button @click="$router.push('/account/changeFName')">Change first name...</button>
         <button @click="$router.push('/account/changeLName')">Change last name...</button>
         <button @click="$router.push('/account/changePName')">Change patronymic name...</button>
+      </div>
+      <div class="button-group">
+        <button @click="handleMainPage">Back to Main Page</button>
       </div>
     </div>
   </div>
@@ -25,6 +28,12 @@ const accessTokenStore = useAccessTokenStore()
 onMounted(async () => {
   if (accessTokenStore.accessToken === '') await router.push('/login')
 })
+
+async function handleMainPage() {
+  if (accessTokenStore.shortUserType !== '') {
+    await router.push(`/${accessTokenStore.shortUserType}`)
+  } else await router.push('/login')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -43,6 +52,10 @@ onMounted(async () => {
   padding: 20px;
   width: 100%;
   max-width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .header {

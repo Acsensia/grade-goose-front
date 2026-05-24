@@ -3,9 +3,9 @@
     <div class="container">
       <div class="header">
         <h2>Select Account Type</h2>
-        <button @click="toggleTheme" class="theme-switch">
+        <!-- <button @click="toggleTheme" class="theme-switch">
           Toggle {{ isDark ? 'White' : 'Black' }} Theme
-        </button>
+        </button> -->
       </div>
       <div class="button-group">
         <button @click="$router.push('/login/student')">Student</button>
@@ -17,22 +17,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+// import { ref, onMounted } from 'vue'
 
-const isDark = ref(false)
+// const isDark = ref(false)
 
-const toggleTheme = () => {
-  isDark.value = !isDark.value
-  const theme = isDark.value ? 'dark' : 'light'
-  localStorage.setItem('app-theme', theme)
-  document.documentElement.setAttribute('data-theme', theme)
-}
+// const toggleTheme = () => {
+//   isDark.value = !isDark.value
+//   const theme = isDark.value ? 'dark' : 'light'
+//   localStorage.setItem('app-theme', theme)
+//   document.documentElement.setAttribute('data-theme', theme)
+// }
 
-onMounted(() => {
-  const savedTheme = localStorage.getItem('app-theme') || 'light'
-  isDark.value = savedTheme === 'dark'
-  document.documentElement.setAttribute('data-theme', savedTheme)
-})
+// onMounted(() => {
+//   // const savedTheme = localStorage.getItem('app-theme') || 'light'
+//   // isDark.value = savedTheme === 'dark'
+//   // document.documentElement.setAttribute('data-theme', savedTheme)
+// })
 </script>
 
 <style lang="scss" scoped>

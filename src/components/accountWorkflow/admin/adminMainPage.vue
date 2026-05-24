@@ -1,6 +1,9 @@
 <template>
   <div class="overContainer">
     <div class="container">
+      <div class="header">
+        <h2>Administrator Main Page</h2>
+      </div>
       <div class="button-group">
         <!-- <button @click="$router.push('/account')">Manage my account...</button> -->
         <button @click="$router.push('/admin/manage')">Object management</button>
@@ -39,7 +42,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 button {
