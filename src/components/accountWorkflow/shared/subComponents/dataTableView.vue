@@ -117,7 +117,7 @@ const props = defineProps({
   },
   itemsPerPage: {
     type: Number,
-    default: 10,
+    default: 5,
   },
   /**
    * Object to customize fields display, exclusion and length clamping.

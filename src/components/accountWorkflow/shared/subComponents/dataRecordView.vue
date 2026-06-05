@@ -7,8 +7,7 @@
       </div>
     </header>
 
-    <div class="layout-grid">
-      <!-- LEFT: Fields Display -->
+    <div class="layout-stack">
       <section class="fields-section">
         <div
           v-for="field in fields"
@@ -18,33 +17,27 @@
         >
           <span class="field-label">{{ field.label }}:</span>
 
-          <!-- Explicit NULL rendering -->
           <span v-if="isNull(record[field.key])" class="field-value value-null"> NULL </span>
 
-          <!-- Boolean Type -->
           <span v-else-if="field.type === 'boolean'" class="field-value">
             {{ record[field.key] ? 'True' : 'False' }}
           </span>
 
-          <!-- Date/Datetime Type -->
           <span v-else-if="field.type === 'date'" class="field-value">
             {{ formatDate(record[field.key]) }}
           </span>
 
-          <!-- Large Text Type -->
           <div v-else-if="field.type === 'large-text'" class="field-value large-text-box">
             {{ record[field.key] }}
           </div>
 
-          <!-- String / Number / Default Type -->
           <span v-else class="field-value">
             {{ record[field.key] }}
           </span>
         </div>
       </section>
 
-      <!-- RIGHT: Action Button Groups -->
-      <aside v-if="actionGroups && actionGroups.length" class="actions-section">
+      <footer v-if="actionGroups && actionGroups.length" class="actions-section">
         <div v-for="group in actionGroups" :key="group.name" class="action-group">
           <h3 class="group-title">{{ group.name }}</h3>
           <div class="group-buttons">
@@ -58,13 +51,13 @@
             </button>
           </div>
         </div>
-      </aside>
+      </footer>
     </div>
   </div>
 </template>
 
 <script setup>
-/*const props = */ defineProps({
+defineProps({
   entityName: {
     type: String,
     default: 'Record',
@@ -75,13 +68,11 @@
     required: true,
   },
   // Array of field configurations
-  // Example: { key: 'bio', label: 'Biography', type: 'large-text' }
   fields: {
     type: Array,
     required: true,
   },
   // Array of action groups
-  // Example: [{ name: 'User Management', actions: [{ id: 'edit', label: 'Edit User', payload: { route: '/edit/1' } }] }]
   actionGroups: {
     type: Array,
     default: () => [],
@@ -99,7 +90,6 @@ const isNull = (value) => {
 const formatDate = (dateString) => {
   if (!dateString) return ''
   const date = new Date(dateString)
-  // Check if valid date
   if (isNaN(date.getTime())) return dateString
 
   return new Intl.DateTimeFormat('default', {
@@ -112,8 +102,6 @@ const formatDate = (dateString) => {
 }
 
 const handleActionClick = (action) => {
-  // Emit the payload attached to the action configuration
-  // The parent component can use this payload to redirect via vue-router
   emit('execute-action', action.payload)
 }
 </script>
@@ -122,7 +110,6 @@ const handleActionClick = (action) => {
 .overContainer {
   width: 100%;
   height: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,6 +130,7 @@ button {
   padding: 10px 20px;
   cursor: pointer;
   transition: all 0.2s;
+  font-family: inherit;
 }
 
 button:hover {
@@ -186,18 +174,19 @@ input {
   padding: 0.4rem 0.8rem;
 }
 
-.layout-grid {
+/* Structural Stack Layout */
+.layout-stack {
   display: flex;
-  gap: 2rem;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
 /* Fields Section */
 .fields-section {
-  flex: 2;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  width: 100%;
 }
 
 .field-item {
@@ -209,7 +198,7 @@ input {
 
 .field-item-large {
   flex-direction: column;
-  border-bottom: none; /* Removed so the box itself defines the boundary */
+  border-bottom: none;
   gap: 0.5rem;
 }
 
@@ -231,7 +220,7 @@ input {
 
 .large-text-box {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   max-height: 200px;
   overflow-y: auto;
   padding: 1rem;
@@ -239,23 +228,23 @@ input {
   color: var(--text-color);
   border: 1px solid var(--border-color);
   box-sizing: border-box;
-  white-space: pre-wrap; /* Preserves line breaks from the database */
+  white-space: pre-wrap;
 }
 
-/* Actions Section */
+/* Actions Section positioned cleanly below */
 .actions-section {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding-left: 1.5rem;
-  border-left: 1px solid var(--border-color);
+  gap: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  width: 100%;
 }
 
 .action-group {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .group-title {
@@ -268,34 +257,34 @@ input {
   padding-bottom: 0.25rem;
 }
 
+/* Grid/Row mapping for horizontal button distribution */
 .group-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .action-btn {
-  text-align: left;
-  width: 100%;
+  text-align: center;
+  width: auto;
+  min-width: 140px;
 }
 
 /* Responsive constraints */
 @media (max-width: 768px) {
-  .layout-grid {
-    flex-direction: column;
-  }
-
-  .actions-section {
-    width: 100%;
-    padding-left: 0;
-    border-left: none;
-    border-top: 1px solid var(--border-color);
-    padding-top: 1.5rem;
-  }
-
   .field-item {
     flex-direction: column;
     gap: 0.25rem;
+  }
+
+  .group-buttons {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+    text-align: left;
   }
 }
 </style>

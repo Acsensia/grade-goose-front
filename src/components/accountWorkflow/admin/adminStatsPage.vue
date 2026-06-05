@@ -5,9 +5,13 @@
         <h2>Object Stats</h2>
       </div>
       <div class="button-group">
-        <button @click="handleStudentGroupStats">Student Group Stats</button>
-        <button @click="handleSpecialtyStats">Specialty Stats</button>
-        <button @click="handleSubjectStats">Subject Stats</button>
+        <button @click="handleStudentGroupStats">
+          Calculate Amounts of Specialties Assigned to Student Groups
+        </button>
+        <button @click="handleSpecialtyStats">
+          Calculate Amounts of Subjects Assigned to Specialties
+        </button>
+        <button @click="handleSubjectStats">Calculate Amounts of Tasks Assigned to Subjects</button>
       </div>
       <div class="button-group">
         <button @click="$router.push('/admin')">Back</button>
