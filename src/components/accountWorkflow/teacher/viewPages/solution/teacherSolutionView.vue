@@ -65,7 +65,7 @@ const actionGroups = [
         payload: {
           actionType: 'view',
           route: '/teacher/view/task',
-          id: record.value.tasks_task_id,
+          id: id,
           backRoute: '/teacher/view/solution/',
           backId: id,
           backId2: id2,
@@ -77,7 +77,7 @@ const actionGroups = [
         payload: {
           actionType: 'view',
           route: '/teacher/view/student',
-          id: record.value.students_student_id,
+          id: id2,
           backRoute: '/teacher/view/solution/',
           backId: id,
           backId2: id2,
@@ -113,7 +113,7 @@ async function handleExecuteActionEmit(payload) {
     await router.push({
       path: payload.route,
       query: {
-        id: id,
+        id: payload.id,
         backRoute: payload.backRoute,
         backId: payload.backId,
         backId2: payload.backId2,

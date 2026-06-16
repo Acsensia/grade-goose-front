@@ -1,16 +1,15 @@
 <template>
   <div class="overContainer">
-    <div class="container">
-      <DataTableView
-        :rows="rows"
-        :filters-config="filtersConfig"
-        :group-actions="groupActions"
-        :fields-config="fieldsConfig"
-        @back="handleBackEmit"
-        @view-details="handleViewDetailsEvent"
-        @execute-action="handleExecuteActionEvent"
-      ></DataTableView>
-    </div>
+    <DataTableView
+      :rows="rows"
+      :filters-config="filtersConfig"
+      :group-actions="groupActions"
+      :fields-config="fieldsConfig"
+      :viewTitle="`Viewing All Existing Tasks...`"
+      @back="handleBackEmit"
+      @view-details="handleViewDetailsEvent"
+      @execute-action="handleExecuteActionEvent"
+    ></DataTableView>
   </div>
 </template>
 
@@ -55,7 +54,13 @@ async function handleBackEmit() {
 }
 
 async function handleViewDetailsEvent(rowId) {
-  await router.push({ path: '/teacher/view/task', query: { id: rowId } })
+  await router.push({
+    path: '/teacher/view/task',
+    query: {
+      id: rowId,
+      backRoute: '/teacher/manage/tasks',
+    },
+  })
 }
 
 async function handleExecuteActionEvent(payload) {
